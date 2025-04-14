@@ -31,7 +31,7 @@ def link(parent, text, color=BLACK):
         button.pack(anchor='w')
         return button
 
-#%% OTHER ITEMS
+#%% IMAGES
 
 def make_image(path, size, is_profile_pic=False):
     img = Image.open(path).resize((size, size)).convert("RGBA")
@@ -52,6 +52,35 @@ def icon(parent, path, action, pos=None, is_profile_pic=False, size=50):
         lbl.pack(anchor='w')
     lbl.bind("<Button-1>", lambda event: action(event) if action else None)
     return lbl
+
+#%% LONG BUTTONS
+
+# Draw rounded rectangle
+
+def long_button(parent, text, action, pos=None, image_path=None):
+    canvas = tk.Canvas(parent, bg=WHITE, bd=0, highlightthickness=0)
+    canvas.pack(fill='x')
+
+    # Draw rounded rectangle using arcs and rectangles
+    width = canvas.winfo_reqwidth()
+    radius = 25
+    canvas.create_arc(0, 0, 2 * radius, 2 * radius, start=90, extent=90, fill=BLUE, outline=BLUE)
+    canvas.create_arc(width - 2 * radius, 0, width, 2 * radius, start=0, extent=90, fill=BLUE, outline=BLUE)
+    canvas.create_arc(0, 50 - 2 * radius, 2 * radius, 50, start=180, extent=90, fill=BLUE, outline=BLUE)
+    canvas.create_arc(width - 2 * radius, 50 - 2 * radius, width, 50, start=270, extent=90, fill=BLUE, outline=BLUE)
+    canvas.create_rectangle(radius, 0, width - radius, 50, fill=BLUE, outline=BLUE)
+    canvas.create_rectangle(0, radius, width, 50 - radius, fill=BLUE, outline=BLUE)
+
+    if image_path:
+        img = make_image(image_path, 30)  # Adjust size as needed
+        canvas.image = img
+        canvas.create_image(50, 25, image=img, anchor='center')  # Adjust position as needed
+
+    canvas.create_text(width // 2, 25, text=text, fill=WHITE, font=("Helvetica Neue", 15, "bold"))
+
+    # Bind click event to the canvas
+    canvas.bind("<Button-1>", lambda event: action(event) if action else None)
+    return canvas
 
 #%% CARDS
 # def create_rounded_image(path, size, radius):
