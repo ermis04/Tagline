@@ -150,9 +150,10 @@ class Extras(Content):
         self.end_date = end_date
 
 class Ad(Extras):
-    def __init__(self, title, description, uploaded_by, start_date, end_date, approved):
+    def __init__(self, title, description, uploaded_by, start_date, end_date, approved, cost):
         super().__init__(title, description, uploaded_by, start_date, end_date)
         self.approved = approved
+        self.cost = cost
 
 class Event(Extras):
     def __init__(self, title, description, uploaded_by, start_date, end_date):
