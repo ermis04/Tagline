@@ -11,13 +11,10 @@ def create_pages(root):
     Navigator.register_page(profile=profile)
     create_profile_page(profile)
 
-
     # friends page
     friends = tk.Frame(root, padx=5, pady=10, bg="white")
     Navigator.register_page(friends=friends)
     create_friends_page(friends)
-
-
 
 
 

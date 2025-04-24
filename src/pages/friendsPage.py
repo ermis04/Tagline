@@ -7,5 +7,3 @@ def create_friends_page(frame):
     title(frame, "Friends")
     btn1 = tk.Button(frame, text="Go back", command=lambda: Navigator.navigate("home"))
     btn1.pack()
-
-
