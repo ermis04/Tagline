@@ -8,6 +8,8 @@ from src.pages.poi import create_poi_page
 from src.pages.event import create_event_page
 from src.pages.feed import create_feed_page
 from src.pages.profile import create_profile_page
+from src.pages.signIn import create_signIn_page
+from src.pages.signUp import create_signUp_page
 
 
 
@@ -29,10 +31,6 @@ def create_pages(root):
     Navigator.register_page(friends=friends)
     create_friends_page(friends)
 
-    #User home page
-    home = tk.Frame(root, padx=5, pady=10, bg="white")
-    Navigator.register_page(user_home=home)
-    create_user_home_page(home)
 
     # Area page
     area = tk.Frame(root, padx=5, pady=10, bg="white")
@@ -54,7 +52,23 @@ def create_pages(root):
     Navigator.register_page(feed=feed)
     create_feed_page(feed)
 
-    for page in (home, profile,friends, editProfile, area, poi, event, feed):
+    # Sign Up page
+    signUp = tk.Frame(root, padx=5, pady=10, bg="white")
+    Navigator.register_page(signUp=signUp)
+    create_signUp_page(signUp)
+
+    # Sign In page
+    signIn = tk.Frame(root, padx=5, pady=10, bg="white")
+    Navigator.register_page(signIn=signIn)
+    create_signIn_page(signIn)
+
+    #User home page
+    home = tk.Frame(root, padx=5, pady=10, bg="white")
+    Navigator.register_page(user_home=home)
+    create_user_home_page(home)
+
+
+    for page in (home, profile,friends, editProfile, area, poi, event, feed, signIn, signUp):
         page.place(relx=0, rely=0, relwidth=1, relheight=1)
     
     return home
