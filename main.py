@@ -33,7 +33,7 @@ root.title("Tagline")
 # card(friends, 'src/img/friends.jpg', action=friends_tab, text="Friends", current_location=False)
 
 
-homepage = create_pages(root)
-homepage.pack(fill='both', expand=True)
+starting_page = create_pages(root)
+starting_page.pack(fill='both', expand=True)
 
 root.mainloop()

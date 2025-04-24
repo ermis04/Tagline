@@ -3,15 +3,30 @@ import tkinter as tk
 from src.components import *
 
 
-def create_home_page(frame):
-
+def create_user_home_page(frame):
     icon(frame, 'src/img/friends.jpg', action=lambda event: Navigator.navigate("friends"), size=20) #friends Icon
-
     title(frame, "Home") # Title of the page
     
 
     btn1 = tk.Button(frame, text="Profile", command=lambda: Navigator.navigate("profile"))
     btn1.pack()
+
+    btn2 = tk.Button(frame, text="Feed", command=lambda: Navigator.navigate("feed"))
+    btn2.pack()
+
+    btn3 = tk.Button(frame, text="Event", command=lambda: Navigator.navigate("event"))
+    btn3.pack()
+
+    btn4 = tk.Button(frame, text="Edit profile", command=lambda: Navigator.navigate("editProfile"))
+    btn4.pack()
+
+    btn5 = tk.Button(frame, text="Poi", command=lambda: Navigator.navigate("poi"))
+    btn5.pack()
+
+    btn6 = tk.Button(frame, text="Area", command=lambda: Navigator.navigate("area"))
+    btn6.pack()
+
+
 
 
 
