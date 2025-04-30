@@ -142,8 +142,8 @@ class Post(Content):
 #%% Partner Content
 
 class Extras(Content):
-    def __init__(self, title, description, uploaded_by, start_date, end_date):
-        super().__init__(self.uploaded_by)
+    def __init__(self, title, description, uploaded_by, start_date, end_date, approved):
+        super().__init__(uploaded_by, approved)
         self.title = title
         self.description = description
         self.start_date = start_date
@@ -151,13 +151,12 @@ class Extras(Content):
 
 class Ad(Extras):
     def __init__(self, title, description, uploaded_by, start_date, end_date, approved, cost):
-        super().__init__(title, description, uploaded_by, start_date, end_date)
-        self.approved = approved
+        super().__init__(title, description, uploaded_by, start_date, end_date, approved)
         self.cost = cost
 
 class Event(Extras):
-    def __init__(self, title, description, uploaded_by, start_date, end_date):
-        super().__init__(title, description, uploaded_by, start_date, end_date)
+    def __init__(self, title, description, uploaded_by, start_date, end_date, approved):
+        super().__init__(title, description, uploaded_by, start_date, end_date, approved)
         self.sponsors = []
 
     def add_sponsor(self, partner):
