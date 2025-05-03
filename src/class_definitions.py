@@ -1,31 +1,41 @@
 #%% Entities
 
 class Person:
-    def __init__(self, first_name, last_name, email, password):
+    def __init__(self, first_name, last_name, username, email, password):
         self.first_name = first_name
         self.last_name = last_name
         self.email = email
+        self.username = username
         self.password = password
 
 class User(Person):
-    def __init__(self, password, first_name, last_name, email, username):
-        super().__init__(first_name, last_name, email, password)
-        self.username = username
+    def __init__(self, first_name, last_name, email, password, username, points=0):
+        super().__init__(first_name, last_name, email, password, username)
         self.points = 0
-        self.friends = []
+        self.visited_pois = []
+        self.pending_friends = []
+        self.active_friends = []
+        self.events = []
 
     def add_points(self, points): #after visiting POI you get points
         self.points += points
 
     def add_friend(self, friend):
         if isinstance(friend, User):
-            self.friends.append(friend)
+            self.pending_friends.append(friend)
         else:
             raise ValueError("Friend must be a User instance")
 
+    def accept_friend(self, friend):
+        if friend in self.pending_friends:
+            self.pending_friends.remove(friend)
+            self.active_friends.append(friend)
+        else:
+            raise ValueError("Friend request not found")
+
 class Moderator(Person):
-    def __init__(self, first_name, last_name, email, password):
-        super().__init__(first_name, last_name, email, password)
+    def __init__(self, first_name, last_name, username, email, password):
+        super().__init__(first_name, last_name, username, email, password)
         self.locations_managed = []
         self.approved_ads = []
         self.rejected_ads = []
@@ -68,9 +78,13 @@ class Moderator(Person):
         review.approved = False
 
 class Partner(Person):
-    def __init__(self, first_name, last_name, email, password):
-        super().__init__(first_name, last_name, email, password)
+    def __init__(self, first_name, last_name, username, email, password, business_name, phone, balance=0):
+        super().__init__(first_name, last_name, username, email, password)
         self.ads = []
+        self.events_sponsoring = []
+        self.business_name = business_name
+        self.balance = balance
+        self.phone = phone
 
     def create_ad(self, ad):
         self.ads.append(ad)
@@ -116,15 +130,15 @@ class POI:
 #%% User Content
 
 class Content:
-    def __init__(self, uploaded_by, approved):
+    def __init__(self, uploaded_by, deleted_by=None):
         self.uploaded_by = uploaded_by
-        self.approved = approved
+        self.deleted_by = deleted_by
 
 class Review(Content):
-    def __init__(self, uploaded_by, value, content):
-        super().__init__(self.uploaded_by, self.approved)
-        self.value = value # 1-5
-        self.content = content
+    def __init__(self, uploaded_by, rating, text, deleted_by=None):
+        super().__init__(uploaded_by, deleted_by)
+        self.value = rating # 1-5
+        self.content = text
 
         def set_value(self, value):
             if 1 <= value <= 5:
@@ -133,31 +147,38 @@ class Review(Content):
                 raise ValueError("Value must be between 1 and 5")
 
 class Post(Content):
-    def __init__(self, uploaded_by, src, caption):
-        super().__init__(self.uploaded_by, self.approved)
+    def __init__(self, uploaded_by, src, caption, deleted_by=None):
+        super().__init__(uploaded_by, deleted_by)
         self.src = src
         self.caption = caption
+        self.likes = [] #by users
+        self.comments = [] #by users
 
+class Comment(Content):
+    def __init__(self, uploaded_by, text, deleted_by=None):
+        super().__init__(uploaded_by, deleted_by)
+        self.text = text
 
 #%% Partner Content
 
-class Extras(Content):
-    def __init__(self, title, description, uploaded_by, start_date, end_date, approved):
-        super().__init__(uploaded_by, approved)
+class Extras:
+    def __init__(self, title, description, start_date, end_date):
         self.title = title
         self.description = description
         self.start_date = start_date
         self.end_date = end_date
 
 class Ad(Extras):
-    def __init__(self, title, description, uploaded_by, start_date, end_date, approved, cost):
-        super().__init__(title, description, uploaded_by, start_date, end_date, approved)
+    def __init__(self, title, description, start_date, end_date, cost, status):
+        super().__init__(title, description, start_date, end_date)
+        self.status = "approved" or "rejected" or "deleted"
         self.cost = cost
 
 class Event(Extras):
-    def __init__(self, title, description, uploaded_by, start_date, end_date, approved):
-        super().__init__(title, description, uploaded_by, start_date, end_date, approved)
-        self.sponsors = []
+    def __init__(self, title, description, start_date, end_date, txt, src):
+        super().__init__(title, description, start_date, end_date)
+        self.txt = txt
+        self.src = src
 
     def add_sponsor(self, partner):
         self.sponsors.append(partner)
