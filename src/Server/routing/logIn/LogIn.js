@@ -1,5 +1,16 @@
 /*
- * This Controller Conrols the LogIn class.
+ * This is for the LogIn class.
  */
 
-class LogIn {}
+class LogIn {
+  constructor() {
+    console.log("Class was created");
+  }
+  logIn() {
+    console.log("Successfully logged in! ");
+  }
+
+  getLoggedInUser() {}
+}
+
+module.exports = LogIn;

@@ -5,7 +5,7 @@ const app = express();
 const registerController = require("./routing/Register/registerController");
 const logInController = require("./routing/logIn/logInController");
 
-app.use(express.json()); // To accept JSON data
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
