@@ -1,0 +1,16 @@
+{
+  "name": "tagline",
+  "version": "1.0.0",
+  "description": "An app for helping tourists explore more",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Zagkrempa Alex, Ermis Efthymiou, Giannis Kokkinis, Vasilis Kikidis, Iasonas Tsiouramanis",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  }
+}

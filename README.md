@@ -1,1 +1,0 @@
-![T-Bucks](<T-bucks.png>)
