@@ -4,11 +4,24 @@
 
 const express = require("express");
 const router = express.Router();
+const path = require("path");
+const { validateRegister } = require("./validator");
+const { validationResult } = require("express-validator");
+const Register = require("./Register");
 
-router.post("/", async (req, res) => {});
+const registerInstance = new Register();
+
+router.post("/", validateRegister, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  const data = await registerInstance.registerUser(req.body);
+});
 
 router.get("/", (req, res) => {
-  res.send("Registration screen");
+  res.sendFile(path.join(__dirname, "../../..", "Client", "register"));
 });
 
 module.exports = router;

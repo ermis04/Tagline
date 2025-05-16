@@ -23,7 +23,7 @@ class LogIn {
     return response[0];
   }
 
-  //  takes an email and password, and checks if the user exists in the db.
+  // takes an email and password, and checks if the user exists in the db.
   // if the user exists and the password is correct, generates an auth token as a cookie.
   async logIn(email, password) {
     try {
@@ -53,11 +53,12 @@ class LogIn {
     }
   }
 
-  async getLoggedInUser(token) {
+  async getLoggedInUserData(token) {
     try {
       if (!token) {
         throw new Error("No token provided");
       }
+
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       const email = decoded.email;
       const data = await this.#getPerson(email);

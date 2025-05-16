@@ -27,11 +27,11 @@ router.post("/", validateLogIn, async (req, res) => {
 
     res.cookie("tagline_auth", token, {
       httpOnly: true,
-      secure: false, // Disable in development
-      sameSite: "lax", // Use 'none' in production with HTTPS
+      secure: false,
+      sameSite: "lax",
       maxAge: 86400000,
       path: "/",
-      domain: "localhost", // Explicitly set domain
+      domain: "localhost",
     });
     return res.status(200).json(token);
   } catch (error) {
@@ -39,14 +39,13 @@ router.post("/", validateLogIn, async (req, res) => {
   }
 });
 
-router.get("/loggedInPerson", (req, res) => {
-  const token = req.cookies.tagline_auth; // Match your cookie name
+router.get("/loggedInPerson", async (req, res) => {
+  const token = req.cookies.tagline_auth;
 
   if (!token) {
     return res.status(401).json({ error: "No authentication token found" });
   }
-  const loggedInPerson = loginInstance.getLoggedInUser(token);
-
+  const loggedInPerson = await loginInstance.getLoggedInUserData(token);
   res.json({
     PersonId: loggedInPerson.PersonId,
     first_name: loggedInPerson.first_name,

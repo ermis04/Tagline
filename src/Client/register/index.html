@@ -6,6 +6,23 @@
     <title>LogIN</title>
   </head>
   <body>
-    <h1>logIn</h1>
+    <h1>Register</h1>
+    <script>
+      fetch("http://localhost:3000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          email: "alexguyytube@gmail.com",
+          password: "12345678",
+          first_name: "Alex",
+          last_name: "Guy",
+          phone: "1234567890",
+          username: "alexguy",
+        }),
+      });
+    </script>
   </body>
 </html>
