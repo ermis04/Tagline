@@ -1,3 +1,5 @@
+DROP database tagline;
+Create database tagline;
 
 CREATE TABLE Person (
     PersonID INT NOT NULL AUTO_INCREMENT,
@@ -37,6 +39,7 @@ CREATE TABLE Partner (
     BusinessName VARCHAR(100) NOT NULL,
     Balance FLOAT NOT NULL DEFAULT 0,
     phone VARCHAR(20) NOT NULL,
+    status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     PRIMARY KEY (PartnerID),
     FOREIGN KEY (PersonID) REFERENCES Person(PersonID) on delete cascade on update cascade,
     UNIQUE (PersonID),
@@ -46,6 +49,7 @@ CREATE TABLE Partner (
 CREATE TABLE location (
     location_id INT NOT NULL AUTO_INCREMENT,
     description TEXT,
+    src VARCHAR(255) NOT NULL,
     location_name VARCHAR(100) NOT NULL,
     PRIMARY KEY (location_id),
     INDEX (location_name)  -- For better search performance
@@ -54,6 +58,7 @@ CREATE TABLE location (
 CREATE TABLE POI (
     POIID INT NOT NULL AUTO_INCREMENT,
     POI_name VARCHAR(100) NOT NULL,
+    src VARCHAR(255) NOT NULL,
     location_id INT NOT NULL,
     points INT NOT NULL DEFAULT 0,
     PRIMARY KEY (POIID),
@@ -69,6 +74,7 @@ CREATE TABLE Review (
     PoiID INT NOT NULL,
     uploadDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     DeletedBy INT NULL,
+    status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     PRIMARY KEY (ReviewID),
     CONSTRAINT uploader FOREIGN KEY (uploaded_by) REFERENCES User(UserID) on delete cascade on update cascade,
     CONSTRAINT loaction FOREIGN KEY (PoiID) REFERENCES POI(PoiID) on delete cascade on update cascade,
@@ -86,6 +92,7 @@ CREATE TABLE Post (
     uploadDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     DeletedBy INT NULL,
     PoiID INT NOT NULL,
+    status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     PRIMARY KEY (PostID),
     CONSTRAINT postedfrom FOREIGN KEY (uploaded_by) REFERENCES User(UserID) on delete cascade on update cascade,
     CONSTRAINT checked FOREIGN KEY (DeletedBy) REFERENCES Moderator(ModID) on delete cascade on update cascade,
@@ -107,35 +114,6 @@ CREATE TABLE Comment (
     INDEX (post_commented)
 );
 
-CREATE TABLE Suggestion (
-    suggestionID INT NOT NULL AUTO_INCREMENT,
-    Name VARCHAR(100) NOT NULL,
-    PoiLocation INT NOT NULL,
-    Suggested_By INT NOT NULL,
-    SuggestDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    ApprovedBy INT NULL,
-    CheckDate DATETIME NULL,
-    RejectionReason TEXT NULL,
-    PRIMARY KEY (suggestionID),
-    FOREIGN KEY (PoiLocation) REFERENCES POI(POIID) ON DELETE RESTRICT ON UPDATE CASCADE,
-    CONSTRAINT suggester FOREIGN KEY (Suggested_By) REFERENCES User(UserID) ON DELETE CASCADE ON UPDATE CASCADE,
-    CONSTRAINT checkedfrommod FOREIGN KEY (ApprovedBy) REFERENCES Moderator(ModID) ON DELETE SET NULL ON UPDATE CASCADE,
-    INDEX (PoiLocation),
-    INDEX (Suggested_By),
-    INDEX (ApprovedBy)
-);
-
--- Create trigger to automatically set CheckDate on approval/rejection
-DELIMITER //
-CREATE TRIGGER set_checkdate
-BEFORE UPDATE ON Suggestion
-FOR EACH ROW
-BEGIN
-    IF (NEW.ApprovedBy IS NOT NULL OR NEW.RejectionReason IS NOT NULL) AND OLD.CheckDate IS NULL THEN
-        SET NEW.CheckDate = CURRENT_TIMESTAMP;
-    END IF;
-END//
-DELIMITER ;
 
 CREATE TABLE AD (
     AdID INT NOT NULL AUTO_INCREMENT,
@@ -155,43 +133,6 @@ CREATE TABLE AD (
     INDEX (status),
     CONSTRAINT valid_dates CHECK (end_date >= start_date),
     CONSTRAINT positive_cost CHECK (cost >= 0)
-);
-
-CREATE TABLE Event (
-    EventID INT NOT NULL AUTO_INCREMENT,
-    PoiID INT NOT NULL,
-    start_date DATETIME NOT NULL,
-    end_date DATETIME NOT NULL,
-    text TEXT,
-    src VARCHAR(255),
-    created_by INT NOT NULL,
-    sponsored_by INT NULL,
-    PRIMARY KEY (EventID),
-    FOREIGN KEY (PoiID) REFERENCES POI(POIID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (created_by) REFERENCES Moderator(ModID) ON DELETE RESTRICT ON UPDATE CASCADE,
-    FOREIGN KEY (sponsored_by) REFERENCES Partner(PartnerID) ON DELETE SET NULL ON UPDATE CASCADE,
-    INDEX (PoiID),
-    INDEX (created_by),
-    INDEX (sponsored_by),
-    CONSTRAINT valid_event_dates CHECK (end_date > start_date)
-);
-
-CREATE TABLE Sponsor (
-    sponsorship INT NOT NULL,
-    sponsored INT NOT NULL,
-    PRIMARY KEY (sponsorship, sponsored),
-    FOREIGN KEY (sponsorship) REFERENCES Partner(PartnerID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (sponsored) REFERENCES Event(EventID) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
-CREATE TABLE Participate (
-    UserID INT NOT NULL,
-    EventID INT NOT NULL,
-    AtDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (UserID, EventID),  -- Composite primary key
-    FOREIGN KEY (UserID) REFERENCES User(UserID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (EventID) REFERENCES Event(EventID) ON DELETE CASCADE ON UPDATE CASCADE,
-    INDEX (EventID)  -- Additional index for event lookups
 );
 
 CREATE TABLE Visit (
