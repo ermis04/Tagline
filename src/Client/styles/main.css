@@ -7,9 +7,9 @@
     --fp-1: calc(100vw * (1 / 1920)); /* 10px from figma design file */
     --fp-10: calc(100vw * (10 / 1920)); /* 10px from figma design file */
     --icon-height: 50px;
-    --size-h1: 45px;
+    --size-h1: 42px;
     --size-h2: 40px;
-    --size-h3: 32px;
+    --size-h3: 28px;
     --size-txt: 20px;
 }
 
@@ -39,11 +39,11 @@
     font-size: var(--size-txt);
     font-weight: normal;
     font-family: "Chillax", sans-serif;
+    margin: 0;
 }
 
 body {
     background-color: var(--main-white);
-    padding: calc(var(--icon-height)/2);
     margin: 0;
     display: block;
 }
@@ -80,6 +80,8 @@ h4{
     font-size: var(--size-txt);
     font-weight: 800;
     padding-bottom: var(--size-txt);
+    padding-left: calc(var(--icon-height)/2);
+    padding-right: calc(var(--icon-height)/2);
     margin: 0;
 }
 
@@ -93,6 +95,9 @@ p{
 }
 
 nav{
+    padding-top: calc(var(--icon-height)/2);
+    padding-left: calc(var(--icon-height)/2);
+    padding-right: calc(var(--icon-height)/2);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -122,16 +127,155 @@ nav{
 
 section{
     padding-top: var(--icon-height);
-}
-
-.location-container{
-    height: 200px;
-    width: 150px;
-    border: 5px solid var(--main-white);
-    border-radius: 50px;
-    background: url('../user/patras.jpg')
+    padding-left: calc(var(--icon-height)/2);
 }
 
 .loading-bar{
+    margin-top: 20px;
+    height: 10px;
+    background-color: var(--main-white);
+    border-radius: 5px;
+    box-shadow: rgba(0, 83, 255, 0.5) 0px 0px 12px;
+}
 
+.loading-bar-percent{
+    border-radius: 5px;
+    position: absolute;
+    background-color: var(--main-blue);
+    height: 100%;
+    width: 50%;
+}
+
+.container-frames{
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+
+    overflow-x: auto;
+    scrollbar-width: auto; /* For Firefox */
+    scrollbar-color: var(--main-blue) var(--main-white); /* For Firefox */
+
+    flex-wrap: nowrap;
+    scrollbar-width: none; /* For Firefox */
+    /* For Chrome, Safari and Opera */
+
+    padding-right: calc(var(--icon-height)/2);
+}
+
+#locations-frame{
+    gap: 3px;
+}
+
+#posts-frame{
+    gap: 10px;
+}
+
+#uncharted-frame{
+    gap: 3px;
+}
+
+&::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.location-container {
+    position: relative; /* Needed for ::before to be relative to this */
+    height: 150px;
+    width: 120px;
+    border: 5px solid var(--main-white);
+    border-radius: 50px;
+    background: url('../user/patras.jpg');
+    background-position: center;
+    background-size: cover;
+
+    overflow: hidden; /* Ensures rounded corners clip overlay */
+    padding: calc(var(--icon-height)/2);
+    z-index: 0;
+
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.location-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* adjust for lighter/darker */
+    border-radius: 50px; /* match parent */
+    z-index: 1;
+}
+
+.location-container h3{
+    padding: 0;
+}
+
+.location-container > * {
+    position: relative;
+    z-index: 2; /* ensures content is above overlay */
+    color: var(--main-white);
+}
+
+.location-container .marker {
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: var(--main-white);
+    font-weight: normal;
+}
+
+.first-location{
+    width: 150px !important;
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-profile-pic {
+    height: 22px;
+    width: 22px;
+    border-radius: 100px;
+    border: 2px solid var(--main-white);
+    object-fit: cover;
+    margin-right: 5px;
+}
+
+.like{
+
+    height: 22px;
+    object-fit: cover;
+    margin-right: 5px;
+}
+
+.post-container{
+    position: relative; /* Needed for ::before to be relative to this */
+    height: 200px;
+    width: 100px;
+    border: 2px solid var(--main-white);
+    border-radius: 50px;
+    background: url('../user/patras.jpg');
+    background-position: center;
+    background-size: cover;
+
+    overflow: hidden; /* Ensures rounded corners clip overlay */
+    padding: calc(var(--icon-height)/2);
+    z-index: 0;
+
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.post-container div p{
+    color: var(--main-white);
+}
+
+.last-section{
+    padding-bottom: var(--icon-height);
 }
