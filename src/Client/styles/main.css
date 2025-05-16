@@ -1,0 +1,137 @@
+:root {
+    --main-blue: #0053FF;
+    --main-white: #FAFCFF;
+    --main-black: #00081A;
+
+
+    --fp-1: calc(100vw * (1 / 1920)); /* 10px from figma design file */
+    --fp-10: calc(100vw * (10 / 1920)); /* 10px from figma design file */
+    --icon-height: 50px;
+    --size-h1: 45px;
+    --size-h2: 40px;
+    --size-h3: 32px;
+    --size-txt: 20px;
+}
+
+@font-face {
+    font-family: "Chillax";
+    src: url("fonts/Chillax-Regular.otf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Chillax";
+    src: url("fonts/Chillax-Bold.otf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Chillax";
+    src: url("fonts/Chillax-Semibold.otf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+}
+
+*{
+    color: var(--main-black);
+    font-size: var(--size-txt);
+    font-weight: normal;
+    font-family: "Chillax", sans-serif;
+}
+
+body {
+    background-color: var(--main-white);
+    padding: calc(var(--icon-height)/2);
+    margin: 0;
+    display: block;
+}
+
+
+h1{
+    color: var(--main-blue);
+    font-size: var(--size-h1) !important;
+    font-weight: 1000;
+    padding-bottom: var(--size-h2);
+    margin: 0;
+}
+
+h2 {
+    color: var(--main-blue);
+    font-size: var(--size-h2);
+    font-weight: 800;
+    padding-bottom: var(--size-h3);
+    margin: 0;
+}
+
+h3{
+
+    color: var(--main-black);
+    font-size: var(--size-h3);
+    font-weight: 800;
+    padding-bottom: var(--size-txt);
+    margin: 0;
+}
+
+
+h4{
+    color: var(--main-blue);
+    font-size: var(--size-txt);
+    font-weight: 800;
+    padding-bottom: var(--size-txt);
+    margin: 0;
+}
+
+p{
+
+    color: var(--main-black);
+    font-size: var(--size-txt);
+    font-weight: normal;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.icon{
+    width: var(--icon-height);
+    height: var(--icon-height);
+    object-fit: cover;
+}
+
+.profile-pic{
+    width: var(--icon-height);
+    height: 50px;
+    border-radius: 100px;
+    border: 2px solid var(--main-white);
+    object-fit: cover;
+    box-shadow: rgba(0, 83, 255, 0.5) 0px 0px 12px;
+}
+
+.nav-options{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--fp-10);
+}
+
+section{
+    padding-top: var(--icon-height);
+}
+
+.location-container{
+    height: 200px;
+    width: 150px;
+    border: 5px solid var(--main-white);
+    border-radius: 50px;
+    background: url('../user/patras.jpg')
+}
+
+.loading-bar{
+
+}
