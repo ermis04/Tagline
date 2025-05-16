@@ -1,5 +1,7 @@
 DROP database tagline;
 Create database tagline;
+use tagline;
+
 
 CREATE TABLE Person (
     PersonID INT NOT NULL AUTO_INCREMENT,
@@ -54,7 +56,7 @@ CREATE TABLE location (
     src VARCHAR(255) NOT NULL,
     location_name VARCHAR(100) NOT NULL,
     PRIMARY KEY (location_id),
-    INDEX (location_name)  -- For better search performance
+    INDEX (location_name) 
 );
 
 CREATE TABLE POI (
@@ -65,7 +67,7 @@ CREATE TABLE POI (
     points INT NOT NULL DEFAULT 0,
     PRIMARY KEY (POIID),
     CONSTRAINT location FOREIGN KEY (location_id) REFERENCES Location(location_id) on delete cascade on update cascade,
-    INDEX (location_id)  -- For better join performance
+    INDEX (location_id)  
 );
 
 CREATE TABLE Review (
@@ -80,7 +82,7 @@ CREATE TABLE Review (
     PRIMARY KEY (ReviewID),
     CONSTRAINT uploader FOREIGN KEY (uploaded_by) REFERENCES User(UserID) on delete cascade on update cascade,
     CONSTRAINT loaction FOREIGN KEY (PoiID) REFERENCES POI(PoiID) on delete cascade on update cascade,
-    CONSTRAINT checkedfrom FOREIGN KEY (DseletedBy) REFERENCES Moderator(ModID) on delete cascade on update cascade,
+    CONSTRAINT checkedfrom FOREIGN KEY (DeletedBy) REFERENCES Moderator(ModID) on delete cascade on update cascade,
     INDEX (uploaded_by),
     INDEX (PoiID),
     INDEX (DeletedBy)
@@ -90,12 +92,12 @@ CREATE TABLE Post (
     PostID INT NOT NULL AUTO_INCREMENT,
     uploaded_by INT NOT NULL,
     caption TEXT,
-    src VARCHAR(255) NOT NULL, -- Stores image path/URL
+    src VARCHAR(255) NOT NULL, 
     uploadDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     DeletedBy INT NULL,
     PoiID INT NOT NULL,
     status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
-    status ENUM('DeletedByUser', 'Active', 'Edited') NOT NULL DEFAULT 'Active',
+    status_by_user ENUM('DeletedByUser', 'Active', 'Edited') NOT NULL DEFAULT 'Active',
     PRIMARY KEY (PostID),
     CONSTRAINT postedfrom FOREIGN KEY (uploaded_by) REFERENCES User(UserID) on delete cascade on update cascade,
     CONSTRAINT checked FOREIGN KEY (DeletedBy) REFERENCES Moderator(ModID) on delete cascade on update cascade,
@@ -106,12 +108,12 @@ CREATE TABLE Post (
 );
 
 CREATE TABLE Comment (
-    CommentID INT NOT NULL AUTO_INCREMENT, -- So a user can comment more than once
+    CommentID INT NOT NULL AUTO_INCREMENT, 
     commenter INT NOT NULL,
     post_commented INT NOT NULL,
     text TEXT NOT NULL,
     CommentDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (CommentID),  -- So a user can comment more than once
+    PRIMARY KEY (CommentID),  
     CONSTRAINT commenter FOREIGN KEY (commenter) REFERENCES User(UserID) on delete cascade on update cascade,
     CONSTRAINT post_commented FOREIGN KEY (post_commented) REFERENCES Post(PostID) on delete cascade on update cascade,
     INDEX (commenter),
@@ -143,11 +145,11 @@ CREATE TABLE Visit (
     visitor INT NOT NULL,
     PlaceToVisit INT NOT NULL,
     VisitDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (visitor, PlaceToVisit),  -- Composite key to allow multiple visits
+    PRIMARY KEY (visitor, PlaceToVisit),  
     FOREIGN KEY (visitor) REFERENCES User(UserID) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (PlaceToVisit) REFERENCES POI(POIID) ON DELETE CASCADE ON UPDATE CASCADE,
-    INDEX (PlaceToVisit),  -- For quick lookups by POI
-    INDEX (visitor)   -- For quick lookups by user
+    INDEX (PlaceToVisit),  
+    INDEX (visitor)   
 );
 
 CREATE TABLE Friends (
@@ -161,5 +163,5 @@ CREATE TABLE Friends (
     INDEX (User1ID),
     INDEX (User2ID),
     INDEX (Status),
-    CONSTRAINT valid_friendship CHECK (User1ID < User2ID)  -- Prevents duplicate friendships
+    CONSTRAINT valid_friendship CHECK (User1ID < User2ID) 
 );
