@@ -8,7 +8,6 @@ app.get("/", (req, res) => {
 });
 
 app.use(express.static(path.join(__dirname, "../Client")));
-
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
 });
