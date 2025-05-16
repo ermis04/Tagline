@@ -9,6 +9,7 @@ CREATE TABLE Person (
     email VARCHAR(100) NOT NULL,
     password VARCHAR(255) NOT NULL,
     DateCreated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    src VARCHAR(255) NOT NULL,
     Role ENUM('User', 'Moderator', 'Partner') NOT NULL,
     PRIMARY KEY (PersonID),
     UNIQUE (username),
@@ -39,6 +40,7 @@ CREATE TABLE Partner (
     BusinessName VARCHAR(100) NOT NULL,
     Balance FLOAT NOT NULL DEFAULT 0,
     phone VARCHAR(20) NOT NULL,
+    BusinessDescription text,
     status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     PRIMARY KEY (PartnerID),
     FOREIGN KEY (PersonID) REFERENCES Person(PersonID) on delete cascade on update cascade,
@@ -93,6 +95,7 @@ CREATE TABLE Post (
     DeletedBy INT NULL,
     PoiID INT NOT NULL,
     status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
+    status ENUM('DeletedByUser', 'Active', 'Edited') NOT NULL DEFAULT 'Active',
     PRIMARY KEY (PostID),
     CONSTRAINT postedfrom FOREIGN KEY (uploaded_by) REFERENCES User(UserID) on delete cascade on update cascade,
     CONSTRAINT checked FOREIGN KEY (DeletedBy) REFERENCES Moderator(ModID) on delete cascade on update cascade,
@@ -103,11 +106,12 @@ CREATE TABLE Post (
 );
 
 CREATE TABLE Comment (
+    CommentID INT NOT NULL AUTO_INCREMENT, -- So a user can comment more than once
     commenter INT NOT NULL,
     post_commented INT NOT NULL,
     text TEXT NOT NULL,
     CommentDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (commenter, post_commented),  -- Composite primary key
+    PRIMARY KEY (CommentID),  -- So a user can comment more than once
     CONSTRAINT commenter FOREIGN KEY (commenter) REFERENCES User(UserID) on delete cascade on update cascade,
     CONSTRAINT post_commented FOREIGN KEY (post_commented) REFERENCES Post(PostID) on delete cascade on update cascade,
     INDEX (commenter),
