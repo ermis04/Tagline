@@ -1,0 +1,45 @@
+:root {
+
+  --backicon-height: 15px;
+
+}
+
+.inline{
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+
+.backicon{
+    height: var(--backicon-height);
+}
+
+.dotted-input {
+    border: none; 
+    border-bottom: 2px dotted #000;
+    outline: none;
+    padding: 5px 0;
+    font-size: 16px;
+    background: transparent; 
+    width: 200px;
+}
+
+.dotted-input:focus {
+    border-bottom-color: #0053FF;
+    border-bottom-width: 2px;
+}
+
+.logininput{
+    justify-content: space-between;
+    padding-right: 30px;
+}
+
+.paddingLeft{
+    padding-left: 260px;
+}
+
+.resize{
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+}
