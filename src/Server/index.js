@@ -1,11 +1,14 @@
 const express = require("express");
+const cookieParser = require("cookie-parser");
 const path = require("path");
 const db = require("./db");
 const app = express();
 const registerController = require("./routing/Register/registerController");
 const logInController = require("./routing/logIn/logInController");
+const logOutController = require("./routing/logOut/logOutController");
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
@@ -13,6 +16,7 @@ app.get("/", (req, res) => {
 
 app.use("/register", registerController);
 app.use("/logIn", logInController);
+app.use("/logOut", logOutController);
 
 app.use(express.static(path.join(__dirname, "../Client")));
 
