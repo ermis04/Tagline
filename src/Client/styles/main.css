@@ -44,7 +44,6 @@
 
 body {
     background-color: var(--main-white);
-    margin: 0;
     display: block;
 }
 
@@ -53,7 +52,7 @@ h1{
     color: var(--main-blue);
     font-size: var(--size-h1) !important;
     font-weight: 1000;
-    padding-bottom: var(--size-h2);
+    padding-bottom: calc(var(--size-h2)/2);
     margin: 0;
 }
 
@@ -190,6 +189,7 @@ section{
     background: url('../user/patras.jpg');
     background-position: center;
     background-size: cover;
+    margin: 0 !important;
 
     overflow: hidden; /* Ensures rounded corners clip overlay */
     padding: calc(var(--icon-height)/2);
