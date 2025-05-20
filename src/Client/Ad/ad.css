@@ -43,3 +43,33 @@
             height: 80px;
 
         }
+
+        .search-container2 {
+            margin-bottom: 20px;
+            border-radius: 20px;
+            margin-right:  25px;
+            border: 2px solid #0053FF;        
+        }
+
+        .ad-container{
+            display: flex;
+            align-items: start;
+            background-color: rgba(0, 83, 255, 0.1);
+            border-radius: 20px;
+            border-color: #0053FF;
+            padding: 8px 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: 100px;
+        }
+
+        .location-icon{
+            color: #000000 !important;
+            width: 20px;
+            height: 20px;
+            margin: 7px;
+        }
+
+        .space-between{
+            display: flex;
+            justify-content: space-between;
+        }
