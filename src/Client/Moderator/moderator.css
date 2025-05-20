@@ -1,0 +1,24 @@
+.profile-pic-moderator{
+    width: var(--icon-height);
+    height: 50px;
+    border-radius: 100px;
+    border: 2px solid var(--main-white);
+    object-fit: cover;
+    box-shadow: rgba(0, 83, 255, 0.5) 0px 0px 12px;
+    object-position: 20% 10%; /* moved the image */
+}
+
+.moderate-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* Center horizontally */
+  gap: 20px;           /* Space between button and image */
+  padding: 20px;
+}
+
+.below-button-image {
+  width: 200px;    /* Adjust based on your needs */
+  height: 125px;      /* Maintain aspect ratio */
+  border-radius: 4px;  /* Optional styling */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Optional shadow */
+}
