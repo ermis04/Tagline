@@ -3,24 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LogIN</title>
+    <title>Register</title>
   </head>
   <body>
     <h1>Register</h1>
     <script>
-      fetch("http://localhost:3000/register", {
+      fetch("http://localhost:3000/register/partner", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
         body: JSON.stringify({
-          email: "alexguyytube@gmail.com",
+          email: "123213@gmail.com",
           password: "12345678",
           first_name: "Alex",
           last_name: "Guy",
-          phone: "1234567890",
-          username: "alexguy",
+          username: "a12312312",
+          src: "https://i.pinimg.com/736x/6a/fc/5c/6afc5c43a5050054d7482202e3b75239.jpg",
+          phone: "2610123123",
+          BusinessName: "Watermelon ltd.",
+          BusinessDescription: "We sell watermelons",
         }),
       });
     </script>

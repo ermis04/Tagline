@@ -11,8 +11,8 @@ CREATE TABLE Person (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     DateCreated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    src VARCHAR(255) NOT NULL,
-    Role ENUM('User', 'Moderator', 'Partner') NOT NULL,
+    src VARCHAR(255),
+    Role ENUM('USER', 'MODERATOR', 'PARTNER') NOT NULL,
     PRIMARY KEY (PersonID),
     UNIQUE (username),
     UNIQUE (email)
@@ -47,7 +47,6 @@ CREATE TABLE Partner (
     PRIMARY KEY (PartnerID),
     FOREIGN KEY (PersonID) REFERENCES Person(PersonID) on delete cascade on update cascade,
     UNIQUE (PersonID),
-    UNIQUE (phone)  
 );
 
 CREATE TABLE location (

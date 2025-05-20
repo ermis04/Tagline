@@ -11,13 +11,49 @@ const Register = require("./Register");
 
 const registerInstance = new Register();
 
-router.post("/", validateRegister, async (req, res) => {
+router.post("/user", validateRegister, async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
-  const data = await registerInstance.registerUser(req.body);
+  try {
+    await registerInstance.registerUser(req.body, "USER");
+    res.status(200).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({ message: "Error registering user" });
+  }
+});
+
+router.post("/partner", validateRegister, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    await registerInstance.registerUser(req.body, "PARTNER");
+    res.status(200).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({ message: "Error registering user" });
+  }
+});
+
+router.post("/moderator", validateRegister, async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    await registerInstance.registerUser(req.body, "MODERATOR");
+    res.status(200).json({ message: "User registered successfully" });
+  } catch (error) {
+    console.error("Registration error:", error);
+    res.status(500).json({ message: "Error registering user" });
+  }
 });
 
 router.get("/", (req, res) => {
