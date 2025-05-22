@@ -43,7 +43,7 @@ class LogIn {
       const token = jwt.sign(
         { PersonID: person.PersonID, email: person.email },
         process.env.JWT_SECRET,
-        { expiresIn: "1h" }
+        { expiresIn: "24h" }
       );
 
       return token;

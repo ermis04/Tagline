@@ -113,4 +113,50 @@ router.post("/edit", async (req, res) => {
   }
   res.json(editedPost);
 });
+
+router.get("/like", async (req, res) => {
+  // THE URL SHOULD INCLUDE THE post ID: like this: /post/like?post_id=1
+  const post_id = req.query.post_id;
+
+  if (!post_id) {
+    return res.status(400).json({ error: "Post ID is required" });
+  }
+  const post = new Post();
+
+  const likedPost = await post.likePost(post_id); //
+  if (!likedPost) {
+    return res.status(404).json({ error: "Post not found" });
+  }
+  res.json(likedPost);
+});
+
+router.post("/comment", async (req, res) => {
+  // THE URL SHOULD INCLUDE THE post ID: like this: /post/comment?post_id=1
+  // and the comment in the body, like this: { "comment": "...." }
+
+  const post_id = req.query.post_id;
+  const comment = req.body.comment;
+
+  if (!post_id) {
+    return res.status(400).json({ error: "Post ID is required" });
+  }
+  if (!comment) {
+    return res.status(400).json({ error: "New comment is required" });
+  }
+
+  const user = new User();
+  const login = new LogIn();
+  const post = new Post();
+
+  const token = req.cookies.tagline_auth;
+  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const userData = await user.getUserData(personId);
+
+  const commented = await post.commentOnPost(post_id, userData.UserID, comment);
+
+  if (!commented) {
+    return res.status(404).json({ error: "Post not found" });
+  }
+  res.json(commented);
+});
 module.exports = router;

@@ -97,6 +97,7 @@ CREATE TABLE Post (
     uploadDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     DeletedBy INT NULL,
     PoiID INT NOT NULL,
+    like_count INT NOT NULL DEFAULT 0,
     status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     status_by_user ENUM('DeletedByUser', 'Active', 'Edited') NOT NULL DEFAULT 'Active',
     PRIMARY KEY (PostID),

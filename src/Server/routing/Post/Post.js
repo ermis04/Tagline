@@ -382,6 +382,49 @@ class Post {
       throw error;
     }
   }
+
+  async likePost(postID) {
+    try {
+      const [result] = await db.query(
+        `
+      UPDATE Post
+      SET like_count = like_count + 1
+      WHERE PostID = ?
+    `,
+        [postID]
+      );
+
+      if (result.affectedRows === 0) {
+        throw new Error("Post not found.");
+      }
+
+      return { success: true, message: "Post liked successfully." };
+    } catch (error) {
+      console.error("Error in likePost:", error);
+      throw error;
+    }
+  }
+
+  async commentOnPost(postID, userID, comment) {
+    try {
+      const [result] = await db.query(
+        `
+      INSERT INTO Comment (commenter, post_commented, text)
+      VALUES (?, ?, ?)
+    `,
+        [userID, postID, comment]
+      );
+
+      return {
+        success: true,
+        message: "Comment added successfully.",
+        commentId: result.insertId,
+      };
+    } catch (error) {
+      console.error("Error in commentOnPost:", error);
+      throw error;
+    }
+  }
 }
 
 module.exports = Post;
