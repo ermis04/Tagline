@@ -2,10 +2,10 @@ const db = require("../../db");
 
 class Location {
   async getLocationData(location_id) {
-    const res = await db.query("select * from location where id = ?", [
+    const res = await db.query("select * from location where location_id = ?", [
       location_id,
     ]);
-    return res[0];
+    return res[0][0];
   }
 
   // returns the progress of the user in the location
