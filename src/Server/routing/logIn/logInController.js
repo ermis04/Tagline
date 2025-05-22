@@ -13,6 +13,7 @@ const loginInstance = new LogIn();
 
 router.post("/", validateLogIn, async (req, res) => {
   const errors = validationResult(req);
+  console.log(errors);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
@@ -26,7 +27,7 @@ router.post("/", validateLogIn, async (req, res) => {
     }
 
     res.cookie("tagline_auth", token, {
-      httpOnly: true,
+      httpOnly: false,
       secure: false,
       sameSite: "lax",
       maxAge: 86400000,

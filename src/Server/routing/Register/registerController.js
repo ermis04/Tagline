@@ -13,12 +13,16 @@ const registerInstance = new Register();
 
 router.post("/user", validateRegister, async (req, res) => {
   const errors = validationResult(req);
+  console.log(errors);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
   try {
-    await registerInstance.registerUser(req.body, "USER");
+    const success = await registerInstance.registerUser(req.body, "USER");
+    if (!success) {
+      return res.status(409).json({ message: "User already exists" });
+    }
     res.status(200).json({ message: "User registered successfully" });
   } catch (error) {
     console.error("Registration error:", error);

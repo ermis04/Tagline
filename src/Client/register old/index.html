@@ -8,20 +8,20 @@
   <body>
     <h1>Register</h1>
     <script>
-      fetch("http://localhost:3000/register/partner", {
+      fetch("http://localhost:3000/register/moderator", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
         body: JSON.stringify({
-          email: "123213@gmail.com",
+          email: "3@gmail.com",
           password: "12345678",
           first_name: "Alex",
           last_name: "Guy",
-          username: "a12312312",
+          username: "1231233",
           src: "https://i.pinimg.com/736x/6a/fc/5c/6afc5c43a5050054d7482202e3b75239.jpg",
-          phone: "2610123123",
+          phone: "2610123456",
           BusinessName: "Watermelon ltd.",
           BusinessDescription: "We sell watermelons",
         }),
