@@ -20,7 +20,10 @@ router.get("/data", async (req, res) => {
 
   const userData = await user.getUserData(await login.getLoggedInUserId(token)); // Get the logged in user data from the token
   const pois = await location.getLocationPOIs(location_id);
-  const locationData = await location.getLocationData(location_id);
+  const locationData = await location.getLocationData(
+    location_id,
+    userData.UserID
+  );
   res.json({ ...userData, pois, locationData });
 });
 

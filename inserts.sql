@@ -74,3 +74,28 @@ INSERT INTO POI (POI_name, POI_description, src, location_id, points) VALUES
 ('Mitre Peak', 'Iconic mountain rising sharply from the fjord''s waters.', 'https://images.unsplash.com/photo-1574015974293-817f0ebebb74', 14, 55),
 ('Stirling Falls', 'Dramatic 155-meter waterfall that cascades into the sound.', 'https://images.unsplash.com/photo-1574015974293-817f0ebebb74', 14, 45),
 ('Underwater Observatory', 'Unique facility showcasing the sound''s marine life.', 'https://images.unsplash.com/photo-1574015974293-817f0ebebb74', 14, 40);
+
+
+INSERT INTO Post (uploaded_by, caption, src, PoiID, status, status_by_user) VALUES
+(1, 'Beautiful view from the top!', 'https://example.com/posts/eiffel1.jpg', 1, 'Approved', 'Active'),
+(3, 'Sunset at the Colosseum was amazing', 'https://example.com/posts/colosseum1.jpg', 2, 'Approved', 'Active'),
+(5, 'The Louvre never disappoints', 'https://example.com/posts/louvre1.jpg', 1, 'Approved', 'Active'),
+(2, 'Venetian canals are magical', 'https://example.com/posts/venice1.jpg', 3, 'Approved', 'Active'),
+(4, 'Acropolis at golden hour', 'https://example.com/posts/acropolis1.jpg', 4, 'Approved', 'Active');
+
+INSERT INTO Post (uploaded_by, caption, src, PoiID, status, status_by_user) VALUES
+(6, 'Just arrived at the Great Wall!', 'https://example.com/posts/greatwall1.jpg', 5, 'Pending', 'Active'),
+(7, 'Kyoto temples are breathtaking', 'https://example.com/posts/kyoto1.jpg', 6, 'Pending', 'Active'),
+(8, 'Taj Mahal at sunrise', 'https://example.com/posts/tajmahal1.jpg', 7, 'Pending', 'Active');
+
+INSERT INTO Post (uploaded_by, caption, src, PoiID, status, status_by_user, DeletedBy) VALUES
+(2, 'Not my best photo', 'https://example.com/posts/ny1.jpg', 8, 'Rejected', 'Active', 1),
+(5, 'Oops wrong location', 'https://example.com/posts/random1.jpg', 9, 'Rejected', 'Active', 2);
+
+INSERT INTO Post (uploaded_by, caption, src, PoiID, status, status_by_user) VALUES
+(3, 'Deleted this by mistake', 'https://example.com/posts/venice2.jpg', 3, 'Approved', 'DeletedByUser'),
+(1, 'Changed my mind about this one', 'https://example.com/posts/louvre2.jpg', 1, 'Approved', 'DeletedByUser');
+
+INSERT INTO Post (uploaded_by, caption, src, PoiID, status, status_by_user) VALUES
+(4, 'Updated with better description', 'https://example.com/posts/acropolis2.jpg', 4, 'Approved', 'Edited'),
+(7, 'Fixed the caption', 'https://example.com/posts/kyoto2.jpg', 6, 'Pending', 'Edited');
