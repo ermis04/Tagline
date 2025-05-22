@@ -159,4 +159,61 @@ router.post("/comment", async (req, res) => {
   }
   res.json(commented);
 });
+
+router.get("/comment/delete", async (req, res) => {
+  // THE URL SHOULD INCLUDE THE post ID and comment ID: like this: /post/comment/delete?comment_id=1
+  const comment_id = req.query.comment_id;
+  if (!comment_id) {
+    return res.status(400).json({ error: "Comment ID is required" });
+  }
+
+  const user = new User();
+  const login = new LogIn();
+  const post = new Post();
+
+  const token = req.cookies.tagline_auth;
+  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const userData = await user.getUserData(personId);
+
+  const removed = await post.deleteComment(comment_id, userData.UserID);
+
+  if (!removed) {
+    return res.status(404).json({ error: "Post not found" });
+  }
+  res.json(removed);
+});
+
+router.get("/comment/edit", async (req, res) => {
+  // THE URL SHOULD INCLUDE THE post ID and comment ID: like this: /post/comment/edit?comment_id=1
+  // and the new comment in the body, like this: { "newComment": "...." }
+  const comment_id = req.query.comment_id;
+  const newComment = req.body.newComment;
+
+  if (!comment_id) {
+    return res.status(400).json({ error: "Comment ID is required" });
+  }
+  if (!newComment) {
+    return res.status(400).json({ error: "New comment is required" });
+  }
+
+  const user = new User();
+  const login = new LogIn();
+  const post = new Post();
+
+  const token = req.cookies.tagline_auth;
+  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const userData = await user.getUserData(personId);
+
+  const removed = await post.editComment(
+    comment_id,
+    userData.UserID,
+    newComment
+  );
+
+  if (!removed) {
+    return res.status(404).json({ error: "Post not found" });
+  }
+  res.json(removed);
+});
+
 module.exports = router;

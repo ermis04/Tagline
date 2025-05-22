@@ -425,6 +425,45 @@ class Post {
       throw error;
     }
   }
+
+  async deleteComment(commentID, userID) {
+    try {
+      console.log("Deleting comment with ID:", commentID, "by user:", userID);
+      const [result] = await db.query(
+        `
+      DELETE FROM Comment
+      WHERE CommentID = ? AND commenter = ?
+    `,
+        [commentID, userID]
+      );
+      return { success: true, message: "Comment deleted successfully." };
+    } catch (error) {
+      console.error("Error in deleteComment:", error);
+      throw error;
+    }
+  }
+
+  async editComment(commentID, userID, newComment) {
+    try {
+      const [result] = await db.query(
+        `
+      UPDATE Comment
+      SET text = ?
+      WHERE CommentID = ? AND commenter = ?
+    `,
+        [newComment, commentID, userID]
+      );
+
+      if (result.affectedRows === 0) {
+        throw new Error("Comment not found or user is not the owner.");
+      }
+
+      return { success: true, message: "Comment updated successfully." };
+    } catch (error) {
+      console.error("Error in editComment:", error);
+      throw error;
+    }
+  }
 }
 
 module.exports = Post;
