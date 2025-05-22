@@ -1,5 +1,4 @@
 export class Partner {
-  let funds; // Funds of the business
   checkBalance() {} // Check balance
   addFunds() {} // Add funds
   chargeFunds() {} // Charge funds

@@ -148,3 +148,12 @@ add_element("posts-frame", createPostContainer("Patras", ".natalie.png", 5));
 add_element("uncharted-frame", createLocationContainer("Patras", 5));
 add_element("uncharted-frame", createLocationContainer("Patras", 5));
 add_element("uncharted-frame", createLocationContainer("Patras", 5));
+
+fetch("/user/data")
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error("Error:", error);
+  });
