@@ -160,7 +160,7 @@ CREATE TABLE Friends (
     FriendshipID INT NOT NULL AUTO_INCREMENT,
     User1ID INT NOT NULL,
     User2ID INT NOT NULL,
-    Status ENUM('Pending', 'Accepted', 'Rejected', 'Blocked') NOT NULL DEFAULT 'Pending',
+    Status ENUM('Pending', 'Accepted', 'Rejected', 'Blocked') NOT NULL DEFAULT 'Accepted',
     PRIMARY KEY (FriendshipID),
     FOREIGN KEY (User1ID) REFERENCES User(UserID),
     FOREIGN KEY (User2ID) REFERENCES User(UserID),
