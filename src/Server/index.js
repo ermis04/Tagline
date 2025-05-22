@@ -7,6 +7,9 @@ const registerController = require("./routing/Register/registerController");
 const logInController = require("./routing/logIn/logInController");
 const logOutController = require("./routing/logOut/logOutController");
 const userController = require("./routing/User/userController");
+const poiController = require("./routing/POI/poiController");
+const locationController = require("./routing/Location/locationController");
+const postController = require("./routing/Post/postController");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -19,6 +22,9 @@ app.use("/register", registerController);
 app.use("/logIn", logInController);
 app.use("/logOut", logOutController);
 app.use("/user", userController);
+app.use("/poi", poiController);
+app.use("/location", locationController);
+app.use("/posts", postController);
 
 app.use(express.static(path.join(__dirname, "../Client")));
 

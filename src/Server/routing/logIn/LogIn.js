@@ -43,7 +43,7 @@ class LogIn {
       const token = jwt.sign(
         { PersonID: person.PersonID, email: person.email },
         process.env.JWT_SECRET,
-        { expiresIn: "1h" }
+        { expiresIn: "24h" }
       );
 
       return token;
@@ -53,16 +53,13 @@ class LogIn {
     }
   }
 
-  async getLoggedInUserData(token) {
+  async getLoggedInUserId(token) {
     try {
       if (!token) {
         throw new Error("No token provided");
       }
-
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      const email = decoded.email;
-      const data = await this.#getPerson(email);
-      return data;
+      const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+      return decoded.PersonID;
     } catch (error) {
       console.error("Token verification failed:", error.message);
       throw error;

@@ -1,0 +1,32 @@
+.back-icon{
+        color: #000000 !important;
+        width: 15px;
+        height: 25px;
+        }
+
+.add-friend-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #0053FF;  /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 20px;  /* Rounded corners */
+    font-size: 19px;
+    width: 150px;
+    height: 20px;
+}
+
+.container{
+    border-radius: 60px;
+    border: none;
+    width: 180px;
+    height: 280px;
+}
+.image-container{
+    border-radius: 60px;
+    border: none;
+    width: 180px;
+    height: 280px;
+}

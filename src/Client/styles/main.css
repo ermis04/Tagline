@@ -245,6 +245,15 @@ section{
     margin-right: 5px;
 }
 
+.big-profile-pic {
+    height: 130px;
+    width: 130px;
+    border-radius: 200px;
+    border: 2px solid var(--main-white);
+    object-fit: cover;
+    margin-left: 125px;
+}
+
 .like{
 
     height: 22px;
@@ -282,6 +291,7 @@ section{
 
 .next-button{
     display: flex;
+    justify-content: center;
     align-items: center;
     padding: 12px 24px;
     background-color: #0053FF;  /* Blue color */
