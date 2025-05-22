@@ -52,14 +52,11 @@
         }
 
         .ad-container{
-            display: flex;
-            align-items: start;
-            background-color: rgba(0, 83, 255, 0.1);
-            border-radius: 20px;
-            border-color: #0053FF;
-            padding: 8px 15px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            height: 100px;
+        /* Your existing styles */
+        background-color: rgba(0, 83, 255, 0.1);
+        border-radius: 20px;
+        padding: 8px 15px;
+        height: 100px;
         }
 
         .location-icon{
@@ -69,7 +66,33 @@
             margin: 7px;
         }
 
+        .plus-icon{
+            color: #000000 !important;
+            width: 35px;
+            height: 35px;
+            margin: 7px;
+        }
+
         .space-between{
             display: flex;
+            align-items: center;
             justify-content: space-between;
+        }
+
+        .views-text {
+            margin-top: 15px; /* Creates space above the views text */
+        }
+
+        h5{
+            opacity: 0.4;
+        }
+
+        .bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 30px;
+            border-color: black;
+            padding: 8px 15px;
+            height: 20px;
         }

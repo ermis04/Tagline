@@ -279,3 +279,16 @@ section{
 .last-section{
     padding-bottom: var(--icon-height);
 }
+
+.next-button{
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #0053FF;  /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 20px;  /* Rounded corners */
+    font-size: 19px;
+    width: 45px;
+    height: 10px;
+}
