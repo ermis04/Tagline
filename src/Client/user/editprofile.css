@@ -1,0 +1,30 @@
+.cancel-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: rgb(255, 255, 255);
+    color: #0053FF;
+    border:40px;
+    border-radius: 20px; 
+    font-size: 19px;
+    width: 45%;
+    height: 10px;
+    border-radius: 20px;
+    border: 2px solid #0053FF;     
+}
+
+.save-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: #0053FF;  /* Blue color */
+    color: white;
+    border: 40px;
+    border-radius: 20px;  /* Rounded corners */
+    font-size: 19px;
+    width: 45%;
+    height: 10px;
+    border: 2px solid #0053FF;     
+}
