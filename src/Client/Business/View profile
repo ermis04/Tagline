@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../Login/Login.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../Moderator/moderator.css" />
+    <link rel="stylesheet" href="business.css" />
+    
+    <title>Business Page</title>
+  </head>
+
+  <body>
+    <nav>
+        <a style="text-decoration:none" href="https://www.google.com">
+          <img class="profile-pic-business" src="store-profile.jpg" alt="Logo" />
+        </a>
+
+        <span class="nav-options">
+            <!-- <a href="https://www.youtube.com/watch?v=GtbR-6fUARU">
+              <img class="icon-business" src="add-funds.jpg" alt="Logo" />
+            </a> -->
+            <span>
+                <a style="text-decoration:none" href="https://www.google.com">
+                <h4 style="padding: 0; margin-bottom: -5px">+ Balance: 1030€</h4> 
+                <!-- edo einai hard corded to balance tou business, xreiazetai back end gia alithino -->
+                <p style="color: var(--main-blue)"></p>
+            </a>
+            </span>
+
+        </span>
+    </nav>
+
+
+    <section>
+    </section>
+
+  <section class="moderate-section">
+    <button>Manage Adverisements</button>
+    
+    <img class = "below-button-image" src = "Manage-advertisement.jpeg" alt = "Moderator Hammer">
+
+
+  </section>
+
+  <section class="moderate-section">
+    <button>Create advertisement</button>
+    
+    <img class = "below-button-image" src = "Create-advertisement.jpeg" alt = "Moderator Hammer">
+
+
+  </section>
+
+    <section class="moderate-section">
+    <button>Statistics</button>
+    
+    <img class = "below-button-image" src = "advertisement.jpg" alt = "Moderator Hammer">
+
+
+
+  </body>
