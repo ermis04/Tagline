@@ -5,7 +5,37 @@ class Ad {
   changeAdBudget() {} // Edit ad
   getAdStatistics() {} // get the views, clicks of the ad
   getAdData() {} // get the data of the ad
-  getAds() {} // get the ads of the business (expired ones too)
+
+
+  // get the ads of the business (expired ones too)
+  getAds(partner_id) {
+      const [adData] = db.query(
+        `SELECT
+    a.AdID,
+    a.title,
+    a.Description,
+    a.start_date,
+    a.end_date,
+    a.views,
+    a.clicks,
+    a.status,
+    a.cost,
+    p.POI_name AS point_of_interest,
+    l.location_name AS location
+FROM 
+    ad a
+JOIN 
+    POI p ON a.PoiID = p.POIID
+JOIN 
+    location l ON p.location_id = l.location_id
+WHERE 
+    a.uploaded_by = ?
+ORDER BY 
+    a.start_date DESC;`
+      ,[partner_id]);
+
+      return adData;
+  }
 
   // get the ads of the POI
   getAdsforPoi(poi_id) {
