@@ -161,14 +161,16 @@ fetch("/user/data")
 fetch("/reviews", {
   method: "POST",
   headers: {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
   },
   body: JSON.stringify({
     rating: 5,
-    text: "Great place!",
-    poiId: 1
-  })
+    text: "What a nice pizza!!",
+    poiId: 1,
+    src: "https://lh3.googleusercontent.com/geougc-cs/AB3l90CduAvz0N02bOgmT2n-ZJSp0Ig1U7zJAcelWJv27PnCpUNQYfc-R7-B1RGyJ2yCyYkqH4YvM1LVVMHHXksxqsVhq8zRmDkZaYIhLvqqA_Rt6vZQOFji6kr6-BzqKiCYVTI5NNR0Pg=s225-p-k-rw",
+    share_as_post: false,
+  }),
 })
-.then(res => res.json())
-.then(data => console.log("Review added:", data))
-.catch(err => console.error("Error adding review:", err));
+  .then((res) => res.json())
+  .then((data) => console.log("Review added:", data))
+  .catch((err) => console.error("Error adding review:", err));
