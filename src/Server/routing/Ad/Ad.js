@@ -6,11 +6,10 @@ class Ad {
   getAdStatistics() {} // get the views, clicks of the ad
   getAdData() {} // get the data of the ad
 
-
   // get the ads of the business (expired ones too)
-  getAds(partner_id) {
-      const [adData] = db.query(
-        `SELECT
+  async getAds(partner_id) {
+    const [adData] = await db.query(
+      `SELECT
     a.AdID,
     a.title,
     a.Description,
@@ -31,10 +30,12 @@ JOIN
 WHERE 
     a.uploaded_by = ?
 ORDER BY 
-    a.start_date DESC;`
-      ,[partner_id]);
-
-      return adData;
+    a.start_date DESC;`,
+      [partner_id]
+    );
+    console.log(partner_id);
+    console.log(adData)
+    return adData[0];
   }
 
   // get the ads of the POI

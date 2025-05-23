@@ -12,12 +12,8 @@ const locationController = require("./routing/Location/locationController");
 const postController = require("./routing/Post/postController");
 const reviewController = require("./routing/Review/reviewController");
 const moderatorController = require("./routing/Moderator/moderatorController");
-<<<<<<< HEAD
 const adController = require("./routing/Ad/adController");
-
-=======
 const partnerController = require("./routing/Partner/partnerController");
->>>>>>> 845a0595ce2d1e13b17851e3932045eb4bbb1a62
 
 app.use(express.json());
 app.use(cookieParser());
@@ -35,12 +31,9 @@ app.use("/location", locationController);
 app.use("/posts", postController);
 app.use("/reviews", reviewController);
 app.use("/moderator", moderatorController);
-<<<<<<< HEAD
 app.use("/ad", adController);
 
-=======
 app.use("/partner", partnerController);
->>>>>>> 845a0595ce2d1e13b17851e3932045eb4bbb1a62
 
 app.use(express.static(path.join(__dirname, "../Client")));
 
