@@ -5,47 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User</title>
     <link rel="stylesheet" href="../styles/main.css" />
-<!--    <script type="module" src="./index.js"></script>-->
+    <script type="module" src="./index.js"></script>
     <script src="connect_db.js"></script>
 
-      <script src="handle_data.js"></script>
-
+    <script src="handle_data.js"></script>
   </head>
   <body>
     <nav>
-        <a>
-          <img class="profile-pic" src="natalie.png" alt="Logo" />
+      <a>
+        <img class="profile-pic" src="natalie.png" alt="Logo" />
+      </a>
+
+      <span class="nav-options">
+        <a href="https://www.youtube.com/watch?v=GtbR-6fUARU">
+          <img class="icon" src="friends.jpg" alt="Logo" />
         </a>
-
-        <span class="nav-options">
-            <a href="https://www.youtube.com/watch?v=GtbR-6fUARU">
-              <img class="icon" src="friends.jpg" alt="Logo" />
-            </a>
-            <span>
-                <h4 style="padding: 0; margin-bottom: -5px">1030</h4>
-                <p style="color: var(--main-blue)">Points</p>
-            </span>
-
+        <span>
+          <h4 style="padding: 0; margin-bottom: -5px">1030</h4>
+          <p style="color: var(--main-blue)">Points</p>
         </span>
+      </span>
     </nav>
 
-  <section>
+    <section>
       <h2>Exploring</h2>
       <div id="locations-frame" class="container-frames">
         <!--Load from js-->
       </div>
-  </section>
-  <section>
+    </section>
+    <section>
       <h1>Popular Nearby</h1>
       <div id="posts-frame" class="container-frames">
-          <!--Load from js-->
+        <!--Load from js-->
       </div>
-  </section>
+    </section>
     <section class="last-section">
-        <h1>Uncharted</h1>
-        <div id="uncharted-frame" class="container-frames">
-            <!--Load from js-->
-        </div>
+      <h1>Uncharted</h1>
+      <div id="uncharted-frame" class="container-frames">
+        <!--Load from js-->
+      </div>
     </section>
   </body>
 </html>
