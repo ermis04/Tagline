@@ -3,7 +3,21 @@ const db = require("../../db");
 class Ad {
   createAd() {} // Create ad
   changeAdBudget() {} // Edit ad
-  getAdStatistics() {} // get the views, clicks of the ad
+
+
+  // get the views, clicks of the ad
+  async getAdStatistics(partner_id) {
+    const [adStatistics] = await db.query(
+    `SELECT 
+    SUM(views) AS total_views,
+    SUM(clicks) AS total_clicks
+    FROM ad
+    WHERE uploaded_by = ?`
+    ,[partner_id]
+    )
+
+    return adStatistics;
+  } 
   getAdData() {} // get the data of the ad
 
   // get the ads of the business (expired ones too)
@@ -33,8 +47,6 @@ ORDER BY
     a.start_date DESC;`,
       [partner_id]
     );
-    console.log(partner_id);
-    console.log(adData)
     return adData[0];
   }
 
@@ -44,8 +56,16 @@ ORDER BY
     return res[0];
   }
 
-  #addAdView() {} // add view to the ad
-  #addAdClick() {} // add click to the ad
+  // add view to the ad
+  #addAdView(ad_id) {
+
+  } 
+
+  // add click to the ad
+  #addAdClick() {
+
+  } 
+
   updateAdData() {} //update views and click count
 }
 
