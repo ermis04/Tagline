@@ -78,6 +78,7 @@ CREATE TABLE Review (
     PoiID INT NOT NULL,
     uploadDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     DeletedBy INT NULL,
+    src VARCHAR(255) NOT NULL,
     status_by_user ENUM('DeletedByUser', 'Active', 'Edited') NOT NULL DEFAULT 'Active',
     status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     PRIMARY KEY (ReviewID),
