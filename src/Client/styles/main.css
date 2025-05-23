@@ -44,6 +44,7 @@
 
 body {
     background-color: var(--main-white);
+    margin: 0;
     display: block;
 }
 
@@ -52,7 +53,7 @@ h1{
     color: var(--main-blue);
     font-size: var(--size-h1) !important;
     font-weight: 1000;
-    padding-bottom: calc(var(--size-h2)/2);
+    padding-bottom: var(--size-h2);
     margin: 0;
 }
 
@@ -189,7 +190,6 @@ section{
     background: url('../user/patras.jpg');
     background-position: center;
     background-size: cover;
-    margin: 0 !important;
 
     overflow: hidden; /* Ensures rounded corners clip overlay */
     padding: calc(var(--icon-height)/2);
@@ -245,15 +245,6 @@ section{
     margin-right: 5px;
 }
 
-.big-profile-pic {
-    height: 130px;
-    width: 130px;
-    border-radius: 200px;
-    border: 2px solid var(--main-white);
-    object-fit: cover;
-    margin-left: 125px;
-}
-
 .like{
 
     height: 22px;
@@ -299,6 +290,6 @@ section{
     border: none;
     border-radius: 20px;  /* Rounded corners */
     font-size: 19px;
-    width: 45px;
-    height: 10px;
+    width: 70px;
+    height: 20px;
 }
