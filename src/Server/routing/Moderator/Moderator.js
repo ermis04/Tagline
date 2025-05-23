@@ -2,7 +2,6 @@ const db = require("../../db");
 class Moderator {
   // Get moderator data
   async getModeratorData(personId) {
-    console.log("getModeratorData called with personId:", personId);
     try {
       const [rows] = await db.query(
         `
