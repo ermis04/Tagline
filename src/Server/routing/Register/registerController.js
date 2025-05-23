@@ -61,7 +61,21 @@ router.post("/moderator", validateRegister, async (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../..", "Client", "register"));
+  res.sendFile(
+    path.join(__dirname, "../../..", "Client", "register", "register1.html")
+  );
+});
+
+router.get("/partner", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../../..",
+      "Client",
+      "RegisterPartner",
+      "registerPartner1.html"
+    )
+  );
 });
 
 module.exports = router;

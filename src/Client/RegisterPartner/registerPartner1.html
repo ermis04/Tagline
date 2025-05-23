@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/Login/Login.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+
+    <title>Partner Register</title>
+  </head>
+
+  <body>
+    <section>
+      <a href="/register">
+        <div class="inline">
+          <img class="backicon" src="/images/back.png" alt="vector" />
+          <p>Cancel</p>
+        </div>
+      </a>
+
+      <section></section>
+      <h1>Welcome, Partner</h1>
+      <section></section>
+
+      <div class="inline logininput">
+        <label for="businessname">Businessname</label>
+        <div class="input-container">
+          <input id="businessname" type="text" class="dotted-input" />
+        </div>
+      </div>
+
+      <div class="inline logininput">
+        <label for="Vatnumber">Vat number</label>
+        <div class="input-container">
+          <input id="Vatnumber" type="text" class="dotted-input" />
+        </div>
+      </div>
+
+      <div class="inline logininput">
+        <label for="adress">Adress</label>
+        <div class="input-container">
+          <input id="adress" type="text" class="dotted-input" />
+        </div>
+      </div>
+
+      <section></section>
+      <section></section>
+      <section></section>
+      <section></section>
+
+      <div class="paddingLeft">
+        <a
+          href="/register/partner/static/registerPartner2.html"
+          style="text-decoration: none"
+          onclick="storeFirstPageData()"
+          ><div class="next-button">Next</div></a
+        >
+      </div>
+    </section>
+    <script src="/register/partner/static/register.js"></script>
+  </body>
+</html>

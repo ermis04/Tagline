@@ -10,55 +10,63 @@
   </head>
   <body>
     <section>
-    <div class="inline">
-      <a>
-        <img class="backicon" src="../Login/back.png" alt="vector" />
-      </a>
-      <p>Cancel</p>
-    </div>
+      <a href="/login">
+        <div class="inline">
+          <img class="backicon" src="../images/back.png" alt="vector" />
 
-    <section></section>
-    <h1>Sign Up</h1>
-    <section></section>
-
-    <form id="signupForm1">
-      <div class="inline logininput">
-        <label for="name">Name</label>
-        <div class="input-container">
-          <input id="name" type="text" class="dotted-input" />
-        </div>
-      </div>
-
-      <div class="inline logininput">
-        <label for="surname">Surname</label>
-        <div class="input-container">
-          <input id="surname" type="text" class="dotted-input" />
-        </div>
-      </div>
-
-      <div class="inline logininput">
-        <label for="email">Email</label>
-        <div class="input-container">
-          <input id="email" type="text" class="dotted-input" />
-        </div>
-      </div>
-
-      <div class="inline logininput">
-        <label for="password">Password</label>
-        <div class="input-container">
-          <input id="password" type="password" class="dotted-input" />
-        </div>
-      </div>
+          <p>back</p>
+        </div></a
+      >
 
       <section></section>
+      <h1>Sign Up</h1>
       <section></section>
 
-      <div class="paddingLeft">
-        <a href="register2.html" style="text-decoration:none" onclick="storeFirstPageData()"><div class="next-button">Next</div></a>
-      </div>
-    </form>
+      <form id="signupForm1">
+        <div class="inline logininput">
+          <label for="name">Name</label>
+          <div class="input-container">
+            <input id="name" type="text" class="dotted-input" />
+          </div>
+        </div>
 
-    <script src="./register.js"></script>
+        <div class="inline logininput">
+          <label for="surname">Surname</label>
+          <div class="input-container">
+            <input id="surname" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="email">Email</label>
+          <div class="input-container">
+            <input id="email" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="password">Password</label>
+          <div class="input-container">
+            <input id="password" type="password" class="dotted-input" />
+          </div>
+        </div>
+
+        <section></section>
+        <section></section>
+
+        <div class="paddingLeft">
+          <a
+            href="/register/static/register2.html"
+            style="text-decoration: none"
+            onclick="storeFirstPageData()"
+            ><div class="next-button">Next</div></a
+          >
+        </div>
+
+        <p>Partner?<a href="/register/partner"> Register here</a></p>
+      </form>
+
+      <script src="/register/static/register.js"></script>
     </section>
   </body>
 </html>
