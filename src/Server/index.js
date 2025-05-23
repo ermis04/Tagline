@@ -10,6 +10,7 @@ const userController = require("./routing/User/userController");
 const poiController = require("./routing/POI/poiController");
 const locationController = require("./routing/Location/locationController");
 const postController = require("./routing/Post/postController");
+const reviewController = require("./routing/Review/reviewController");
 
 app.use(express.json());
 app.use(cookieParser());
@@ -25,6 +26,7 @@ app.use("/user", userController);
 app.use("/poi", poiController);
 app.use("/location", locationController);
 app.use("/posts", postController);
+app.use('/reviews', reviewController);
 
 app.use(express.static(path.join(__dirname, "../Client")));
 

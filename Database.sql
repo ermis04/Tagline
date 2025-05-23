@@ -46,7 +46,7 @@ CREATE TABLE Partner (
     status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     PRIMARY KEY (PartnerID),
     FOREIGN KEY (PersonID) REFERENCES Person(PersonID) on delete cascade on update cascade,
-    UNIQUE (PersonID),
+    UNIQUE (PersonID)
 );
 
 CREATE TABLE location (
@@ -123,7 +123,7 @@ CREATE TABLE Comment (
 );
 
 
-CREATE TABLE AD (
+CREATE TABLE ad (
     AdID INT NOT NULL AUTO_INCREMENT,
     uploaded_by INT NOT NULL,
     title VARCHAR(100) NOT NULL,

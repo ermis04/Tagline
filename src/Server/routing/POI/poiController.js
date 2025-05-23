@@ -80,4 +80,17 @@ router.get("/unmarkVisited", async (req, res) => {
   res.status(200).json({ message: "POI marked as not visited" });
 });
 
+router.post("/review", async (req, res) => {
+  const formData = req.body;
+  const { poi_id, review_text, rating, src, isPost } = formData;
+
+  const token = req.cookies.tagline_auth; // For knowing the logged in user
+  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const userData = await user.getUserData(personId);
+  await poi.unmarkPoiAsVisitedByUser(poi_id, userData.UserID); // Update the POI visits count
+
+
+
+})
+
 module.exports = router;

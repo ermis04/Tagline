@@ -157,3 +157,18 @@ fetch("/user/data")
   .catch((error) => {
     console.error("Error:", error);
   });
+
+fetch("/reviews", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    rating: 5,
+    text: "Great place!",
+    poiId: 1
+  })
+})
+.then(res => res.json())
+.then(data => console.log("Review added:", data))
+.catch(err => console.error("Error adding review:", err));

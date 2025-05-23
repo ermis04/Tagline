@@ -1,3 +1,39 @@
+INSERT INTO Person (first_name, last_name, username, email, password, src, Role)
+VALUES
+    ('Alice', 'Johnson', 'alicej', 'alice@example.com', 'hashed_password1', '/images/alice.jpg', 'USER'),
+    ('Bob', 'Smith', 'bobsmith', 'bob@example.com', 'hashed_password2', '/images/bob.jpg', 'USER'),
+    ('Charlie', 'Lee', 'charlielee', 'charlie@example.com', 'hashed_password3', '/images/charlie.jpg', 'USER'),
+    ('Diana', 'Miller', 'dianam', 'diana@example.com', 'hashed_password4', '/images/diana.jpg', 'USER'),
+    ('Ethan', 'Brown', 'ethanb', 'ethan@example.com', 'hashed_password5', '/images/ethan.jpg', 'USER'),
+    ('Fiona', 'Davis', 'fionad', 'fiona@example.com', 'hashed_password6', '/images/fiona.jpg', 'USER'),
+    ('George', 'Wilson', 'georgew', 'george@example.com', 'hashed_password7', '/images/george.jpg', 'USER'),
+    ('Hannah', 'Clark', 'hannahc', 'hannah@example.com', 'hashed_password8', '/images/hannah.jpg', 'USER'),
+    ('Ian', 'Lopez', 'ianl', 'ian@example.com', 'hashed_password9', '/images/ian.jpg', 'USER');
+
+
+
+INSERT INTO User (PersonID, points_collected) VALUES
+      (1, 0),
+      (2, 0),
+      (3, 0),
+      (4, 0),
+      (5, 0),
+      (6, 0),
+      (7, 0),
+      (8, 0),
+      (9, 0);
+
+INSERT INTO Moderator (PersonID) VALUES
+     (1),
+     (2),
+     (3),
+     (4),
+     (5),
+     (6),
+     (7),
+     (8),
+     (9);
+
 INSERT INTO location (description, src, location_name) VALUES
 ('The Eiffel Tower is an iconic symbol of Paris, offering stunning city views from its observation decks.', 'https://images.unsplash.com/photo-1431274172761-fca41d930114', 'Paris, France'),
 ('Historic Colosseum where gladiators once battled, Rome''s most famous landmark.', 'https://images.unsplash.com/photo-1552832230-c0197dd311b5', 'Rome, Italy'),
@@ -99,3 +135,14 @@ INSERT INTO Post (uploaded_by, caption, src, PoiID, status, status_by_user) VALU
 INSERT INTO Post (uploaded_by, caption, src, PoiID, status, status_by_user) VALUES
 (4, 'Updated with better description', 'https://example.com/posts/acropolis2.jpg', 4, 'Approved', 'Edited'),
 (7, 'Fixed the caption', 'https://example.com/posts/kyoto2.jpg', 6, 'Pending', 'Edited');
+
+INSERT INTO Review (uploaded_by, Rating, Text, PoiID, DeletedBy, status_by_user, status) VALUES
+ (1, 5, 'Amazing view from the Eiffel Tower! Totally worth it.', 1, NULL, 'Active', 'Approved'),
+ (2, 4, 'Colosseum was very impressive but crowded.', 4, NULL, 'Active', 'Approved'),
+ (3, 3, 'Louvre had some interesting exhibits but a bit overwhelming.', 2, NULL, 'Edited', 'Approved'),
+ (4, 2, 'Acropolis was nice, but the weather was too hot.', 10, NULL, 'Active', 'Pending'),
+ (5, 5, 'Great Wall of China is breathtaking and well preserved.', 5, NULL, 'Active', 'Approved'),
+ (6, 1, 'Kyoto temples were under renovation, disappointing visit.', 6, 1, 'DeletedByUser', 'Rejected'),
+ (7, 4, 'Taj Mahal is stunning during sunrise.', 7, NULL, 'Active', 'Approved'),
+ (8, 3, 'Statue of Liberty was smaller than expected.', 8, NULL, 'Edited', 'Pending'),
+ (9, 5, 'Sydney Opera House architecture is just iconic!', 13, 2, 'DeletedByUser', 'Rejected');
