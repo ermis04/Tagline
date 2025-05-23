@@ -6,63 +6,64 @@
     <link rel="stylesheet" href="/Login/Login.css" />
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="stylesheet" href="BusinessSignUp.css" />
-
-    
+    <script src="/register/partner/static/registerPartner.js"></script>
 
     <title>Partner Register</title>
   </head>
 
   <body>
     <section>
-    <div class = "inline">
-      <a href="/register">
-          <img class = "backicon" src="/images/back.png" alt="vector" />
+      <a class="inline" href="/register">
+        <img class="backicon" src="/images/back.png" alt="vector" />
+        <p>Cancel</p>
       </a>
-      <p>Cancel</p>
-    </div>
 
-    <section>
+      <section></section>
+      <h1>Welcome Partner</h1>
+      <section></section>
+
+      <form id="signupForm1">
+        <div class="inline logininput">
+          <label for="businessname">Business Name</label>
+          <div class="input-container">
+            <input id="businessname" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="name">Owner Name</label>
+          <div class="input-container">
+            <input id="name" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="surname">Owner Surname</label>
+          <div class="input-container">
+            <input id="surname" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="username">Username</label>
+          <div class="input-container">
+            <input id="username" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <section></section>
+        <section></section>
+        <section></section>
+
+        <div class="paddingLeft">
+          <a
+            href="/register/partner/static/registerPartner2.html"
+            style="text-decoration: none"
+            onclick="storeFirstPageData()"
+            >Next
+          </a>
+        </div>
+      </form>
     </section>
-    <h1>Welcome Partner</h1>
-    <section>
-    </section>
-
-<div class = "inline logininput">
-    <label for = "businessname">Businessname</label>
-      <div class="input-container">
-          <input id = "businessname" type="text" class="dotted-input">
-      </div>
-</div>
-
-<div class = "inline logininput">
-    <label for = "Vatnumber">Vat number</label>
-      <div class="input-container">
-          <input id = "Vatnumber" type="text" class="dotted-input">
-      </div>
-</div>
-
-<div class = "inline logininput">
-    <label for = "adress">Adress</label>
-      <div class="input-container">
-          <input id = "adress" type="text" class="dotted-input">
-      </div>
-</div>
-
-
-      <section></section>
-      <section></section>
-      <section></section>
-      <section></section>
-
-      <div class="paddingLeft">
-        <a
-          href="/register/partner/static/registerPartner2.html"
-          style="text-decoration: none"
-          onclick="storeFirstPageData()"
-          ><button type="submit" class="test-button">Next</button>
-        </a>
-      </div>
-    </section>
-    <script src="/register/partner/static/register.js"></script>
   </body>
 </html>

@@ -2,8 +2,8 @@ function storeFirstPageData() {
   const formData = {
     first_name: document.getElementById("name").value,
     last_name: document.getElementById("surname").value,
-    email: document.getElementById("email").value,
-    password: document.getElementById("password").value,
+    BusinessName: document.getElementById("businessname").value,
+    username: document.getElementById("username").value,
   };
   sessionStorage.setItem("signupData", JSON.stringify(formData));
 }
@@ -15,13 +15,16 @@ function submitAllData() {
 
   // Get data from second page
   const secondPageData = {
-    username: document.getElementById("username").value,
+    BusinessDescription: document.getElementById("BusinessDescription").value,
     src: "https://images.unsplash.com/photo-1628563694622-5a76957fd09c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW5zdGFncmFtJTIwcHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D", // or handle file upload
+    email: document.getElementById("email").value,
+    phone: document.getElementById("Phone").value,
+    password: document.getElementById("password").value,
   };
   const completeData = { ...firstPageData, ...secondPageData };
 
   // Submit to server
-  fetch("/register/user", {
+  fetch("/register/partner", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
