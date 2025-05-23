@@ -18,7 +18,9 @@ router.get("/data", async (req, res) => {
   const location_id = req.query.location_id; // Get the location id from the url
   const token = req.cookies.tagline_auth; // For knowing the logged in user
 
-  const userData = await user.getUserData(await login.getLoggedInUserId(token)); // Get the logged in user data from the token
+  const userData = await user.getUserData(
+    await login.getLoggedInPersonId(token)
+  ); // Get the logged in user data from the token
   const pois = await location.getLocationPOIs(location_id);
   const locationData = await location.getLocationData(
     location_id,

@@ -20,7 +20,7 @@ router.get("/userReviews", async (req, res) => {
   const user = new User();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token);
+  const personId = await login.getLoggedInPersonId(token);
   const userData = await user.getUserData(personId);
 
   const reviews = await review.getUserReviews(userData.UserID);
@@ -36,7 +36,7 @@ router.post("/edit", async (req, res) => {
   const user = new User();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token);
+  const personId = await login.getLoggedInPersonId(token);
   const userData = await user.getUserData(personId);
 
   const reviews = await review.editReview(
@@ -56,7 +56,7 @@ router.get("/delete", async (req, res) => {
   const user = new User();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token);
+  const personId = await login.getLoggedInPersonId(token);
   const userData = await user.getUserData(personId);
 
   const reviews = await review.deleteReview(
@@ -74,7 +74,7 @@ router.post("/", async (req, res) => {
     const user = new User();
 
     const token = req.cookies.tagline_auth;
-    const personId = await login.getLoggedInUserId(token);
+    const personId = await login.getLoggedInPersonId(token);
     const userData = await user.getUserData(personId);
 
     const reviewData = review.createReview(userData.UserID, req.body);

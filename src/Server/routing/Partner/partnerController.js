@@ -13,7 +13,7 @@ router.get("/data", async (req, res) => {
   const partner = new Partner();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token);
+  const personId = await login.getLoggedInPersonId(token);
   const partnerData = await partner.getPartnerData(personId);
   res.json(partnerData);
 });
@@ -23,7 +23,7 @@ router.get("/balance", async (req, res) => {
   const partner = new Partner();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token);
+  const personId = await login.getLoggedInPersonId(token);
   const balance = await partner.checkBalance(personId);
 
   res.json(balance);
@@ -35,7 +35,7 @@ router.get("/balance/add", async (req, res) => {
   const partner = new Partner();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token);
+  const personId = await login.getLoggedInPersonId(token);
 
   const amount = req.query.amount;
   if (!amount) {
@@ -52,7 +52,7 @@ router.get("/balance/charge", async (req, res) => {
   const partner = new Partner();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token);
+  const personId = await login.getLoggedInPersonId(token);
 
   const amount = req.query.amount;
   if (!amount) {
@@ -68,7 +68,7 @@ router.post("/update", async (req, res) => {
   const partner = new Partner();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token);
+  const personId = await login.getLoggedInPersonId(token);
 
   const updatedPartner = await partner.updatePartnerData(personId, req.body);
 

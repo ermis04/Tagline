@@ -17,7 +17,7 @@ router.get("/data", async (req, res) => {
   const token = req.cookies.tagline_auth; // For knowing the logged in user
   // Get the logged in user data from the token
   const moderatorData = await moderator.getModeratorData(
-    await login.getLoggedInUserId(token)
+    await login.getLoggedInPersonId(token)
   );
   res.json(moderatorData);
 });
@@ -51,7 +51,7 @@ router.get("/rejectReview", async (req, res) => {
 
   const token = req.cookies.tagline_auth; // For knowing the logged in user
   const moderatorData = await moderator.getModeratorData(
-    await login.getLoggedInUserId(token)
+    await login.getLoggedInPersonId(token)
   );
 
   const review_id = req.query.review_id;
@@ -85,7 +85,7 @@ router.get("/rejectPost", async (req, res) => {
 
   const token = req.cookies.tagline_auth; // For knowing the logged in user
   const moderatorData = await moderator.getModeratorData(
-    await login.getLoggedInUserId(token)
+    await login.getLoggedInPersonId(token)
   );
 
   const post_id = req.query.post_id;

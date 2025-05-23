@@ -25,7 +25,9 @@ router.get("/data", async (req, res) => {
     return res.status(400).json({ error: "Poi ID is required in the url" });
   }
 
-  const userData = await user.getUserData(await login.getLoggedInUserId(token)); // Get the logged in user data from the token
+  const userData = await user.getUserData(
+    await login.getLoggedInPersonId(token)
+  ); // Get the logged in user data from the token
   const poiData = await poi.getPoiData(poi_id); // Get the POI data from the db
   const reviews = await review.getPoiReviews(poi_id); // Get the reviews of the POI from the db
   const ads = await ad.getAdsforPoi(poi_id); // Get the ads of the POI from the db
@@ -47,7 +49,7 @@ router.get("/markVisited", async (req, res) => {
       return res.status(400).json({ error: "Poi ID is required in the query" });
     }
 
-    const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+    const personId = await login.getLoggedInPersonId(token); // Get the logged in user id from the token
     const userData = await user.getUserData(personId); // Get the user id from the person id
     await poi.markPoiAsVisitedByUser(poi_id, userData.UserID); // Update the POI visits count
 
@@ -73,7 +75,7 @@ router.get("/unmarkVisited", async (req, res) => {
     return res.status(400).json({ error: "Poi ID is required in the query" });
   }
 
-  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const personId = await login.getLoggedInPersonId(token); // Get the logged in user id from the token
   const userData = await user.getUserData(personId);
   await poi.unmarkPoiAsVisitedByUser(poi_id, userData.UserID); // Update the POI visits count
 
@@ -85,12 +87,9 @@ router.post("/review", async (req, res) => {
   const { poi_id, review_text, rating, src, isPost } = formData;
 
   const token = req.cookies.tagline_auth; // For knowing the logged in user
-  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const personId = await login.getLoggedInPersonId(token); // Get the logged in user id from the token
   const userData = await user.getUserData(personId);
   await poi.unmarkPoiAsVisitedByUser(poi_id, userData.UserID); // Update the POI visits count
-
-
-
-})
+});
 
 module.exports = router;

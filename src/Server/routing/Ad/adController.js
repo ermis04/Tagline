@@ -16,7 +16,7 @@ router.get("/all", async (req, res) => {
 
   const token = req.cookies.tagline_auth; // For knowing the logged in user
   const personData = await partner.getPartnerData(
-    await login.getLoggedInUserId(token)
+    await login.getLoggedInPersonId(token)
   );
   const ads = await ad.getAds(personData.PartnerID);
 
@@ -51,7 +51,7 @@ router.post("/create", async (req, res) => {
 
   const token = req.cookies.tagline_auth; // For knowing the logged in user
   const personData = await partner.getPartnerData(
-    await login.getLoggedInUserId(token)
+    await login.getLoggedInPersonId(token)
   );
   const ads = await ad.createAd(personData.PartnerID, req.body);
 
@@ -64,12 +64,13 @@ router.get("/test", async (req, res) => {
   const login = new LogIn();
   const ad = new Ad();
 
-
   const partner_id = req.query.partner_id; // Get the location id from the url
   const token = req.cookies.tagline_auth; // For knowing the logged in user
-  const personData = await partner.getPartnerData(await login.getLoggedInUserId(token))
+  const personData = await partner.getPartnerData(
+    await login.getLoggedInPersonId(token)
+  );
   const ads = await ad.getAdStatistics(partner_id);
- 
+
   res.json(ads);
 });
 

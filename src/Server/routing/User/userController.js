@@ -20,7 +20,9 @@ router.get("/data", async (req, res) => {
   const token = req.cookies.tagline_auth; // For knowing the logged in user
 
   // Get the logged in user data from the token
-  const userData = await user.getUserData(await login.getLoggedInUserId(token));
+  const userData = await user.getUserData(
+    await login.getLoggedInPersonId(token)
+  );
   const locations = await location.getLocations();
   const posts = await post.getPosts();
 
@@ -45,7 +47,7 @@ router.get("/profile", async (req, res) => {
       }
     } else {
       const token = req.cookies.tagline_auth;
-      userId = await login.getLoggedInUserId(token);
+      userId = await login.getLoggedInPersonId(token);
       if (!userId) {
         return res.status(401).json({ error: "Not authenticated." });
       }
@@ -67,7 +69,9 @@ router.post("/profile/edit", async (req, res) => {
   const user = new User();
 
   const token = req.cookies.tagline_auth;
-  const userData = await user.getUserData(await login.getLoggedInUserId(token));
+  const userData = await user.getUserData(
+    await login.getLoggedInPersonId(token)
+  );
   const response = await user.updateUserData(userData.UserID, req.body);
 
   res.json(response);
@@ -78,7 +82,9 @@ router.get("/friends/get", async (req, res) => {
   const login = new LogIn();
 
   const token = req.cookies.tagline_auth;
-  const userData = await user.getUserData(await login.getLoggedInUserId(token));
+  const userData = await user.getUserData(
+    await login.getLoggedInPersonId(token)
+  );
   const friends = await user.getFriends(userData.UserID);
 
   res.json(friends);
@@ -91,7 +97,9 @@ router.get("/friends/add", async (req, res) => {
   const login = new LogIn();
 
   const token = req.cookies.tagline_auth;
-  const userData = await user.getUserData(await login.getLoggedInUserId(token));
+  const userData = await user.getUserData(
+    await login.getLoggedInPersonId(token)
+  );
 
   const friendId = req.query.friend_id;
 
@@ -107,7 +115,9 @@ router.get("/friends/remove", async (req, res) => {
   const login = new LogIn();
 
   const token = req.cookies.tagline_auth;
-  const userData = await user.getUserData(await login.getLoggedInUserId(token));
+  const userData = await user.getUserData(
+    await login.getLoggedInPersonId(token)
+  );
 
   const friendId = req.query.friend_id;
   const friends = await user.removeFriend(userData.UserID, friendId);
@@ -120,7 +130,9 @@ router.get("/friends/leaderboard", async (req, res) => {
   const login = new LogIn();
 
   const token = req.cookies.tagline_auth;
-  const userData = await user.getUserData(await login.getLoggedInUserId(token));
+  const userData = await user.getUserData(
+    await login.getLoggedInPersonId(token)
+  );
 
   const leaderboard = await user.getLeaderboard(userData.UserID);
   res.json(leaderboard);

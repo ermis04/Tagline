@@ -75,7 +75,7 @@ router.get("/delete", async (req, res) => {
   const post = new Post();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const personId = await login.getLoggedInPersonId(token); // Get the logged in user id from the token
   const userData = await user.getUserData(personId);
 
   const deletedPost = await post.deletePost(post_id, userData.UserID); // Delete the post from the db
@@ -104,7 +104,7 @@ router.post("/edit", async (req, res) => {
   const post = new Post();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const personId = await login.getLoggedInPersonId(token); // Get the logged in user id from the token
   const userData = await user.getUserData(personId);
 
   const editedPost = await post.editPost(post_id, userData.UserID, newCaption); // Edit the post in the db
@@ -149,7 +149,7 @@ router.post("/comment", async (req, res) => {
   const post = new Post();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const personId = await login.getLoggedInPersonId(token); // Get the logged in user id from the token
   const userData = await user.getUserData(personId);
 
   const commented = await post.commentOnPost(post_id, userData.UserID, comment);
@@ -172,7 +172,7 @@ router.get("/comment/delete", async (req, res) => {
   const post = new Post();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const personId = await login.getLoggedInPersonId(token); // Get the logged in user id from the token
   const userData = await user.getUserData(personId);
 
   const removed = await post.deleteComment(comment_id, userData.UserID);
@@ -201,7 +201,7 @@ router.get("/comment/edit", async (req, res) => {
   const post = new Post();
 
   const token = req.cookies.tagline_auth;
-  const personId = await login.getLoggedInUserId(token); // Get the logged in user id from the token
+  const personId = await login.getLoggedInPersonId(token); // Get the logged in user id from the token
   const userData = await user.getUserData(personId);
 
   const removed = await post.editComment(

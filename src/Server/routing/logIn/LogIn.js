@@ -53,7 +53,7 @@ class LogIn {
     }
   }
 
-  async getLoggedInUserId(token) {
+  async getLoggedInPersonId(token) {
     try {
       if (!token) {
         throw new Error("No token provided");
