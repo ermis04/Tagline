@@ -222,6 +222,23 @@ ORDER BY
     }
   }
 
+  async deleteAd(ad_id) {
+    try {
+      const [result] = await db.query(
+        `
+      DELETE FROM ad
+      WHERE AdID = ?
+      `,
+        [ad_id]
+      );
+
+      return { success: result.affectedRows > 0 };
+    } catch (error) {
+      console.error("Error in deleteAd:", error);
+      throw error;
+    }
+  }
+
   // increases the view count
   async #addAdView(ad_id) {
     console.log("addAdView called with ad_id:", ad_id);

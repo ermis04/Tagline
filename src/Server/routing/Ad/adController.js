@@ -50,16 +50,27 @@ router.post("/create", async (req, res) => {
   const ad = new Ad();
 
   const token = req.cookies.tagline_auth; // For knowing the logged in user
-  const personData = await partner.getPartnerData(
+  const partnerData = await partner.getPartnerData(
     await login.getLoggedInPersonId(token)
   );
-  const ads = await ad.createAd(personData.PartnerID, req.body);
+
+  if (partner.checkBalance() < req.body.cost) {
+    return res.status(400).json({ message: "Not enough balance" });
+  }
+
+  const ads = await ad.createAd(partnerData.PartnerID, req.body);
 
   res.json(ads);
 });
 
-router.get("/test", async (req, res) => {
-  // THE URL SHOULD INCLUDE THE Location ID: like this: /location?location_id=1
+router.get("/delete", async (req, res) => {
+  const ad = new Ad();
+  const ad_id = req.query.ad_id; // Get the location id from the url
+  const ads = await ad.deleteAd(ad_id);
+  res.json(ads);
+});
+
+router.get("/stats", async (req, res) => {
   const partner = new Partner();
   const login = new LogIn();
   const ad = new Ad();

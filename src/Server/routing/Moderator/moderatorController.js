@@ -6,8 +6,6 @@ const express = require("express");
 const router = express.Router();
 
 const Moderator = require("./Moderator");
-const Location = require("../Location/Location");
-const Post = require("../Post/Post");
 const LogIn = require("../logIn/LogIn");
 
 router.get("/data", async (req, res) => {

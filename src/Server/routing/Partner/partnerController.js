@@ -41,6 +41,9 @@ router.get("/balance/add", async (req, res) => {
   if (!amount) {
     return res.status(400).json({ error: "Amount is required" });
   }
+
+  // ~~~~~~~~~~~~~~~~~ Contact bank API!~~~~~~~~~~~~~
+
   const newTotal = await partner.addFunds(personId, amount);
 
   res.json(newTotal);
