@@ -9,7 +9,7 @@ const bcrypt = require("bcrypt");
 class LogIn {
   async #getCreds(email) {
     const [response] = await db.query(
-      "select password, email, PersonID from Person where email = ?",
+      "select password, email, PersonID, role from Person where email = ?",
       [email]
     );
     return response[0];
@@ -46,7 +46,8 @@ class LogIn {
         { expiresIn: "24h" }
       );
 
-      return token;
+      console.log(person);
+      return { token, role: person.role };
     } catch (error) {
       console.error("Login error:", error);
       throw error;

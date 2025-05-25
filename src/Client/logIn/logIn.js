@@ -14,11 +14,24 @@ document.getElementById("logInForm").addEventListener("submit", async (e) => {
     });
 
     if (response.ok) {
-      window.location.href = "/user";
-    } else {
-      // Handle login error (show error message to user)
-      const errorData = await response.json();
-      alert(errorData.message || "Login failed");
+      // Parse cookies to find 'user_type'
+      const cookies = document.cookie.split(";").reduce((acc, cookie) => {
+        const [name, value] = cookie.trim().split("=");
+        acc[name] = value;
+        return acc;
+      }, {});
+
+      const userType = cookies["user_type"];
+
+      if (userType === "User") {
+        window.location.href = "/user";
+      } else if (userType === "Moderator") {
+        window.location.href = "/moderator";
+      } else if (userType === "Partner") {
+        window.location.href = "/partner";
+      } else {
+        console.warn("user_type cookie not found");
+      }
     }
   } catch (error) {
     console.error("Error during login:", error);

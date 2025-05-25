@@ -18,7 +18,8 @@ router.post("/", validateLogIn, async (req, res) => {
     return res.status(400).json({ errors: errors.array() });
   }
   try {
-    const token = await loginInstance.logIn(req.body.email, req.body.password);
+    const data = await loginInstance.logIn(req.body.email, req.body.password);
+    const { token, role } = data;
 
     if (!token) {
       return res
@@ -34,6 +35,16 @@ router.post("/", validateLogIn, async (req, res) => {
       path: "/",
       domain: "localhost",
     });
+
+    res.cookie("user_type", role, {
+      httpOnly: false,
+      secure: false,
+      sameSite: "lax",
+      maxAge: 86400000,
+      path: "/",
+      domain: "localhost",
+    });
+
     return res.status(200).json(token);
   } catch (error) {
     res.status(401).json({ success: false, message: error.message });
