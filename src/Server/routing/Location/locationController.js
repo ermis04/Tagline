@@ -4,13 +4,14 @@
 
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 const User = require("../User/User");
 const LogIn = require("../logIn/LogIn");
 const Location = require("../Location/Location");
 
 router.get("/data", async (req, res) => {
-  // THE URL SHOULD INCLUDE THE Location ID: like this: /location?location_id=1
+  // THE URL SHOULD INCLUDE THE Location ID: like this: /location/data?location_id=1
   const user = new User();
   const login = new LogIn();
   const location = new Location();
@@ -27,6 +28,12 @@ router.get("/data", async (req, res) => {
     userData.UserID
   );
   res.json({ ...userData, pois, locationData });
+});
+
+router.get("/", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../..", "Client", "User/Location", "location.html")
+  );
 });
 
 module.exports = router;

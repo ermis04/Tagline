@@ -41,6 +41,10 @@ app.use(
   "/register/partner/static",
   express.static(path.join(__dirname, "../Client/RegisterPartner"))
 );
+app.use(
+  "/location/static",
+  express.static(path.join(__dirname, "../Client/User/Location"))
+);
 
 const port = 3000;
 app.listen(port, () => {

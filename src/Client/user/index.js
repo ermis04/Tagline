@@ -12,13 +12,20 @@ if (!getCookie("tagline_auth")) {
 console.log(document.cookie);
 const load_profile_pic = (user_pic_link) => {
   const img = document.createElement("img");
-  img.src = user_id;
+  img.src = user_pic_link;
   return img;
 };
 
-function createFirstLocationContainer(location, sights) {
+function createFirstLocationContainer(
+  location,
+  sights,
+  src,
+  progress = 0,
+  location_id
+) {
   const container = document.createElement("div");
   container.className = "location-container first-location";
+  container.style.backgroundImage = `url('${src}')`;
 
   const overlay = document.createElement("span");
   overlay.className = "black-overlay";
@@ -50,9 +57,16 @@ function createFirstLocationContainer(location, sights) {
   return container;
 }
 
-function createLocationContainer(location, sights) {
+function createLocationContainer(
+  location,
+  sights,
+  src,
+  progress = 0,
+  location_id
+) {
   const container = document.createElement("div");
   container.className = "location-container";
+  container.style.backgroundImage = `url('${src}')`;
 
   const overlay = document.createElement("span");
   overlay.className = "black-overlay";
@@ -76,7 +90,11 @@ function createLocationContainer(location, sights) {
   container.appendChild(p);
   container.appendChild(loadingBar);
 
-  return container;
+  const link = document.createElement("a");
+  link.href = `/location?location_id=${location_id}`;
+  link.appendChild(container);
+
+  return link;
 }
 
 function createPostContainer(username, profilePicSrc, likesCount, likeIconSrc) {
@@ -128,17 +146,15 @@ function createPostContainer(username, profilePicSrc, likesCount, likeIconSrc) {
 }
 
 function add_element(parentId, container) {
-  document.addEventListener("DOMContentLoaded", () => {
-    const parent = document.getElementById(parentId);
-    if (parent && container) {
-      parent.appendChild(container);
-    }
-  });
+  const parent = document.getElementById(parentId);
+  if (parent && container) {
+    parent.appendChild(container);
+  }
 }
 
-add_element("locations-frame", createFirstLocationContainer("Patras", 5));
-add_element("locations-frame", createLocationContainer("Patras", 5));
-add_element("locations-frame", createLocationContainer("Patras", 5));
+// add_element("locations-frame", createFirstLocationContainer("Patras", 5));
+// add_element("locations-frame", createLocationContainer("Patras", 5));
+// add_element("locations-frame", createLocationContainer("Patras", 5));
 
 add_element("posts-frame", createPostContainer("Patras", ".natalie.png", 5));
 add_element("posts-frame", createPostContainer("Patras", ".natalie.png", 5));
@@ -153,24 +169,43 @@ fetch("/user/data")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
+
+    data.locations.forEach((location, index) => {
+      const { location_name, description, location_id, src } = location;
+
+      const locationElement =
+        index === 0
+          ? createFirstLocationContainer(
+              location_name,
+              5,
+              src,
+              0.5,
+              location_id
+            )
+          : createLocationContainer(location_name, 5, src, 0.2, location_id);
+
+      add_element("locations-frame", locationElement);
+    });
+
+    document.getElementById("userPoints").textContent = data.points_collected;
   })
   .catch((error) => {
     console.error("Error:", error);
   });
 
-fetch("/reviews", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  body: JSON.stringify({
-    rating: 5,
-    text: "What a nice pizza!!",
-    poiId: 1,
-    src: "https://lh3.googleusercontent.com/geougc-cs/AB3l90CduAvz0N02bOgmT2n-ZJSp0Ig1U7zJAcelWJv27PnCpUNQYfc-R7-B1RGyJ2yCyYkqH4YvM1LVVMHHXksxqsVhq8zRmDkZaYIhLvqqA_Rt6vZQOFji6kr6-BzqKiCYVTI5NNR0Pg=s225-p-k-rw",
-    share_as_post: false,
-  }),
-})
-  .then((res) => res.json())
-  .then((data) => console.log("Review added:", data))
-  .catch((err) => console.error("Error adding review:", err));
+// fetch("/reviews", {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify({
+//     rating: 5,
+//     text: "What a nice pizza!!",
+//     poiId: 1,
+//     src: "https://lh3.googleusercontent.com/geougc-cs/AB3l90CduAvz0N02bOgmT2n-ZJSp0Ig1U7zJAcelWJv27PnCpUNQYfc-R7-B1RGyJ2yCyYkqH4YvM1LVVMHHXksxqsVhq8zRmDkZaYIhLvqqA_Rt6vZQOFji6kr6-BzqKiCYVTI5NNR0Pg=s225-p-k-rw",
+//     share_as_post: false,
+//   }),
+// })
+//   .then((res) => res.json())
+//   .then((data) => console.log("Review added:", data))
+//   .catch((err) => console.error("Error adding review:", err));

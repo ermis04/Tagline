@@ -1,0 +1,39 @@
+.location-nav{
+    height: 200px;
+    display: flex;
+    align-items: flex-start;
+}
+
+section{
+    padding-right: calc(var(--icon-height)/2);
+    padding-top: calc(var(--icon-height)/2) !important ;
+}
+
+.icon-back{
+    height: 15px;
+    background-color: var(--main-white);
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.location-section{
+    background-color: var(--main-white);
+    border-radius: 45px;
+    margin-top: calc(-2*var(--icon-height)/2);
+}
+
+.completion-bar{
+    margin-top: 20px;
+    height: 10px;
+    background-color: var(--main-black);
+    border-radius: 20px;
+    box-shadow: rgba(0, 83, 255, 0.5) 0px 0px 12px;
+    margin-bottom: 20px;
+}
+
+.completion-bar > div{
+    height: 100%;
+    background-color: var(--main-blue);
+    border-radius: 10px;
+    width: 0%;
+}

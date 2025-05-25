@@ -129,7 +129,7 @@ section{
     width: 150px;
     border: 5px solid var(--main-white);
     border-radius: 50px;
-    background: url('../user/patras.jpg')
+    /* background: url('../user/patras.jpg') */
 }
 
 .loading-bar{
