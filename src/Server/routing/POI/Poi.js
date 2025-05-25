@@ -41,16 +41,19 @@ class Poi {
     }
   }
 
-  noOfPoisVisitedByUser(user_id, location_id) {
-    return db.query(
-      "select count(*) as noOfPoisVisited from visit where visitor = ?",
-      [user_id]
-    );
-  }
-
   // returns all the data related to POI
-  async getPoiData(poi_id) {
-    const res = await db.query("select * from poi where poiid = ?", [poi_id]);
+  async getPoiData(poi_id, user_id) {
+    const res = await db.query(
+      `
+    SELECT 
+      p.*, 
+      CASE WHEN v.visitor IS NOT NULL THEN TRUE ELSE FALSE END AS visited
+    FROM POI p
+    LEFT JOIN Visit v ON v.PlaceToVisit = p.POIID AND v.visitor = ?
+    WHERE p.POIID = ?
+  `,
+      [user_id, poi_id]
+    );
     return res[0][0];
   }
 }

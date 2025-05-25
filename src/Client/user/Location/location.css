@@ -11,8 +11,10 @@ section{
 
 .icon-back{
     height: 15px;
+    width: 15px;
+    padding:10px;
     background-color: var(--main-white);
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 50%;
 }
 

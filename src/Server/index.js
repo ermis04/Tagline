@@ -31,6 +31,7 @@ app.use("/moderator", moderatorController);
 app.use("/ad", adController);
 app.use("/partner", partnerController);
 
+// Serve static files from the Client directory
 app.use(express.static(path.join(__dirname, "../Client")));
 app.use("/static", express.static(path.join(__dirname, "../Client/Welcome")));
 app.use(
@@ -49,6 +50,10 @@ app.use(
 app.use(
   "/poi/static",
   express.static(path.join(__dirname, "../Client/User/Poi"))
+);
+app.use(
+  "/user/profile/static",
+  express.static(path.join(__dirname, "../Client/User/Profile"))
 );
 
 const port = 3000;

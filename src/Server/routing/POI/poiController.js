@@ -29,7 +29,7 @@ router.get("/data", async (req, res) => {
   const userData = await user.getUserData(
     await login.getLoggedInPersonId(token)
   ); // Get the logged in user data from the token
-  const poiData = await poi.getPoiData(poi_id); // Get the POI data from the db
+  const poiData = await poi.getPoiData(poi_id, userData.UserID); // Get the POI data from the db
   const reviews = await review.getPoiReviews(poi_id); // Get the reviews of the POI from the db
   const ads = await ad.getAdsforPoi(poi_id); // Get the ads of the POI from the db
 

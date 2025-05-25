@@ -8,6 +8,40 @@
     border: none;
     border-radius: 30px;  /* Rounded corners */
     font-size: 19px;
-    width: 100%;
-
+    width: 100%;  
+    transition: background-color 0.3s ease;
+    cursor: pointer;
 }
+
+#markasvisited-button.loading {
+  opacity: 0.7;
+  pointer-events: none;
+  position: relative;
+}
+
+#markasvisited-button.loading::after {
+  position: absolute;
+  right: 10px;
+}
+.markasvisited-button.red {
+  background-color: #d9534f !important; /* red */
+}
+
+.spinner {
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 0.6s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+

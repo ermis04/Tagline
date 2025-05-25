@@ -4,31 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User</title>
-    <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../leaderboard/Leaderboard.css" />
-    <link rel="stylesheet" href="../login/Login.css" />
-    <link rel="stylesheet" href="viewprofile.css" />
-    <link rel="stylesheet" href="editprofile.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/Leaderboard/Leaderboard.css" />
+    <link rel="stylesheet" href="/Login/Login.css" />
+    <link rel="stylesheet" href="/User/Profile/static/viewprofile.css" />
+    <link rel="stylesheet" href="./editprofile.css" />
 
     <title>View Profile</title>
   </head>
   <body>
-
     <nav>
-        <div class="space-between">
+      <div class="space-between">
         <a href="viewprofile.html">
-          <img class="back-icon" src="../login/back.png" alt="Logo" />
+          <img class="back-icon" src="/images/back.png" alt="Logo" />
         </a>
-        </div>
-            
+      </div>
     </nav>
 
     <div>
-        <img class="big-profile-pic" src="../register/defaultprofile.png" alt="Logo" />
-        <div style="margin-left: 135px;">@kapoios</div>
+      <img
+        class="big-profile-pic"
+        src="../register/defaultprofile.png"
+        alt="Logo"
+      />
+      <div style="margin-left: 135px">@kapoios</div>
     </div>
     <section>
-        <div class="inline logininput">
+      <div class="inline logininput">
         <label for="name">Name</label>
         <div class="input-container">
           <input id="name" type="text" class="dotted-input" />
@@ -56,11 +58,11 @@
         </div>
       </div>
 
-    <section></section>
-    <div class="inline">
-      <button type="submit" class="cancel-button">Cancel</button>
-      <button type="submit" class="save-button">Save</button>
-    </div>
-  </section>
+      <section></section>
+      <div class="inline">
+        <button type="submit" class="cancel-button">Cancel</button>
+        <button type="submit" class="save-button">Save</button>
+      </div>
+    </section>
   </body>
 </html>

@@ -167,8 +167,6 @@ function createPostContainer(
   link.href = `/post?post_id=${post_id}`;
   link.appendChild(container);
   return link;
-
-  return container;
 }
 
 function add_element(parentId, container) {

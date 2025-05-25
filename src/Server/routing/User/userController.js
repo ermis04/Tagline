@@ -4,6 +4,7 @@
 
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 const User = require("./User");
 const Location = require("../Location/Location");
@@ -29,7 +30,7 @@ router.get("/data", async (req, res) => {
   res.json({ ...userData, locations, posts });
 });
 
-router.get("/profile", async (req, res) => {
+router.get("/profile/data", async (req, res) => {
   // If the user is logged in, get the user ID from the token
   // If the user is not logged in, get the user ID from the URL, need to do this: /user/profile?user_id=1
   const login = new LogIn();
@@ -136,6 +137,18 @@ router.get("/friends/leaderboard", async (req, res) => {
 
   const leaderboard = await user.getLeaderboard(userData.UserID);
   res.json(leaderboard);
+});
+
+router.get("/profile", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../../..",
+      "Client",
+      "User/Profile",
+      "viewprofile.html"
+    )
+  );
 });
 
 module.exports = router;
