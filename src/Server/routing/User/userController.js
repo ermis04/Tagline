@@ -23,7 +23,7 @@ router.get("/data", async (req, res) => {
   const userData = await user.getUserData(
     await login.getLoggedInPersonId(token)
   );
-  const locations = await location.getLocations();
+  const locations = await location.getLocations(userData.UserID);
   const posts = await post.getPosts();
 
   res.json({ ...userData, locations, posts });

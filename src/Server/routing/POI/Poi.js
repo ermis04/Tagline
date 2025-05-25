@@ -41,6 +41,13 @@ class Poi {
     }
   }
 
+  noOfPoisVisitedByUser(user_id, location_id) {
+    return db.query(
+      "select count(*) as noOfPoisVisited from visit where visitor = ?",
+      [user_id]
+    );
+  }
+
   // returns all the data related to POI
   async getPoiData(poi_id) {
     const res = await db.query("select * from poi where poiid = ?", [poi_id]);

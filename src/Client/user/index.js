@@ -20,7 +20,7 @@ function createFirstLocationContainer(
   location,
   sights,
   src,
-  progress = 0,
+  visited_count = 0,
   location_id
 ) {
   const container = document.createElement("div");
@@ -45,6 +45,7 @@ function createFirstLocationContainer(
 
   const loadingBarPercent = document.createElement("span");
   loadingBarPercent.className = "loading-bar-percent";
+  loadingBarPercent.style.width = `${(visited_count / sights) * 100}%`;
 
   loadingBar.appendChild(loadingBarPercent);
 
@@ -55,6 +56,7 @@ function createFirstLocationContainer(
   container.appendChild(loadingBar);
 
   const link = document.createElement("a");
+  link.style.textDecoration = "none";
   link.href = `/location?location_id=${location_id}`;
   link.appendChild(container);
 
@@ -65,8 +67,9 @@ function createLocationContainer(
   location,
   sights,
   src,
-  progress = 0,
-  location_id
+  visited_count = 0,
+  location_id,
+  isUncharted = false
 ) {
   const container = document.createElement("div");
   container.className = "location-container";
@@ -81,29 +84,41 @@ function createLocationContainer(
   const p = document.createElement("p");
   p.textContent = `${sights} sights`;
 
-  const loadingBar = document.createElement("span");
-  loadingBar.className = "loading-bar";
-
-  const loadingBarPercent = document.createElement("span");
-  loadingBarPercent.className = "loading-bar-percent";
-
-  loadingBar.appendChild(loadingBarPercent);
-
   container.appendChild(overlay);
   container.appendChild(h3);
   container.appendChild(p);
-  container.appendChild(loadingBar);
+
+  if (!isUncharted) {
+    const loadingBar = document.createElement("span");
+    loadingBar.className = "loading-bar";
+
+    const loadingBarPercent = document.createElement("span");
+    loadingBarPercent.className = "loading-bar-percent";
+    loadingBarPercent.style.width = `${(visited_count / sights) * 100}%`;
+
+    loadingBar.appendChild(loadingBarPercent);
+    container.appendChild(loadingBar);
+  }
 
   const link = document.createElement("a");
+  link.style.textDecoration = "none";
+
   link.href = `/location?location_id=${location_id}`;
   link.appendChild(container);
 
   return link;
 }
 
-function createPostContainer(username, profilePicSrc, likesCount, likeIconSrc) {
+function createPostContainer(
+  username,
+  profilePicSrc,
+  likesCount,
+  imageSrc,
+  post_id
+) {
   const container = document.createElement("div");
   container.className = "post-container";
+  container.style.backgroundImage = `url('${imageSrc}')`;
 
   // --- Top Row ---
   const userRow = document.createElement("div");
@@ -130,7 +145,7 @@ function createPostContainer(username, profilePicSrc, likesCount, likeIconSrc) {
 
   const likeIcon = document.createElement("img");
   likeIcon.className = "like";
-  likeIcon.src = likeIconSrc; // leave src as is
+  likeIcon.src = "/images/like.png"; // leave src as is
   likeIcon.alt = "Like icon";
   likeIcon.style.width = "20px"; // force consistent size
   likeIcon.style.height = "20px";
@@ -146,6 +161,13 @@ function createPostContainer(username, profilePicSrc, likesCount, likeIconSrc) {
   container.appendChild(userRow);
   container.appendChild(likeRow);
 
+  const link = document.createElement("a");
+  link.style.textDecoration = "none";
+
+  link.href = `/post?post_id=${post_id}`;
+  link.appendChild(container);
+  return link;
+
   return container;
 }
 
@@ -156,37 +178,72 @@ function add_element(parentId, container) {
   }
 }
 
-add_element("posts-frame", createPostContainer("Patras", ".natalie.png", 5));
-add_element("posts-frame", createPostContainer("Patras", ".natalie.png", 5));
-add_element("posts-frame", createPostContainer("Patras", ".natalie.png", 5));
-add_element("posts-frame", createPostContainer("Patras", ".natalie.png", 5));
-
-add_element("uncharted-frame", createLocationContainer("Patras", 5));
-add_element("uncharted-frame", createLocationContainer("Patras", 5));
-add_element("uncharted-frame", createLocationContainer("Patras", 5));
-
 fetch("/user/data")
   .then((response) => response.json())
   .then((data) => {
     console.log(data);
 
-    data.locations.forEach((location, index) => {
-      const { location_name, description, location_id, src } = location;
+    // Populate exploring section
+    const exploring = data.locations.filter(
+      (location) => location.visited_count != 0
+    );
+
+    exploring.forEach((location, index) => {
+      const { location_name, poi_count, location_id, src, visited_count } =
+        location;
 
       const locationElement =
         index === 0
           ? createFirstLocationContainer(
               location_name,
-              5,
+              poi_count,
               src,
-              0.5,
+              visited_count,
               location_id
             )
-          : createLocationContainer(location_name, 5, src, 0.2, location_id);
-
+          : createLocationContainer(
+              location_name,
+              poi_count,
+              src,
+              visited_count,
+              location_id
+            );
       add_element("locations-frame", locationElement);
+
+      // Populate uncharted locations
+      const uncharted = data.locations.filter(
+        (location) => location.visited_count === 0
+      );
+      uncharted.forEach((location) => {
+        const { location_name, poi_count, location_id, src } = location;
+        const unchartedElement = createLocationContainer(
+          location_name,
+          poi_count,
+          src,
+          0,
+          location_id,
+          true
+        );
+        add_element("uncharted-frame", unchartedElement);
+      });
+
+      // Populate Posts
+
+      const posts = data.posts;
+      posts.forEach((post) => {
+        const { username, userSrc, postSrc, like_count, PostID } = post;
+        const postElement = createPostContainer(
+          username,
+          userSrc,
+          like_count,
+          postSrc,
+          PostID
+        );
+        add_element("posts-frame", postElement);
+      });
     });
 
+    //Static data population
     document.getElementById("userPoints").textContent = data.points_collected;
   })
   .catch((error) => {

@@ -45,8 +45,21 @@ class Location {
   }
 
   // returns all the locations from the db
-  async getLocations() {
-    const res = await db.query("select * from location");
+  async getLocations(userId) {
+    const res = await db.query(
+      `
+    SELECT 
+      l.*, 
+      COUNT(DISTINCT p.POIID) AS poi_count,
+      COUNT(DISTINCT v.PlaceToVisit) AS visited_count
+    FROM location l
+    LEFT JOIN POI p ON l.location_id = p.location_id
+    LEFT JOIN Visit v ON v.PlaceToVisit = p.POIID AND v.visitor = ?
+    GROUP BY l.location_id
+  `,
+      [userId]
+    );
+
     return res[0];
   }
 }
