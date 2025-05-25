@@ -1,0 +1,13 @@
+.markasvisited-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 18px;
+    background-color: #0053FF;  /* Blue color */
+    color: white;
+    border: none;
+    border-radius: 30px;  /* Rounded corners */
+    font-size: 19px;
+    width: 100%;
+
+}
