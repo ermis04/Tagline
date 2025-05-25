@@ -4,6 +4,7 @@
 
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 const User = require("../User/User");
 const LogIn = require("../logIn/LogIn");
@@ -90,6 +91,12 @@ router.post("/review", async (req, res) => {
   const personId = await login.getLoggedInPersonId(token); // Get the logged in user id from the token
   const userData = await user.getUserData(personId);
   await poi.unmarkPoiAsVisitedByUser(poi_id, userData.UserID); // Update the POI visits count
+});
+
+router.get("/", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../..", "Client", "User/Poi", "poi.html")
+  );
 });
 
 module.exports = router;

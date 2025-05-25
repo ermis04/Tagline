@@ -46,6 +46,11 @@ app.use(
   express.static(path.join(__dirname, "../Client/User/Location"))
 );
 
+app.use(
+  "/poi/static",
+  express.static(path.join(__dirname, "../Client/User/Poi"))
+);
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

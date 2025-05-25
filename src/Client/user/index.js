@@ -54,7 +54,11 @@ function createFirstLocationContainer(
   container.appendChild(pSights);
   container.appendChild(loadingBar);
 
-  return container;
+  const link = document.createElement("a");
+  link.href = `/location?location_id=${location_id}`;
+  link.appendChild(container);
+
+  return link;
 }
 
 function createLocationContainer(
@@ -151,10 +155,6 @@ function add_element(parentId, container) {
     parent.appendChild(container);
   }
 }
-
-// add_element("locations-frame", createFirstLocationContainer("Patras", 5));
-// add_element("locations-frame", createLocationContainer("Patras", 5));
-// add_element("locations-frame", createLocationContainer("Patras", 5));
 
 add_element("posts-frame", createPostContainer("Patras", ".natalie.png", 5));
 add_element("posts-frame", createPostContainer("Patras", ".natalie.png", 5));
