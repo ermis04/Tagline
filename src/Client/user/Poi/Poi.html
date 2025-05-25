@@ -3,11 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Poi</title>
+    <title>User</title>
     <link rel="stylesheet" href="/styles/main.css" />
-    <script type="module" src="/User/Poi/poi.js"></script>
+    <link rel="stylesheet" href="/location/static/location.css" />
+    <script type="module" src="./index.js"></script>
+    <script src="/poi/static/poi.js"></script>
   </head>
   <body>
-    <div>POI</div>
+    <nav class="location-nav">
+      <a href="index.html">
+        <img src="/images/back.png" alt="back" class="icon-back" />
+      </a>
+    </nav>
+
+    <section class="location-section">
+      <h1 id="location-name"></h1>
+      <div style="display: flex; gap: 10px; color: #0053FF"><p id="points"></p>Points</div>
+      <section></section>
+        <h3>About</h3>
+      <p id="location-description"></p>
+    </section>
+    <section>
+      <div id="pois-frame" class="container-frames">
+        <!--Load from js-->
+      </div>
+    </section>
   </body>
 </html>
