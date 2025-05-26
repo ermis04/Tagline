@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/leaderboard/Leaderboard.css" />
     <link rel="stylesheet" href="/login/Login.css" />
     <link rel="stylesheet" href="/User/Profile/static/viewprofile.css" />
+    <script src="/User/Profile/static/viewprofile.js"></script>
 
     <title>View Profile</title>
   </head>
@@ -18,15 +19,16 @@
       </a>
     </nav>
 
-    <div>
+    <div class="profile-pic-container">
       <img
+        id="profile-pic"
         class="big-profile-pic"
         src="/images/defaultprofile.png"
         alt="Logo"
       />
-      <div style="margin-left: 135px">@kapoios</div>
+      <div id="username">@kapoios</div>
     </div>
-    <section>
+    <div class="profile-main-content">
       <div
         class="inline"
         style="display: flex; align-items: center; justify-content: center"
@@ -41,8 +43,8 @@
         >
       </div>
       <div>
-        <img class="image-container" src="plazimage.png" alt="Logo" />
+        <div id="posts-frame"></div>
       </div>
-    </section>
+    </div>
   </body>
 </html>
