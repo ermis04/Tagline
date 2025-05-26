@@ -1,0 +1,65 @@
+.friends-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #0053ff; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 20px; /* Rounded corners */
+  font-size: 19px;
+  width: 110px;
+  height: 10px;
+}
+
+.everyone-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: rgb(255, 255, 255);
+  color: #0053ff;
+  border: 40px;
+  border-radius: 20px;
+  font-size: 19px;
+  width: 70px;
+  height: 10px;
+  border-radius: 20px;
+  border: 2px solid #0053ff;
+}
+
+.friend-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.friend-container-leaderboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.friend-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.left-items {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.friend-rank {
+  color: #0053ff; /* Blue color for rank */
+}
+
+.leaderboard-profile-pic {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}

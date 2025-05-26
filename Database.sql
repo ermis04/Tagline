@@ -165,8 +165,7 @@ CREATE TABLE Friends (
     PRIMARY KEY (FriendshipID),
     FOREIGN KEY (User1ID) REFERENCES User(UserID),
     FOREIGN KEY (User2ID) REFERENCES User(UserID),
-    INDEX (User1ID),
-    INDEX (User2ID),
+    UNIQUE KEY unique_friend_pair (User1ID, User2ID),
     INDEX (Status),
     CONSTRAINT valid_friendship CHECK (User1ID < User2ID) 
 );

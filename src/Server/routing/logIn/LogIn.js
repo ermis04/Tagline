@@ -66,6 +66,22 @@ class LogIn {
       throw error;
     }
   }
+
+  async getPersonIdfromUserId(userId) {
+    try {
+      const [response] = await db.query(
+        "SELECT PersonID FROM user WHERE UserID = ?",
+        [userId]
+      );
+      if (response.length === 0) {
+        throw new Error("User not found");
+      }
+      return response[0].PersonID;
+    } catch (error) {
+      console.error("Error fetching PersonID from UserID:", error.message);
+      throw error;
+    }
+  }
 }
 
 module.exports = LogIn;

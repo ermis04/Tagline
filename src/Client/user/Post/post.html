@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/leaderboard/Leaderboard.css" />
+    <link rel="stylesheet" href="/login/Login.css" />
+    <link rel="stylesheet" href="/ad/ad.css" />
+    <link rel="stylesheet" href="/posts/static/post.css" />
+    <link rel="stylesheet" href="/User/Profile/static/viewprofile.css" />
+    <script src="/posts/static/post.js"></script>
+
+    <title>View Profile</title>
+  </head>
+  <body style="background-color: #0000004f;">
+    <nav>
+      <a href="/user">
+        <img class="back-icon" src="/images/back.png" alt="Logo" />
+      </a>
+    </nav>
+
+    <section>
+      <div class="space-between">
+        <div style="display: flex; align-items: center;  gap: 5px;">
+          <img id="profile-pic" class="profile-pic" src="/images/defaultprofile.png" alt="Logo"/>
+          <p id="username" style="margin-top: 0px;"></p>
+        </div>
+        <div style="display: flex; align-items: center;">
+        <img id="location" class="location-icon" src="/images/location.png" alt="Logo"/>
+        <p style="padding-right: 20px;" id="place"></p>
+        </div>
+      </div>
+
+      <div>
+        <img id="poi-photo" class="posts-container" src="/images/defaultprofile.png" alt="Logo"/>
+        <!--Load from js-->
+      </div>
+
+      <div class="space-between">
+        <div style="display: flex; align-items: center;">
+          <p id="commentNum">5</p>
+          <img class="location-icon" src="/images/comment.png" alt="Logo"/>
+        </div>
+        <div style="display: flex; align-items: center;">
+          <img class="location-icon" src="/images/likee.png" alt="Logo"/>
+            <p id="likes" style="padding-right: 20px;">5</p>
+        </div>
+      </div>
+
+    </section>
+      </div>
+    </div>
+  </body>
+</html>

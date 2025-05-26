@@ -9,13 +9,6 @@ if (!getCookie("tagline_auth")) {
   window.location.href = "/logIn";
 }
 
-console.log(document.cookie);
-const load_profile_pic = (user_pic_link) => {
-  const img = document.createElement("img");
-  img.src = user_pic_link;
-  return img;
-};
-
 function createFirstLocationContainer(
   location,
   sights,
@@ -116,8 +109,6 @@ function createPostContainer(
   imageSrc,
   post_id
 ) {
-  console.log(username, profilePicSrc, likesCount, imageSrc, post_id);
-  console.log("Creating post container for:", username, post_id);
   const container = document.createElement("div");
   container.className = "post-container";
   container.style.backgroundImage = `url('${imageSrc}')`;
@@ -166,7 +157,7 @@ function createPostContainer(
   const link = document.createElement("a");
   link.style.textDecoration = "none";
 
-  link.href = `/post?post_id=${post_id}`;
+  link.href = `/posts?post_id=${post_id}`;
   link.appendChild(container);
   return link;
 }
@@ -243,6 +234,7 @@ fetch("/user/data")
 
     //Static data population
     document.getElementById("userPoints").textContent = data.points_collected;
+    document.getElementById("profile-pic-home").src = data.src;
   })
   .catch((error) => {
     console.error("Error:", error);

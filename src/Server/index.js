@@ -56,6 +56,15 @@ app.use(
   "/user/profile/static",
   express.static(path.join(__dirname, "../Client/User/Profile"))
 );
+app.use(
+  "/posts/static",
+  express.static(path.join(__dirname, "../Client/User/Post"))
+);
+
+app.use(
+  "/user/friends/static",
+  express.static(path.join(__dirname, "../Client/User/Friends"))
+);
 
 const port = 3000;
 app.listen(port, () => {

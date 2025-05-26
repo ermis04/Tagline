@@ -19,7 +19,7 @@ class Review {
         status
       FROM Review
       WHERE uploaded_by = ?
-        AND status_by_user = 'Active'
+        AND status_by_user != 'DeletedByUser'
         AND status = 'Approved'
       ORDER BY uploadDate DESC
       `,
