@@ -1,45 +1,55 @@
-
 .posts-container {
-    position: relative; /* Needed for ::before to be relative to this */
-    height: 400px;
-    width: 80%;
-    border-radius: 50px;
-    background-position: center;
-    background-size: cover;
+  position: relative; /* Needed for ::before to be relative to this */
+  height: 400px;
+  width: 100%;
+  border-radius: 50px;
+  background-position: center;
+  background-size: cover;
 
-    overflow: hidden; /* Ensures rounded corners clip overlay */
-    padding: calc(var(--icon-height)/2);
-    z-index: 0;
+  overflow: hidden; /* Ensures rounded corners clip overlay */
+  padding: calc(var(--icon-height) / 2);
+  z-index: 0;
 
-    display: flex;
-    flex: 0 0 auto;
-    flex-direction: column;
-    justify-content: space-between;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
+.post {
+  position: relative; /* Needed for ::before to be relative to this */
+  height: 400px;
+  width: 100%;
+  border-radius: 50px;
+  background-position: center;
+  background-size: cover;
+  margin: 20px 0px;
+
+  overflow: hidden; /* Ensures rounded corners clip overlay */
+  z-index: 0;
+
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
 .luxury-black {
-            background-color: #0a0a0a;
-            background-image: 
-                radial-gradient(
-                    circle at 75% 30%, 
-                    rgba(255, 255, 255, 0.015) 0%, 
-                    transparent 25%
-                ),
-                radial-gradient(
-                    circle at 25% 70%, 
-                    rgba(255, 255, 255, 0.02) 0%, 
-                    transparent 20%
-                ),
-                linear-gradient(
-                    to bottom right, 
-                    rgba(15, 15, 15, 0.9), 
-                    rgba(5, 5, 5, 0.95)
-                );
-            overflow: hidden;
-            border-radius: 16px;
-            max-width: 600px;
-            box-shadow: 
-                0 0 0 1px rgba(255, 255, 255, 0.03),
-                0 20px 40px rgba(0, 0, 0, 0.4);
-        }
+  background-color: #0a0a0a;
+  background-image: radial-gradient(
+      circle at 75% 30%,
+      rgba(255, 255, 255, 0.015) 0%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 25% 70%,
+      rgba(255, 255, 255, 0.02) 0%,
+      transparent 20%
+    ),
+    linear-gradient(to bottom right, rgba(15, 15, 15, 0.9), rgba(5, 5, 5, 0.95));
+  overflow: hidden;
+  border-radius: 16px;
+  max-width: 600px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 20px 40px rgba(0, 0, 0, 0.4);
+}
