@@ -1,7 +1,7 @@
 /*
  * This Controller Conrols the API endpoint of User.
  */
-
+const path = require("path");
 const express = require("express");
 const router = express.Router();
 
@@ -76,6 +76,18 @@ router.post("/update", async (req, res) => {
   const updatedPartner = await partner.updatePartnerData(personId, req.body);
 
   res.json(updatedPartner);
+});
+
+router.get("/AddFunds", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../../..",
+      "Client",
+      "Partner/AddFunds",
+      "Addfunds.html"
+    )
+  );
 });
 
 module.exports = router;
