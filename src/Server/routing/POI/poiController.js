@@ -99,4 +99,10 @@ router.get("/", (req, res) => {
   );
 });
 
+router.get("/review", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../..", "Client", "User/Poi", "review.html")
+  );
+});
+
 module.exports = router;

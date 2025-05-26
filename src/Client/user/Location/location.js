@@ -22,6 +22,7 @@ function createPoiContainer(poi_name, src, points, POIID) {
   const link = document.createElement("a");
   link.href = `/poi?poi_id=${POIID}`;
   link.appendChild(container);
+  link.style.textDecoration = "none";
 
   return link;
 }

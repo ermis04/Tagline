@@ -44,7 +44,7 @@ router.get("/data", async (req, res) => {
 });
 
 router.get("/collect", async (req, res) => {
-  // THE URL SHOULD INCLUDE THE Ad ID: like this: /ad/getAdData?ad_id=1&event="click"
+  // THE URL SHOULD INCLUDE THE Ad ID: like this: /ad/collect?ad_id=1&event="click"
   const ad = new Ad();
   const ad_id = req.query.ad_id;
   const event = req.query.event; //Should be click or view

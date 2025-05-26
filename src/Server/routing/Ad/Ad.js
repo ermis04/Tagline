@@ -127,8 +127,6 @@ class Ad {
     }
   }
 
-  getAdStatistics() {} // get the views, clicks of the ad
-
   async getAdData(ad_id) {
     try {
       const [rows] = await db.query(
@@ -205,12 +203,19 @@ ORDER BY
     try {
       const [rows] = await db.query(
         `
-      SELECT *
-      FROM ad
-      WHERE PoiID = ?
-        AND status = 'Approved'
-        AND end_date >= CURRENT_DATE
-      ORDER BY start_date DESC
+      SELECT 
+        a.*,
+        p.BusinessName,
+        p.BusinessDescription,
+        p.phone,
+        pe.src
+      FROM ad a
+      JOIN Partner p ON a.uploaded_by = p.PartnerID
+      JOIN person pe on p.PersonID = pe.PersonID
+      WHERE a.PoiID = ?
+        AND a.status = 'Approved'
+        AND a.end_date >= CURRENT_DATE
+      ORDER BY a.start_date DESC
       `,
         [poi_id]
       );
