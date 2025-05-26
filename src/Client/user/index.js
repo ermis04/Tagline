@@ -166,7 +166,7 @@ function createPostContainer(
   const link = document.createElement("a");
   link.style.textDecoration = "none";
 
-  link.href = `/post?post_id=${post_id}`;
+  link.href = `/posts?post_id=${post_id}`;
   link.appendChild(container);
   return link;
 }

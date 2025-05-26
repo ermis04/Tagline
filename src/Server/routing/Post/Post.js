@@ -215,13 +215,14 @@ class Post {
       const [posts] = await db.query(
         `
       SELECT 
-        p.PostID, p.caption, p.src AS postSrc, p.uploadDate, 
+        p.PostID, p.caption, p.src AS postSrc, p.uploadDate, p.poiID, p.like_count,
         per.PersonID, per.username, per.first_name, per.last_name, per.src AS userSrc,
-        u.points_collected
+        u.points_collected, poi.POI_name ,poi.src as poisrc
       FROM Post p
       JOIN User u ON p.uploaded_by = u.UserID
       JOIN Person per ON u.PersonID = per.PersonID
-      WHERE p.PostID = ? AND p.status = 'Approved' AND p.status_by_user = 'Active'
+      JOIN POI poi ON p.poiID = poi.POIID
+      WHERE p.PostID = ? AND p.status = 'Approved' AND p.status_by_user != 'DeletedByUser'
       LIMIT 1
     `,
         [post_id]

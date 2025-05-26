@@ -1,0 +1,18 @@
+
+.posts-container {
+    position: relative; /* Needed for ::before to be relative to this */
+    height: 400px;
+    width: 80%;
+    border-radius: 50px;
+    background-position: center;
+    background-size: cover;
+
+    overflow: hidden; /* Ensures rounded corners clip overlay */
+    padding: calc(var(--icon-height)/2);
+    z-index: 0;
+
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    justify-content: space-between;
+}

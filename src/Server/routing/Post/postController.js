@@ -1,7 +1,7 @@
 /*
  * This Controller Conrols the API endpoint of Post.
  */
-
+const path = require("path")
 const express = require("express");
 const router = express.Router();
 const Post = require("../Post/Post");
@@ -14,7 +14,7 @@ router.get("/all", async (req, res) => {
   res.json(posts);
 });
 
-router.get("/", async (req, res) => {
+router.get("/data", async (req, res) => {
   // THE URL SHOULD INCLUDE THE post ID: like this: /post?post_id=1
   const post_id = req.query.post_id;
 
@@ -215,5 +215,18 @@ router.get("/comment/edit", async (req, res) => {
   }
   res.json(removed);
 });
+
+router.get("/", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../../..",
+      "Client",
+      "User/Post",
+      "post.html"
+    )
+  );
+});
+
 
 module.exports = router;
