@@ -10,9 +10,19 @@ const LogIn = require("../logIn/LogIn");
 const Ad = require("../Ad/Ad");
 
 router.get("/all", async (req, res) => {
+  try {
+  console.log("GET /advertisement/all called"); // Debugging log
   const partner = new Partner();
   const login = new LogIn();
   const ad = new Ad();
+  const ads = await ad.getAllPendingAds(); // Fetch all pending ads for moderation
+    console.log("Fetched ads:", ads); // Debugging log
+    res.json(ads);
+  } catch (error) {
+    console.error("Error fetching advertisements:", error);
+    res.status(500).json({ message: "Error fetching advertisements" });
+  }
+
 
   const token = req.cookies.tagline_auth; // For knowing the logged in user
   const personData = await partner.getPartnerData(
@@ -84,5 +94,45 @@ router.get("/stats", async (req, res) => {
 
   res.json(ads);
 });
+
+// Accept an advertisement for mod
+router.post("/accept", async (req, res) => {
+  try {
+    const ad = new Ad();
+    const ad_id = req.body.ad_id;
+
+    const result = await ad.updateAdStatus(ad_id, "Approved");
+
+    if (result.success) {
+      res.json({ message: "Advertisement approved successfully" });
+    } else {
+      res.status(400).json({ message: result.message });
+    }
+  } catch (error) {
+    console.error("Error approving advertisement:", error);
+    res.status(500).json({ message: "Error approving advertisement" });
+  }
+});
+
+// Reject an advertisement for mod
+router.post("/reject", async (req, res) => {
+  try {
+    const ad = new Ad();
+    const ad_id = req.body.ad_id;
+
+    const result = await ad.updateAdStatus(ad_id, "Rejected");
+
+    if (result.success) {
+      res.json({ message: "Advertisement rejected successfully" });
+    } else {
+      res.status(400).json({ message: result.message });
+    }
+  } catch (error) {
+    console.error("Error rejecting advertisement:", error);
+    res.status(500).json({ message: "Error rejecting advertisement" });
+  }
+});
+
+
 
 module.exports = router;

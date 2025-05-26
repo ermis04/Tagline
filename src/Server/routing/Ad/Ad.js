@@ -289,6 +289,52 @@ ORDER BY
       console.error("Unknown event type:", event);
     }
   }
+
+  // get pending ads for viewing by the moderator
+  async getAllPendingAds() {
+    try {
+      const [ads] = await db.query(
+        `SELECT 
+          AdID, 
+          title, 
+          Description, 
+          start_date, 
+          end_date, 
+          cost, 
+          status 
+        FROM ad 
+        WHERE status = 'Pending' 
+        ORDER BY start_date DESC`
+      );
+      return ads;
+    } catch (error) {
+      console.error("Error fetching pending advertisements:", error);
+      throw error;
+    }
+  }
+
+
+  // Update advertisement status (Accept or Reject)
+  async updateAdStatus(ad_id, status) {
+    try {
+      const [result] = await db.query(
+        `UPDATE ad SET status = ? WHERE AdID = ?`,
+        [status, ad_id]
+      );
+
+      if (result.affectedRows > 0) {
+        return { success: true };
+      } else {
+        return { success: false, message: "Advertisement not found" };
+      }
+    } catch (error) {
+      console.error("Error updating advertisement status:", error);
+      throw error;
+    }
+  }  
+
 }
+
+
 
 module.exports = Ad;
