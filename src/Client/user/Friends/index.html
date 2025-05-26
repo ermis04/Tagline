@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="../Business/business.css" />
+    <link rel="stylesheet" href="/user/friends/static/social.css" />
+    <link rel="stylesheet" href="/login/Login.css" />
+  </head>
+  <body>
+    <nav>
+      <a href="/user">
+        <img src="/images/back.png" class="back-icon" alt="Logo" />
+      </a>
+      <span class="nav-options">
+        <span>
+          <h4 style="padding: 0; margin-bottom: -5px">1030</h4>
+          <p style="color: var(--main-blue)">Points</p>
+        </span>
+      </span>
+    </nav>
+
+    <section>
+      <div class="search-container">
+        <div class="search-bar">
+          <img
+            class="search-icon"
+            src="../Business/SearchIcon.png"
+            alt="Logo"
+          />
+          <input type="text" class="search-input" placeholder="| Search User" />
+        </div>
+      </div>
+      <h1>My Friends</h1>
+      <p id="no-friends">Womp womp, no friends :(</p>
+      <div id="friends-field"></div>
+
+      <h1 style="margin-top: 20px">Leaderboard</h1>
+      <div class="inline">
+        <div class="friends-button">friends only</div>
+        <div class="everyone-button">everyone</div>
+      </div>
+
+      <div class="inline" style="padding-top: 15px">
+        <div style="color: #0053ff; margin-right: 20px">1</div>
+        <img
+          class="friend-icon"
+          src="../Business/defaultprofile.png"
+          alt="Logo"
+        />
+
+        <div>@iasonas 1023 points</div>
+      </div>
+    </section>
+
+    <script src="/user/friends/static/friends.js"></script>
+  </body>
+</html>

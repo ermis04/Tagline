@@ -60,6 +60,11 @@ app.use(
   express.static(path.join(__dirname, "../Client/User/Post"))
 );
 
+app.use(
+  "/user/friends/static",
+  express.static(path.join(__dirname, "../Client/User/Friends"))
+);
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

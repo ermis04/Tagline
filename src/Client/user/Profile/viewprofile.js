@@ -1,5 +1,13 @@
 const urlParams = new URLSearchParams(window.location.search);
 const userID = urlParams.get("user_id");
+const from = urlParams.get("from");
+
+const backButton = document.getElementById("back-button");
+if (from === "friends") {
+  backButton.href = "/user/friends";
+} else if (from === "posts") {
+  backButton.href = "/posts";
+}
 
 function showTab(tab) {
   const postsTab = document.getElementById("posts-tab");

@@ -166,4 +166,10 @@ router.get("/profile/edit", (req, res) => {
   );
 });
 
+router.get("/friends", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../..", "Client", "User/Friends", "index.html")
+  );
+});
+
 module.exports = router;
