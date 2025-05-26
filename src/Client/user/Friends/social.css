@@ -33,9 +33,33 @@
   height: 40px;
 }
 
+.friend-container-leaderboard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
 .friend-container {
   display: flex;
   align-items: center;
   padding: 10px;
   gap: 10px;
+}
+
+.left-items {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.friend-rank {
+  color: #0053ff; /* Blue color for rank */
+}
+
+.leaderboard-profile-pic {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 }
