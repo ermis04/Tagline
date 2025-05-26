@@ -367,7 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const actionContainer = document.getElementById("profile-action-container");
 
   // Assume userID is set dynamically from your data or URL param
@@ -376,12 +376,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!actionContainer) return;
 
   if (userID) {
-    // Show "Add Friend"
-    const addBtn = document.createElement("button");
-    addBtn.textContent = "Add Friend";
-    addBtn.className = "add-friend-button";
-    addBtn.type = "button"; // Use type="button" to avoid accidental form submits
-    actionContainer.appendChild(addBtn);
+    await updateFriendButton(userID, actionContainer);
   } else {
     // Show "Edit Profile"
     const editLink = document.createElement("a");
@@ -403,3 +398,45 @@ function getUserIdFromPage() {
 }
 
 //TODO: Add functionality to handle the "Add Friend" button click
+
+async function updateFriendButton(friendID, container) {
+  container.innerHTML = ""; // Clear existing buttons
+
+  try {
+    const response = await fetch("/user/friends/get", {
+      credentials: "include",
+    });
+    const friends = await response.json();
+
+    const isFriend = friends.some((f) => f.friendUserID == friendID);
+    console.log("Is friend:", isFriend, "Friend ID:", friendID);
+    const button = document.createElement("button");
+    button.className = "add-friend-button";
+
+    button.type = "button";
+    if (isFriend) {
+      button.classList.add("remove-friend");
+      button.textContent = "Remove Friend";
+    } else {
+      button.textContent = "Add Friend";
+    }
+
+    button.addEventListener("click", async () => {
+      const url = isFriend
+        ? `/user/friends/remove?friend_id=${friendID}`
+        : `/user/friends/add?friend_id=${friendID}`;
+
+      try {
+        await fetch(url, { method: "GET", credentials: "include" });
+        // Refresh button state
+        await updateFriendButton(friendID, container);
+      } catch (err) {
+        console.error("Friend action failed:", err);
+      }
+    });
+
+    container.appendChild(button);
+  } catch (error) {
+    console.error("Failed to fetch friend status:", error);
+  }
+}

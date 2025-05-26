@@ -1,67 +1,73 @@
-.back-icon{
-        color: #000000 !important;
-        width: 15px;
-        height: 25px;
-        }
-
-.add-friend-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 24px;
-    background-color: #0053FF;  /* Blue color */
-    color: white;
-    border: none;
-    border-radius: 20px;  /* Rounded corners */
-    font-size: 19px;
-    width: 150px;
-    height: 20px;
+.back-icon {
+  color: #000000 !important;
+  width: 15px;
+  height: 25px;
 }
 
-.post-link{
+.add-friend-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  background-color: #0053ff; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 20px; /* Rounded corners */
+  font-size: 19px;
+  width: 100%;
+  height: 40px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-friend-button.remove-friend {
+  background-color: #ff4d4d; /* Red for 'Remove Friend' */
+  transition: background-color 0.3s ease;
+}
+.add-friend-button:hover {
+  transform: scale(1.02);
+}
+
+.post-link {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.container{
-    border-radius: 60px;
-    border: none;
-    width: 180px;
-    height: 280px;
+.container {
+  border-radius: 60px;
+  border: none;
+  width: 180px;
+  height: 280px;
 }
-.image-container{
-    border-radius: 60px;
-    border: none;
-    width: 180px;
-    height: 280px;
-}
-
-.big-profile-pic{
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    border: 2px solid #0053FF;
+.image-container {
+  border-radius: 60px;
+  border: none;
+  width: 180px;
+  height: 280px;
 }
 
-.profile-pic-container{
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+.big-profile-pic {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 2px solid #0053ff;
 }
 
-#username{
-    margin-top:20px;
+.profile-pic-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }
 
-.profile-main-content{
-    padding: 20px;
+#username {
+  margin-top: 20px;
 }
 
-
+.profile-main-content {
+  padding: 20px;
+}
 
 .tab-button {
   padding: 10px 20px;
@@ -69,12 +75,12 @@
   background-color: transparent;
   cursor: pointer;
   font-size: 16px;
-  color:#000000
+  color: #000000;
 }
 
 .tab-button.active {
   color: black;
-  border-bottom: 2px solid #0053FF;
+  border-bottom: 2px solid #0053ff;
 }
 
 .empty-message {
@@ -92,31 +98,30 @@
   padding: 16px;
 }
 
-#reviews-frame{
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding:20px 0px;
+#reviews-frame {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 0px;
 }
 
 .review-avatar {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 }
 
-.review-top{
-    display: flex;
-    align-items: center;
-    gap: 8px;
+.review-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.review-container{
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 15px;
+.review-container {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
 }
-
 
 .review-buttons {
   display: flex;
@@ -150,9 +155,6 @@
 .review-btn.delete:hover {
   background-color: #a71d2a;
 }
-
-
-
 
 /* modal */
 .modal-overlay {
@@ -203,9 +205,6 @@
   color: black;
 }
 
-
-
-
 /* For edit modal */
 
 .edit-stars {
@@ -225,9 +224,9 @@
   color: #ffc107;
 }
 
-#save-review{
-    background-color: #0053FF;
-    color: white;
+#save-review {
+  background-color: #0053ff;
+  color: white;
 }
 
 .toast {
@@ -235,7 +234,7 @@
   bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background: #0053FF;
+  background: #0053ff;
   color: white;
   padding: 12px 24px;
   border-radius: 6px;
@@ -245,32 +244,31 @@
   transition: opacity 0.3s ease;
 }
 
-
-.cancel-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    color: #0053FF;
-    border-radius: 20px; 
-    font-size: 19px;
-    width: 45%;
-    height: 30px;
-    border-radius: 20px;
-    border: 2px solid #0053FF;     
-    text-decoration: none;
+.cancel-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255);
+  color: #0053ff;
+  border-radius: 20px;
+  font-size: 19px;
+  width: 45%;
+  height: 30px;
+  border-radius: 20px;
+  border: 2px solid #0053ff;
+  text-decoration: none;
 }
 
-.save-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    background-color: #0053FF;  /* Blue color */
-    color: white;
-    border-radius: 20px;  /* Rounded corners */
-    font-size: 19px;
-    width: 45%;
-    height: 34px;
-    border: 2px solid #0053FF;     
+.save-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  background-color: #0053ff; /* Blue color */
+  color: white;
+  border-radius: 20px; /* Rounded corners */
+  font-size: 19px;
+  width: 45%;
+  height: 34px;
+  border: 2px solid #0053ff;
 }
