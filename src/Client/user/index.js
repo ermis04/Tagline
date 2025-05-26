@@ -116,6 +116,8 @@ function createPostContainer(
   imageSrc,
   post_id
 ) {
+  console.log(username, profilePicSrc, likesCount, imageSrc, post_id);
+  console.log("Creating post container for:", username, post_id);
   const container = document.createElement("div");
   container.className = "post-container";
   container.style.backgroundImage = `url('${imageSrc}')`;
@@ -179,8 +181,6 @@ function add_element(parentId, container) {
 fetch("/user/data")
   .then((response) => response.json())
   .then((data) => {
-    console.log(data);
-
     // Populate exploring section
     const exploring = data.locations.filter(
       (location) => location.visited_count != 0
@@ -207,38 +207,38 @@ fetch("/user/data")
               location_id
             );
       add_element("locations-frame", locationElement);
+    });
 
-      // Populate uncharted locations
-      const uncharted = data.locations.filter(
-        (location) => location.visited_count === 0
+    // Populate uncharted locations
+    const uncharted = data.locations.filter(
+      (location) => location.visited_count === 0
+    );
+    uncharted.forEach((location) => {
+      const { location_name, poi_count, location_id, src } = location;
+      const unchartedElement = createLocationContainer(
+        location_name,
+        poi_count,
+        src,
+        0,
+        location_id,
+        true
       );
-      uncharted.forEach((location) => {
-        const { location_name, poi_count, location_id, src } = location;
-        const unchartedElement = createLocationContainer(
-          location_name,
-          poi_count,
-          src,
-          0,
-          location_id,
-          true
-        );
-        add_element("uncharted-frame", unchartedElement);
-      });
+      add_element("uncharted-frame", unchartedElement);
+    });
 
-      // Populate Posts
+    // Populate Posts
 
-      const posts = data.posts;
-      posts.forEach((post) => {
-        const { username, userSrc, postSrc, like_count, PostID } = post;
-        const postElement = createPostContainer(
-          username,
-          userSrc,
-          like_count,
-          postSrc,
-          PostID
-        );
-        add_element("posts-frame", postElement);
-      });
+    const posts = data.posts;
+    posts.forEach((post) => {
+      const { username, userSrc, postSrc, like_count, PostID } = post;
+      const postElement = createPostContainer(
+        username,
+        userSrc,
+        like_count,
+        postSrc,
+        PostID
+      );
+      add_element("posts-frame", postElement);
     });
 
     //Static data population
@@ -247,20 +247,3 @@ fetch("/user/data")
   .catch((error) => {
     console.error("Error:", error);
   });
-
-// fetch("/reviews", {
-//   method: "POST",
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify({
-//     rating: 5,
-//     text: "What a nice pizza!!",
-//     poiId: 1,
-//     src: "https://lh3.googleusercontent.com/geougc-cs/AB3l90CduAvz0N02bOgmT2n-ZJSp0Ig1U7zJAcelWJv27PnCpUNQYfc-R7-B1RGyJ2yCyYkqH4YvM1LVVMHHXksxqsVhq8zRmDkZaYIhLvqqA_Rt6vZQOFji6kr6-BzqKiCYVTI5NNR0Pg=s225-p-k-rw",
-//     share_as_post: false,
-//   }),
-// })
-//   .then((res) => res.json())
-//   .then((data) => console.log("Review added:", data))
-//   .catch((err) => console.error("Error adding review:", err));
