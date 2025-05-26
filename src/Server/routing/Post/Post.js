@@ -16,7 +16,7 @@ class Post {
       const [posts] = await db.query(
         `
       SELECT 
-        p.PostID, p.caption, p.src AS postSrc, p.uploadDate, 
+        p.PostID, p.caption, p.src AS postSrc, p.uploadDate, p.like_count,
         per.PersonID, per.username, per.first_name, per.last_name, per.src AS userSrc,
         u.points_collected
       FROM Post p

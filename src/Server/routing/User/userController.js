@@ -42,7 +42,8 @@ router.get("/profile/data", async (req, res) => {
     let userId;
     // Use ID from URL if present, otherwise from token
     if (req.query.user_id) {
-      userId = parseInt(req.params.id, 10);
+      userId = await login.getPersonIdfromUserId(Number(req.query.user_id));
+      console.log("User ID from query:", userId);
       if (isNaN(userId)) {
         return res.status(400).json({ error: "Invalid user ID." });
       }
@@ -55,8 +56,9 @@ router.get("/profile/data", async (req, res) => {
     }
 
     const userData = await user.getUserData(userId);
-    const posts = (await post.getUserPosts(userId)) || [];
-    const reviews = (await review.getUserReviews(userId)) || [];
+    console.log("User Data:", userData);
+    const posts = (await post.getUserPosts(userData.UserID)) || [];
+    const reviews = (await review.getUserReviews(userData.UserID)) || [];
 
     res.json({ ...userData, posts, reviews });
   } catch (error) {
@@ -70,10 +72,11 @@ router.post("/profile/edit", async (req, res) => {
   const user = new User();
 
   const token = req.cookies.tagline_auth;
-  const userData = await user.getUserData(
-    await login.getLoggedInPersonId(token)
+
+  const response = await user.updateUserData(
+    await login.getLoggedInPersonId(token),
+    req.body
   );
-  const response = await user.updateUserData(userData.UserID, req.body);
 
   res.json(response);
 });
@@ -147,6 +150,18 @@ router.get("/profile", (req, res) => {
       "Client",
       "User/Profile",
       "viewprofile.html"
+    )
+  );
+});
+
+router.get("/profile/edit", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../../..",
+      "Client",
+      "User/Profile",
+      "editprofile.html"
     )
   );
 });
