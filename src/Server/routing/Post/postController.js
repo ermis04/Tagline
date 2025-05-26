@@ -1,7 +1,7 @@
 /*
  * This Controller Conrols the API endpoint of Post.
  */
-const path = require("path")
+const path = require("path");
 const express = require("express");
 const router = express.Router();
 const Post = require("../Post/Post");
@@ -218,15 +218,14 @@ router.get("/comment/edit", async (req, res) => {
 
 router.get("/", (req, res) => {
   res.sendFile(
-    path.join(
-      __dirname,
-      "../../..",
-      "Client",
-      "User/Post",
-      "post.html"
-    )
+    path.join(__dirname, "../../..", "Client", "User/Post", "post.html")
   );
 });
 
+router.get("/comments", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../..", "Client", "User/Post", "comments.html")
+  );
+});
 
 module.exports = router;

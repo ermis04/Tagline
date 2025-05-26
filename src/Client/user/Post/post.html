@@ -9,15 +9,15 @@
     <link rel="stylesheet" href="/login/Login.css" />
     <link rel="stylesheet" href="/ad/ad.css" />
     <link rel="stylesheet" href="/posts/static/post.css" />
+    <link rel="stylesheet" href="/register/partner/static/registerPartner.css" />
     <link rel="stylesheet" href="/User/Profile/static/viewprofile.css" />
-    <script src="/posts/static/post.js"></script>
 
     <title>View Profile</title>
   </head>
-  <body style="background-color: #0000004f;">
+  <body class="luxury-black">
     <nav>
       <a href="/user">
-        <img class="back-icon" src="/images/back.png" alt="Logo" />
+        <img class="small-profile-pic" src="/images/back1.png" alt="Logo" />
       </a>
     </nav>
 
@@ -25,11 +25,11 @@
       <div class="space-between">
         <div style="display: flex; align-items: center;  gap: 5px;">
           <img id="profile-pic" class="profile-pic" src="/images/defaultprofile.png" alt="Logo"/>
-          <p id="username" style="margin-top: 0px;"></p>
+          <p id="username" style="margin-top: 0px; color:aliceblue;"></p>
         </div>
         <div style="display: flex; align-items: center;">
-        <img id="location" class="location-icon" src="/images/location.png" alt="Logo"/>
-        <p style="padding-right: 20px;" id="place"></p>
+        <img id="location" class="location-icon" src="/images/whitelocation.png" alt="Logo"/>
+        <p style="padding-right: 20px; color:aliceblue;" id="place"></p>
         </div>
       </div>
 
@@ -40,17 +40,23 @@
 
       <div class="space-between">
         <div style="display: flex; align-items: center;">
-          <p id="commentNum">5</p>
+          <a id="comment-button">
+          <div style="display: flex; align-items: center;">
+          <p id="commentNum" style="color:aliceblue;"></p>
           <img class="location-icon" src="/images/comment.png" alt="Logo"/>
+          </div>
+          </a>
         </div>
-        <div style="display: flex; align-items: center;">
-          <img class="location-icon" src="/images/likee.png" alt="Logo"/>
-            <p id="likes" style="padding-right: 20px;">5</p>
-        </div>
+          <a id="like-button" href=""><div style="display: flex; align-items: center;"><img class="location-icon" src="/images/likee.png" alt="Logo"/>
+            <p id="likes" style="padding-right: 20px; color:aliceblue;"></p></div></a>
       </div>
 
+      <div style="display: flex; justify-content: end; padding-right: 20px; padding-top: 20px;"><button id="next-post-button" class="test-button">Next post</button></div>
     </section>
       </div>
     </div>
+       
+     <script src="/posts/static/post.js"></script>
+
   </body>
 </html>
