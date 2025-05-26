@@ -36,7 +36,7 @@ router.post("/", validateLogIn, async (req, res) => {
       domain: "localhost",
     });
 
-    res.cookie("user_type", role, {
+    res.cookie("user_type", role.toUpperCase(), {
       httpOnly: false,
       secure: false,
       sameSite: "lax",

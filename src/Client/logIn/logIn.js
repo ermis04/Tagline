@@ -23,11 +23,11 @@ document.getElementById("logInForm").addEventListener("submit", async (e) => {
 
       const userType = cookies["user_type"];
 
-      if (userType === "User") {
+      if (userType === "USER") {
         window.location.href = "/user";
-      } else if (userType === "Moderator") {
+      } else if (userType === "MODERATOR") {
         window.location.href = "/moderator";
-      } else if (userType === "Partner") {
+      } else if (userType === "PARTNER") {
         window.location.href = "/partner";
       } else {
         console.warn("user_type cookie not found");
