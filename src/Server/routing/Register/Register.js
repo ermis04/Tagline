@@ -3,7 +3,7 @@
  */
 
 const db = require("../../db");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 class Register {
   async #createPerson(formData, role) {
