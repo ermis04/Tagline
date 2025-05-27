@@ -7,18 +7,14 @@
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../Moderator/moderator.css" />
     <link rel="stylesheet" href="business.css" />
+    <link rel="stylesheet" href="./ManageAds/manageAds.css" />
     <title>Business Page</title>
   </head>
 
   <body>
     <nav>
       <a style="text-decoration: none" href="profile">
-        <img
-          id="profile-pic-business"
-          class="profile-pic-business"
-          src="store-profile.jpg"
-          alt="Logo"
-        />
+        <img id="profile-pic-business" class="profile-pic-business" />
       </a>
 
       <span class="nav-options">
@@ -49,15 +45,24 @@
       </div>
     </div>
 
-    <section class="moderate-section">
-      <a href="manageAds">Manage Adverisements</a>
-
-      <img
-        class="below-button-image"
-        src="Manage-advertisement.jpeg"
-        alt="Moderator Hammer"
-      />
-    </section>
+    <div style="padding: 20px">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        "
+      >
+        <h3>Your ads</h3>
+        <a
+          class="main-button"
+          style="width: 120px; text-decoration: none"
+          href="manageAds"
+          >Manage ads</a
+        >
+      </div>
+      <div id="ads-frame"></div>
+    </div>
 
     <script src="/partner/static/partner.js"></script>
   </body>

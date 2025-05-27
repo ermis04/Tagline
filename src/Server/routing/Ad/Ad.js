@@ -60,6 +60,49 @@ class Ad {
     }
   }
 
+  async editAd(ad_id, partnerId, adData) {
+    console.log(
+      "editAd called with adId:",
+      ad_id,
+      "partnerId:",
+      partnerId,
+      "adData:",
+      adData
+    );
+
+    const { title, Description, end_date, cost } = adData;
+
+    try {
+      const [result] = await db.query(
+        `
+      UPDATE ad
+      SET 
+        title = ?,
+        Description = ?,
+        end_date = ?,
+        cost = ?
+      WHERE AdID = ? and uploaded_by = ?
+      `,
+        [title, Description, end_date, cost, ad_id, partnerId]
+      );
+
+      if (result.affectedRows === 0) {
+        return {
+          success: false,
+          message: "No ad found to update or permission denied.",
+        };
+      }
+
+      return {
+        success: true,
+        message: "Ad updated successfully.",
+      };
+    } catch (error) {
+      console.error("Error in editAd:", error);
+      throw error;
+    }
+  }
+
   // For changint the ad budget
   async changeAdBudget(partner_id, ad_id, new_budget) {
     if (new_budget <= 0) {

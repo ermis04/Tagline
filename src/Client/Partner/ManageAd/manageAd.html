@@ -5,46 +5,123 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User</title>
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../login/Login.css">
-    <link rel="stylesheet" href="ad.css" />
+    <link rel="stylesheet" href="../login/Login.css" />
+    <!-- <link rel="stylesheet" href="ad.css" /> -->
     <link rel="stylesheet" href="business.css" />
+    <link rel="stylesheet" href="/partner/profile/static/profile.css" />
+    <link rel="stylesheet" href="/User/Profile/static/viewprofile.css" />
+    <link rel="stylesheet" href="/partner/ManageAd/static/manageAd.css" />
 
     <title>Manage Specific Advertisement</title>
   </head>
   <body>
     <nav>
-        <a style="text-decoration:none" href="https://www.google.com">
-          <img class="profile-pic-business" src="store-profile.jpg" alt="Logo" />
+      <div class="space-between">
+        <a href="/partner">
+          <img class="back-icon" src="/images/back.png" />
         </a>
-
-        <span class="nav-options">
-            <span>
-                <a style="text-decoration:none" href="https://www.google.com">
-                <h4 style="padding: 0; margin-bottom: -5px">+ Balance: 1030€</h4> 
-                <!-- edo einai hard corded to balance tou business, xreiazetai back end gia alithino -->
-                <p style="color: var(--main-blue)"></p>
-            </a>
-            </span>
-
-        </span>
+      </div>
+      <span class="nav-options">
+        <a style="text-decoration: none" href="AddFunds">
+          <h4 id="balance" style="padding: 0; margin-bottom: -5px"></h4>
+          <h5 style="padding: 0; margin-top: -5px">Balance</h5>
+        </a>
+      </span>
     </nav>
-    <section>
-    <h2>Modify:</h2>
+    <div style="padding: 20px">
+      <h3>Ad Stats</h3>
+      <div style="padding: 20px" class="card-container">
+        <div class="card">
+          <div class="card-title">Total Clicks</div>
+          <div class="card-value" id="total-clicks">–</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Total Views</div>
+          <div class="card-value" id="total-views">–</div>
+        </div>
+        <div class="card">
+          <div class="card-title">Total Cost</div>
+          <div class="card-value" id="total-cost">–</div>
+        </div>
+      </div>
 
-    <h3>Patras Plaz</h3>
+      <h3>Ad Details</h3>
+      <div class="ad-details">
+        <div class="ad-detail">
+          <label class="profile-info-label" for="ad-title">Title:</label>
+          <span id="ad-title">–</span>
+        </div>
+        <div class="ad-detail">
+          <label class="profile-info-label" for="ad-description"
+            >Description:</label
+          >
+          <span class="profile-info" id="ad-description">–</span>
+        </div>
+        <div class="ad-detail">
+          <label class="profile-info-label" for="ad-description"
+            >Location:</label
+          >
+          <span id="location">–</span>
+        </div>
+        <div class="ad-detail">
+          <label class="profile-info-label" for="ad-description">POI:</label>
+          <span id="poi">–</span>
+        </div>
+        <div class="ad-detail">
+          <label class="profile-info-label" for="ad-description">Status:</label>
+          <span id="status">–</span>
+        </div>
+        <div class="ad-detail">
+          <label class="profile-info-label" for="ad-description"
+            >Start Date:</label
+          >
+          <span id="start-date">–</span>
+        </div>
+        <div class="ad-detail">
+          <label class="profile-info-label" for="ad-description"
+            >End Date:</label
+          >
+          <span id="end-date">–</span>
+        </div>
+      </div>
 
-    <div class="search-container2">
-
+      <div
+        style="margin-top: 20px; display: flex; justify-content: space-between"
+      >
+        <a href="/" id="delete-ad-button" class="cancel-button">Delete</a>
+        <button
+          type="submit"
+          id="edit-ad-button"
+          style="cursor: pointer; pointer-events: all"
+          class="save-button"
+        >
+          Edit
+        </button>
+      </div>
     </div>
 
-    <a style="text-decoration:none" href = "google.com">
-    <h1>Edit</h1>
-    </a>
-    <!-- KANEI REDIRECT STO CREATE ADVERTISEMENT PAGE. -->
-    
-    <section>
-    </section>
+    <!-- Modal for edit -->
+    <div id="editModal" class="modal" hidden>
+      <div class="modal-content">
+        <span class="close-button" id="closeModal">&times;</span>
+        <h2>Edit Ad</h2>
+        <form id="editForm">
+          <label for="text">Title:</label>
+          <input type="text" id="text-new" name="text" required />
 
-    <a style="text-decoration:none" href = "google.com">
-    <h1>Delete</h1>
-    </a>
+          <label for="description">Description:</label>
+          <textarea id="description-new" name="description" required></textarea>
+
+          <label for="cost">Cost:</label>
+          <input type="number" id="cost-new" name="cost" step="0.01" required />
+
+          <label for="endDate">End Date:</label>
+          <input type="date" id="endDate-new" name="endDate" required />
+
+          <button type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+    <script src="/partner/ManageAd/static/manageAd.js"></script>
+  </body>
+</html>

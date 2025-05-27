@@ -87,9 +87,29 @@ router.post("/create", async (req, res) => {
   res.json(ads);
 });
 
+router.post("/edit", async (req, res) => {
+  const partner = new Partner();
+  const login = new LogIn();
+  const ad = new Ad();
+
+  const ad_id = req.query.ad_id;
+  const token = req.cookies.tagline_auth; // For knowing the logged in user
+  const partnerData = await partner.getPartnerData(
+    await login.getLoggedInPersonId(token)
+  );
+
+  if (partner.checkBalance() < req.body.cost) {
+    return res.status(400).json({ message: "Not enough balance" });
+  }
+
+  const ads = await ad.editAd(ad_id, partnerData.PartnerID, req.body);
+
+  res.json(ads);
+});
+
 router.get("/delete", async (req, res) => {
   const ad = new Ad();
-  const ad_id = req.query.ad_id; // Get the location id from the url
+  const ad_id = req.query.ad_id; // Get the ad id from the url
   const ads = await ad.deleteAd(ad_id);
   res.json(ads);
 });
