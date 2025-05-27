@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .then((ads) => {
       console.log("Ads data:", ads);
+      
       if (ads.length !== 0) {
         document.getElementById("no-ads").style.display = "none";
       }
