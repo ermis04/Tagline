@@ -71,7 +71,7 @@ class Location {
     return res[0];
   }
 
-  async getLocations() {
+  async getLocationsPure() {
     const [res] = await db.query("SELECT * FROM location");
     return res;
   }

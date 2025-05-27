@@ -42,10 +42,9 @@ router.get("/dataPure", async (req, res) => {
 });
 
 router.get("/all", async (req, res) => {
-  // THE URL SHOULD INCLUDE THE Location ID: like this: /location/all?location_id=1
   const location = new Location();
   const location_id = req.query.location_id; // Get the location id from the url
-  const locations = await location.getLocations();
+  const locations = await location.getLocationsPure();
   res.json(locations);
 });
 
