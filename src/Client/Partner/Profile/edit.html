@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/Leaderboard/Leaderboard.css" />
+    <link rel="stylesheet" href="/Login/Login.css" />
+    <link rel="stylesheet" href="/User/Profile/static/viewprofile.css" />
+    <link rel="stylesheet" href="./viewprofile.css" />
+
+    <title>View Profile</title>
+  </head>
+  <body>
+    <nav>
+      <div class="space-between">
+        <a href="/partner/profile">
+          <img class="back-icon" src="/images/back.png" />
+        </a>
+      </div>
+    </nav>
+
+    <div class="profile-pic-container">
+      <img id="profile-pic" class="big-profile-pic" />
+    </div>
+    <section>
+      <form id="edit-profile-form">
+        <div class="inline logininput">
+          <label for="BusinessName">Business Name</label>
+          <div class="input-container">
+            <input id="BusinessName" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="BusinessDescription">Description</label>
+          <div class="input-container">
+            <input id="BusinessDescription" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="username-field">Username</label>
+          <div class="input-container">
+            <input id="username-info" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="phone">Phone</label>
+          <div class="input-container">
+            <input id="phone" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="email">Email</label>
+          <div class="input-container">
+            <input id="email" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="src">Image Link</label>
+          <div class="input-container">
+            <input id="src" type="text" class="dotted-input" />
+          </div>
+        </div>
+        <div class="inline logininput">
+          <label for="first_name">Name</label>
+          <div class="input-container">
+            <input id="first_name" type="text" class="dotted-input" />
+          </div>
+        </div>
+        <div class="inline logininput">
+          <label for="last_name">Surname</label>
+          <div class="input-container">
+            <input id="last_name" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <section></section>
+
+        <div class="inline">
+          <a href="/user/profile" class="cancel-button">Cancel</a>
+          <button
+            type="submit"
+            style="cursor: pointer; pointer-events: all"
+            class="save-button"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <script src="/partner/Profile/static/edit.js"></script>
+  </body>
+</html>

@@ -11,7 +11,8 @@ fetch("/partner/data", {
     }
   })
   .then((data) => {
-    console.log(data);
+    document.getElementById("balance").textContent = `€${data.Balance}`;
+    document.getElementById("profile-pic-business").src = data.src;
   })
   .catch((error) => {
     console.error("Error fetching profile data:", error);

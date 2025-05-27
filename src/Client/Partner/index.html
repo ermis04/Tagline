@@ -7,24 +7,29 @@
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../Moderator/moderator.css" />
     <link rel="stylesheet" href="business.css" />
-    <script src="/partner/static/partner.js"></script>
     <title>Business Page</title>
   </head>
 
   <body>
     <nav>
       <a style="text-decoration: none" href="profile">
-        <img class="profile-pic-business" src="store-profile.jpg" alt="Logo" />
+        <img
+          id="profile-pic-business"
+          class="profile-pic-business"
+          src="store-profile.jpg"
+          alt="Logo"
+        />
       </a>
 
       <span class="nav-options">
         <a style="text-decoration: none" href="AddFunds">
-          <h4 style="padding: 0; margin-bottom: -5px">1030€</h4>
+          <h4 id="balance" style="padding: 0; margin-bottom: -5px"></h4>
           <h5 style="padding: 0; margin-top: -5px">Balance</h5>
         </a>
       </span>
     </nav>
 
+    <h3 style="padding: 20px 0px 0px 20px">Statistics</h3>
     <div style="padding: 20px" class="card-container">
       <div class="card">
         <div class="card-title">Total Ads</div>
@@ -45,7 +50,7 @@
     </div>
 
     <section class="moderate-section">
-      <button>Manage Adverisements</button>
+      <a href="manageAds">Manage Adverisements</a>
 
       <img
         class="below-button-image"
@@ -53,5 +58,7 @@
         alt="Moderator Hammer"
       />
     </section>
+
+    <script src="/partner/static/partner.js"></script>
   </body>
 </html>

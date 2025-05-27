@@ -11,11 +11,11 @@ const Ad = require("../Ad/Ad");
 
 router.get("/all", async (req, res) => {
   try {
-  console.log("GET /advertisement/all called"); // Debugging log
-  const partner = new Partner();
-  const login = new LogIn();
-  const ad = new Ad();
-  const ads = await ad.getAllPendingAds(); // Fetch all pending ads for moderation
+    console.log("GET /advertisement/all called"); // Debugging log
+    const partner = new Partner();
+    const login = new LogIn();
+    const ad = new Ad();
+    const ads = await ad.getAllPendingAds(); // Fetch all pending ads for moderation
     console.log("Fetched ads:", ads); // Debugging log
     res.json(ads);
   } catch (error) {
@@ -23,6 +23,19 @@ router.get("/all", async (req, res) => {
     res.status(500).json({ message: "Error fetching advertisements" });
   }
 
+  const token = req.cookies.tagline_auth; // For knowing the logged in user
+  const personData = await partner.getPartnerData(
+    await login.getLoggedInPersonId(token)
+  );
+  const ads = await ad.getAds(personData.PartnerID);
+
+  res.json(ads);
+});
+
+router.get("/partner/all", async (req, res) => {
+  const partner = new Partner();
+  const login = new LogIn();
+  const ad = new Ad();
 
   const token = req.cookies.tagline_auth; // For knowing the logged in user
   const personData = await partner.getPartnerData(
@@ -132,7 +145,5 @@ router.post("/reject", async (req, res) => {
     res.status(500).json({ message: "Error rejecting advertisement" });
   }
 });
-
-
 
 module.exports = router;

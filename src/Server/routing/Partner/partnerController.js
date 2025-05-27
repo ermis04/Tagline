@@ -77,7 +77,6 @@ router.get("/statistics", async (req, res) => {
   const partnerData = await partner.getPartnerData(personId);
 
   const adStatistics = await ad.getAdStatistics(partnerData.PartnerID);
-  console.log(adStatistics);
 
   res.json(adStatistics);
 });
@@ -109,6 +108,12 @@ router.get("/AddFunds", (req, res) => {
 router.get("/profile", (req, res) => {
   res.sendFile(
     path.join(__dirname, "../../..", "Client", "Partner/Profile", "index.html")
+  );
+});
+
+router.get("/profile/edit", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../..", "Client", "Partner/Profile", "edit.html")
   );
 });
 

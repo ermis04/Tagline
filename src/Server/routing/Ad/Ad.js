@@ -197,7 +197,7 @@ ORDER BY
     a.start_date DESC;`,
       [partner_id]
     );
-    return adData[0];
+    return adData;
   }
 
   // get the ads of the POI
