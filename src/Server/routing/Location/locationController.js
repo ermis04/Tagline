@@ -30,6 +30,17 @@ router.get("/data", async (req, res) => {
   res.json({ ...userData, pois, locationData });
 });
 
+router.get("/dataPure", async (req, res) => {
+  // THE URL SHOULD INCLUDE THE Location ID: like this: /location/data?location_id=1
+  const location = new Location();
+
+  const location_id = req.query.location_id; // Get the location id from the url
+
+  const pois = await location.getLocationPOIs(location_id);
+  const locationData = await location.getLocationDataPure(location_id);
+  res.json({ pois, locationData });
+});
+
 router.get("/all", async (req, res) => {
   // THE URL SHOULD INCLUDE THE Location ID: like this: /location/all?location_id=1
   const location = new Location();

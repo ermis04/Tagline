@@ -14,6 +14,14 @@ class Location {
     return locationData;
   }
 
+  async getLocationDataPure(location_id) {
+    const res = await db.query("select * from location where location_id = ?", [
+      location_id,
+    ]);
+    let locationData = res[0][0];
+    return locationData;
+  }
+
   // returns the progress of the user in the location
   async #calculateLocationProgress(location_id, user_id) {
     const res = await db.query(
