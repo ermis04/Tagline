@@ -292,3 +292,18 @@ section {
   width: 15px;
   height: 25px;
 }
+
+.main-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 18px;
+  background-color: #0053ff; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 30px; /* Rounded corners */
+  font-size: 19px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}

@@ -43,11 +43,11 @@ function createAdContainer(
   phoneLine.textContent = `📞 ${phone}`;
   link.appendChild(phoneLine);
 
-  fetch(`/ad/collect?ad_id=${ad_id}&event=view`);
+  fetch(`/advertisement/collect?ad_id=${ad_id}&event=view`);
 
   link.addEventListener("click", (event) => {
     event.preventDefault(); // Prevent immediate navigation
-    fetch(`/ad/collect?ad_id=${ad_id}&event=click`, {
+    fetch(`/advertisement/collect?ad_id=${ad_id}&event=click`, {
       method: "GET",
       credentials: "include",
     }).finally(() => {

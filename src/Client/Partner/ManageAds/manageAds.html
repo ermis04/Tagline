@@ -7,107 +7,44 @@
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../login/Login.css" />
     <link rel="stylesheet" href="business.css" />
+    <link rel="stylesheet" href="/partner/manageAds/static/manageAds.css" />
 
     <title>Manage Advertisement</title>
   </head>
 
   <body>
     <nav>
-      <a style="text-decoration: none" href="https://www.google.com">
-        <img class="profile-pic-business" src="store-profile.jpg" alt="Logo" />
-      </a>
-
+      <div class="space-between">
+        <a href="/partner">
+          <img class="back-icon" src="/images/back.png" />
+        </a>
+      </div>
       <span class="nav-options">
-        <span>
-          <a style="text-decoration: none" href="https://www.google.com">
-            <h4 style="padding: 0; margin-bottom: -5px">+ Balance: 1030€</h4>
-            <!-- edo einai hard corded to balance tou business, xreiazetai back end gia alithino -->
-            <p style="color: var(--main-blue)"></p>
-          </a>
-        </span>
+        <a style="text-decoration: none" href="AddFunds">
+          <h4 id="balance" style="padding: 0; margin-bottom: -5px"></h4>
+          <h5 style="padding: 0; margin-top: -5px">Balance</h5>
+        </a>
       </span>
     </nav>
-    <section>
-      <h2>Campaign</h2>
+    <div style="padding: 20px">
+      <h2>Campaigns</h2>
 
-      <h3>85 Views</h3>
+      <p id="no-ads">
+        No ads have been creeated from this account; Create an ad.
+      </p>
 
-      <div class="search-container2">
-        <div class="ad-container">
-          <div class="space-between">
-            <div class="inline">
-              <img class="location-icon" src="location.png" />
-              <p>Asos harbour</p>
-            </div>
-            <p>20 views</p>
-          </div>
-          <div style="display: flex; align-items: center">
-            205€
-            <h5>/500€</h5>
-          </div>
-          <div class="space-between">
-            <div class="inline">
-              <p>ends 12 / 4</p>
-            </div>
-            <a href="https://www.youtube.com/watch?v=6dck03SrEmM">cancel</a>
-          </div>
-        </div>
+      <div id="ads-frame">
+        <!-- Injected with js -->
       </div>
 
-      <div class="search-container2">
-        <div class="ad-container">
-          <div class="space-between">
-            <div class="inline">
-              <img class="location-icon" src="location.png" />
-              <p>Patras Plaz</p>
-            </div>
-            <p>12 views</p>
-          </div>
-          <div style="display: flex; align-items: center">
-            105€
-            <h5>/200€</h5>
-          </div>
-          <div class="space-between">
-            <div class="inline">
-              <p>ends 6 / 4</p>
-            </div>
-            <a href="https://www.youtube.com/watch?v=6dck03SrEmM">cancel</a>
-          </div>
-        </div>
+      <div style="display: flex; justify-content: center">
+        <a href="/partner/createAd" class="create-campaign">
+          <img class="plus-icon" src="plusSymbol.png" />
+          <p>Create New Campaign</p>
+        </a>
       </div>
+    </div>
 
-      <div class="search-container2">
-        <div class="ad-container">
-          <div class="space-between">
-            <div class="inline">
-              <img class="location-icon" src="location.png" />
-              <p>Spiti Iasona</p>
-            </div>
-            <p>59000 views</p>
-          </div>
-          <div style="display: flex; align-items: center">
-            3€
-            <h5>/10€</h5>
-          </div>
-          <div class="space-between">
-            <div class="inline">
-              <p>ends 6 / 9</p>
-            </div>
-            <a href="https://www.youtube.com/watch?v=6dck03SrEmM">cancel</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="search-container">
-        <div class="bar">
-          <div style="display: flex; align-items: center">
-            <div class="inline">
-              <img class="plus-icon" src="plusSymbol.png" />
-            </div>
-            <a>Create New Campaign</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <script src="/partner/manageAds/static/manageAds.js"></script>
   </body>
 </html>

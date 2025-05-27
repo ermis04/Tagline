@@ -158,6 +158,15 @@ h5 {
   box-sizing: border-box;
 }
 
+.card-container-simpler {
+  display: grid;
+  grid-template-columns: 3;
+  gap: 16px;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+}
+
 .card {
   background: white;
   padding: 20px;

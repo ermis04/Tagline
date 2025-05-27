@@ -7,16 +7,63 @@
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../Moderator/moderator.css" />
     <link rel="stylesheet" href="business.css" />
+    <link rel="stylesheet" href="/User/Profile/static/viewprofile.css" />
+    <link rel="stylesheet" href="/partner/profile/static/profile.css" />
 
     <title>Profile</title>
   </head>
 
   <body>
     <nav>
-      <a style="text-decoration: none" href="https://www.google.com">
-        <img class="profile-pic-business" src="store-profile.jpg" alt="Logo" />
+      <a id="back-button" href="/partner">
+        <img class="back-icon" src="/images/back.png" alt="Logo" />
       </a>
     </nav>
-    <h1>Profile</h1>
+
+    <div class="profile-pic-container">
+      <img
+        id="profile-pic"
+        class="big-profile-pic"
+        src="/images/defaultprofile.png"
+        alt="Logo"
+      />
+    </div>
+
+    <div class="profile-main-content">
+      <div class="profile-info">
+        <h3>Business Information</h3>
+        <p class="profile-info-label">
+          Business Name: <span class="profile-info" id="BusinessName">-</span>
+        </p>
+        <p class="profile-info-label">
+          Description:
+          <span class="profile-info" id="BusinessDescription">-</span>
+        </p>
+        <p class="profile-info-label">
+          Email: <span class="profile-info" id="email">-</span>
+        </p>
+        <p class="profile-info-label">
+          Phone: <span class="profile-info" id="phone">-</span>
+        </p>
+        <p class="profile-info-label">
+          Username: <span class="profile-info" id="username-info">-</span>
+        </p>
+        <p class="profile-info-label">
+          Owner Name: <span class="profile-info" id="first_name">-</span>
+        </p>
+        <p class="profile-info-label">
+          Owner Surname: <span class="profile-info" id="last_name">-</span>
+        </p>
+      </div>
+    </div>
+
+    <div style="padding: 20px">
+      <button onclick="window.location.href='profile/edit'" class="main-button">
+        Edit Profile
+      </button>
+    </div>
+    <div id="toast" class="toast" style="display: none"></div>
+
+    <script src="/partner/profile/static/profile.js"></script>
   </body>
 </html>

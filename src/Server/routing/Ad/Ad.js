@@ -25,7 +25,7 @@ class Ad {
       "adData:",
       adData
     );
-    const { title, Description, start_date, end_date, cost, PoiID } = adData;
+    const { title, Description, end_date, cost, PoiID } = adData;
 
     try {
       const [result] = await db.query(
@@ -34,17 +34,15 @@ class Ad {
         uploaded_by,
         title,
         Description,
-        start_date,
         end_date,
         cost,
         PoiID
-      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?)
       `,
         [
           partnerId,
           title,
           Description || null,
-          start_date,
           end_date,
           cost,
           PoiID,
@@ -58,6 +56,49 @@ class Ad {
       };
     } catch (error) {
       console.error("Error in createAd:", error);
+      throw error;
+    }
+  }
+
+  async editAd(ad_id, partnerId, adData) {
+    console.log(
+      "editAd called with adId:",
+      ad_id,
+      "partnerId:",
+      partnerId,
+      "adData:",
+      adData
+    );
+
+    const { title, Description, end_date, cost } = adData;
+
+    try {
+      const [result] = await db.query(
+        `
+      UPDATE ad
+      SET 
+        title = ?,
+        Description = ?,
+        end_date = ?,
+        cost = ?
+      WHERE AdID = ? and uploaded_by = ?
+      `,
+        [title, Description, end_date, cost, ad_id, partnerId]
+      );
+
+      if (result.affectedRows === 0) {
+        return {
+          success: false,
+          message: "No ad found to update or permission denied.",
+        };
+      }
+
+      return {
+        success: true,
+        message: "Ad updated successfully.",
+      };
+    } catch (error) {
+      console.error("Error in editAd:", error);
       throw error;
     }
   }
@@ -197,7 +238,7 @@ ORDER BY
     a.start_date DESC;`,
       [partner_id]
     );
-    return adData[0];
+    return adData;
   }
 
   // get the ads of the POI

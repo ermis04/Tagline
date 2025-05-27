@@ -129,7 +129,7 @@ CREATE TABLE ad (
     uploaded_by INT NOT NULL,
     title VARCHAR(100) NOT NULL,
     Description TEXT,
-    start_date DATE NOT NULL,
+    start_date DATE NOT NULL DEFAULT (CURRENT_DATE),
     end_date DATE NOT NULL,
     views INT NOT NULL DEFAULT 0,
     clicks INT NOT NULL DEFAULT 0,
