@@ -6,13 +6,15 @@ class Ad {
     const [adStatistics] = await db.query(
       `SELECT 
     SUM(views) AS total_views,
-    SUM(clicks) AS total_clicks
+    SUM(clicks) AS total_clicks,
+    SUM(cost) AS total_cost,
+    Count(*) AS total_ads
     FROM ad
     WHERE uploaded_by = ?`,
       [partner_id]
     );
 
-    return adStatistics;
+    return adStatistics[0];
   }
 
   // Create a new ad
@@ -318,7 +320,6 @@ ORDER BY
     }
   }
 
-
   // Update advertisement status (Accept or Reject)
   async updateAdStatus(ad_id, status) {
     try {
@@ -336,10 +337,7 @@ ORDER BY
       console.error("Error updating advertisement status:", error);
       throw error;
     }
-  }  
-
+  }
 }
-
-
 
 module.exports = Ad;

@@ -75,6 +75,26 @@ app.use(
   express.static(path.join(__dirname, "../Client/Partner/AddFunds"))
 );
 
+app.use(
+  "/partner/profile/static",
+  express.static(path.join(__dirname, "../Client/Partner/Profile"))
+);
+
+app.use(
+  "/partner/CreateAd/static",
+  express.static(path.join(__dirname, "../Client/Partner/CreateAd"))
+);
+
+app.use(
+  "/partner/ManageAd/static",
+  express.static(path.join(__dirname, "../Client/Partner/ManageAd"))
+);
+
+app.use(
+  "/partner/ManageAds/static",
+  express.static(path.join(__dirname, "../Client/Partner/ManageAds"))
+);
+
 const port = 3000;
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

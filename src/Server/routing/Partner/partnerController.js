@@ -6,6 +6,7 @@ const express = require("express");
 const router = express.Router();
 
 const Partner = require("./Partner");
+const Ad = require("../Ad/Ad");
 const LogIn = require("../logIn/LogIn");
 
 router.get("/data", async (req, res) => {
@@ -66,6 +67,21 @@ router.get("/balance/charge", async (req, res) => {
   res.json(newTotal);
 });
 
+router.get("/statistics", async (req, res) => {
+  const login = new LogIn();
+  const partner = new Partner();
+  const ad = new Ad();
+
+  const token = req.cookies.tagline_auth;
+  const personId = await login.getLoggedInPersonId(token);
+  const partnerData = await partner.getPartnerData(personId);
+
+  const adStatistics = await ad.getAdStatistics(partnerData.PartnerID);
+  console.log(adStatistics);
+
+  res.json(adStatistics);
+});
+
 router.post("/update", async (req, res) => {
   const login = new LogIn();
   const partner = new Partner();
@@ -86,6 +102,48 @@ router.get("/AddFunds", (req, res) => {
       "Client",
       "Partner/AddFunds",
       "Addfunds.html"
+    )
+  );
+});
+
+router.get("/profile", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../../..", "Client", "Partner/Profile", "index.html")
+  );
+});
+
+router.get("/createAd", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../../..",
+      "Client",
+      "Partner/CreateAd",
+      "createAd.html"
+    )
+  );
+});
+
+router.get("/manageAd", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../../..",
+      "Client",
+      "Partner/ManageAd",
+      "manageAd.html"
+    )
+  );
+});
+
+router.get("/ManageAds", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../../..",
+      "Client",
+      "Partner/ManageAds",
+      "manageAds.html"
     )
   );
 });
