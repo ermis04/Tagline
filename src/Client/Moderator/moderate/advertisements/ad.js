@@ -31,7 +31,7 @@ window.onload = function () {
 };
 
 window.acceptAd = function (adId) {
-  fetch(`/advertisement/accept`, {
+  fetch(`/ad/accept`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ad_id: adId }),
@@ -47,7 +47,7 @@ window.acceptAd = function (adId) {
 };
 
 window.rejectAd = function (adId) {
-  fetch(`/advertisement/reject`, {
+  fetch(`/ad/reject`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ad_id: adId }),
