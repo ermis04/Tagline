@@ -62,6 +62,11 @@ class Location {
 
     return res[0];
   }
+
+  async getLocations() {
+    const [res] = await db.query("SELECT * FROM location");
+    return res;
+  }
 }
 
 module.exports = Location;
