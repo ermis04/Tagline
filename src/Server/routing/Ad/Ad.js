@@ -6,13 +6,15 @@ class Ad {
     const [adStatistics] = await db.query(
       `SELECT 
     SUM(views) AS total_views,
-    SUM(clicks) AS total_clicks
+    SUM(clicks) AS total_clicks,
+    SUM(cost) AS total_cost,
+    Count(*) AS total_ads
     FROM ad
     WHERE uploaded_by = ?`,
       [partner_id]
     );
 
-    return adStatistics;
+    return adStatistics[0];
   }
 
   // Create a new ad
@@ -127,8 +129,6 @@ class Ad {
     }
   }
 
-  getAdStatistics() {} // get the views, clicks of the ad
-
   async getAdData(ad_id) {
     try {
       const [rows] = await db.query(
@@ -205,12 +205,19 @@ ORDER BY
     try {
       const [rows] = await db.query(
         `
-      SELECT *
-      FROM ad
-      WHERE PoiID = ?
-        AND status = 'Approved'
-        AND end_date >= CURRENT_DATE
-      ORDER BY start_date DESC
+      SELECT 
+        a.*,
+        p.BusinessName,
+        p.BusinessDescription,
+        p.phone,
+        pe.src
+      FROM ad a
+      JOIN Partner p ON a.uploaded_by = p.PartnerID
+      JOIN person pe on p.PersonID = pe.PersonID
+      WHERE a.PoiID = ?
+        AND a.status = 'Approved'
+        AND a.end_date >= CURRENT_DATE
+      ORDER BY a.start_date DESC
       `,
         [poi_id]
       );
@@ -313,7 +320,6 @@ ORDER BY
     }
   }
 
-
   // Update advertisement status (Accept or Reject)
   async updateAdStatus(ad_id, status) {
     try {
@@ -331,10 +337,7 @@ ORDER BY
       console.error("Error updating advertisement status:", error);
       throw error;
     }
-  }  
-
+  }
 }
-
-
 
 module.exports = Ad;

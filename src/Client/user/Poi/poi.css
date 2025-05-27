@@ -1,16 +1,16 @@
-.markasvisited-button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 18px;
-    background-color: #0053FF;  /* Blue color */
-    color: white;
-    border: none;
-    border-radius: 30px;  /* Rounded corners */
-    font-size: 19px;
-    width: 100%;  
-    transition: background-color 0.3s ease;
-    cursor: pointer;
+.markasvisited-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 18px;
+  background-color: #0053ff; /* Blue color */
+  color: white;
+  border: none;
+  border-radius: 30px; /* Rounded corners */
+  font-size: 19px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
 #markasvisited-button.loading {
@@ -45,3 +45,117 @@
   }
 }
 
+.review-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.review-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-content {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+.review-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.review-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.review-btn.edit {
+  background-color: #007bff;
+  color: white;
+}
+
+.review-btn.edit:hover {
+  background-color: #0056b3;
+}
+
+.review-btn.delete {
+  background-color: #dc3545;
+  color: white;
+}
+
+.review-btn.delete:hover {
+  background-color: #a71d2a;
+}
+
+/* Ads */
+
+.ad-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9fbfd;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  gap: 16px;
+  width: 100%;
+}
+
+.ad-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ad-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ad-business-name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.ad-badge {
+  background-color: #edf2f7;
+  color: #444;
+  padding: 2px 8px;
+  font-size: 12px;
+  border-radius: 10px;
+}
+
+.ad-location {
+  color: #0053ff;
+  text-decoration: underline;
+  margin-top: 4px;
+  font-size: 15px;
+}
+
+.ad-description {
+  margin: 8px 0 0 0;
+  color: #333;
+  font-size: 15px;
+}
+
+.ad-image {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
+.ad-phone {
+  margin-top: 8px;
+  color: #444;
+  font-size: 14px;
+}

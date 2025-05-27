@@ -35,16 +35,20 @@ class Review {
 
   // Returns all the reviews related to a POI
   async getPoiReviews(poiId) {
-    console.log("getPoiReviews called with poiId:", poiId);
     try {
       const [rows] = await db.query(
         `
-      SELECT *
-      FROM Review
-      WHERE PoiID = ?
-        AND status_by_user = 'Active'
-        AND status = 'Approved'
-      ORDER BY uploadDate DESC
+      SELECT 
+        r.*,
+        p.username,
+        p.src AS userPicture
+      FROM Review r
+      JOIN User u ON r.uploaded_by = u.UserID
+      JOIN Person p ON u.PersonID = p.PersonID
+      WHERE r.PoiID = ?
+        AND r.status_by_user = 'Active'
+        AND r.status = 'Approved'
+      ORDER BY r.uploadDate DESC
       `,
         [poiId]
       );
@@ -78,7 +82,7 @@ class Review {
     // Step 2: Optionally share as post
     if (share_as_post && src) {
       await this.#shareAsPost(UserID, {
-        caption: text,
+        text,
         src: src,
         poiId: poiId,
       });
@@ -181,7 +185,7 @@ class Review {
 
   // Share review as post
   async #shareAsPost(userId, postData) {
-    const { caption, src, poiId } = postData;
+    const { text, src, poiId } = postData;
 
     try {
       const [result] = await db.query(
@@ -189,7 +193,7 @@ class Review {
       INSERT INTO Post (uploaded_by, caption, src, PoiID)
       VALUES (?, ?, ?, ?)
       `,
-        [userId, caption, src, poiId]
+        [userId, text, src, poiId]
       );
 
       return { success: true, postId: result.insertId };

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <link rel="stylesheet" href="/leaderboard/Leaderboard.css" />
+    <link rel="stylesheet" href="/login/Login.css" />
+    <link rel="stylesheet" href="/ad/ad.css" />
+    <link rel="stylesheet" href="/posts/static/post.css" />
+    <link
+      rel="stylesheet"
+      href="/register/partner/static/registerPartner.css"
+    />
+    <link rel="stylesheet" href="/User/Profile/static/viewprofile.css" />
+    <link rel="stylesheet" href="/posts/static/comments.css" />
+  </head>
+  <body>
+    <div style="padding: 20px">
+      <nav class="location-nav">
+        <a id="back-button" href="">
+          <img class="small-profile-pic" src="/images/back.png" alt="Logo" />
+        </a>
+      </nav>
+
+      <div
+        style="display: flex; align-items: center; gap: 10px; margin-top: 20px"
+      >
+        <input
+          style="width: 100%"
+          class="dotted-input"
+          id="comment-input"
+          placeholder="Your comment"
+        />
+        <button class="test-button" style="padding-top: 20px" id="add-comment">
+          +
+        </button>
+      </div>
+      <div style="padding-top: 20px" id="comments-section"></div>
+    </div>
+    <script src="/posts/static/comments.js"></script>
+  </body>
+</html>

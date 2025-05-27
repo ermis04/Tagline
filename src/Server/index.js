@@ -18,7 +18,6 @@ const welcomeController = require("./routing/Welcome/welcomeController");
 app.use(express.json());
 app.use(cookieParser());
 
-
 app.get("/", welcomeController);
 app.use("/register", registerController);
 app.use("/logIn", logInController);
@@ -64,6 +63,36 @@ app.use(
 app.use(
   "/user/friends/static",
   express.static(path.join(__dirname, "../Client/User/Friends"))
+);
+
+app.use(
+  "/partner/static",
+  express.static(path.join(__dirname, "../Client/Partner"))
+);
+
+app.use(
+  "/partner/AddFunds/static",
+  express.static(path.join(__dirname, "../Client/Partner/AddFunds"))
+);
+
+app.use(
+  "/partner/profile/static",
+  express.static(path.join(__dirname, "../Client/Partner/Profile"))
+);
+
+app.use(
+  "/partner/CreateAd/static",
+  express.static(path.join(__dirname, "../Client/Partner/CreateAd"))
+);
+
+app.use(
+  "/partner/ManageAd/static",
+  express.static(path.join(__dirname, "../Client/Partner/ManageAd"))
+);
+
+app.use(
+  "/partner/ManageAds/static",
+  express.static(path.join(__dirname, "../Client/Partner/ManageAds"))
 );
 
 const port = 3000;
