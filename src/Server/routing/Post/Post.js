@@ -465,6 +465,30 @@ class Post {
       throw error;
     }
   }
+  
+  async updatePostStatus(postID, status) {
+    try {
+      const [result] = await db.query(
+        `
+        UPDATE Post
+        SET status = ?, status_by_user = 'Active'
+        WHERE PostID = ?
+      `,
+        [status, postID]
+      );
+
+      if (result.affectedRows === 0) {
+        return { success: false, message: "Post not found or already approved." };
+      }
+
+      return { success: true, message: "Post status updated successfully." };
+    } catch (error) {
+      console.error("Error updating post status:", error);
+      throw error;
+    }
+  }
 }
+
+
 
 module.exports = Post;

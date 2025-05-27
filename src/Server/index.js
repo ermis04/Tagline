@@ -29,7 +29,7 @@ app.use("/location", locationController);
 app.use("/posts", postController);
 app.use("/reviews", reviewController);
 app.use("/moderator", moderatorController);
-app.use("/advertisement", adController);
+app.use("/ad", adController);
 app.use("/partner", partnerController);
 
 // Serve static files from the Client directory

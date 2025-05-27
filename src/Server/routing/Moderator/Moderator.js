@@ -43,6 +43,7 @@ class Moderator {
         p.caption,
         p.src AS postSrc,
         p.uploadDate,
+        p.like_count,
         poi.POI_name,
         per.PersonID,
         per.username,

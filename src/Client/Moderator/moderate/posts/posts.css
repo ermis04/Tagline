@@ -1,0 +1,31 @@
+/* Style for the post card */
+.post-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+}
+
+/* Container for text and image */
+.post-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+/* Style for the text section */
+.post-text {
+  flex: 1;
+  margin-right: 16px;
+}
+
+/* Style for the image section */
+.post-image img {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 8px;
+  object-fit: cover;
+}

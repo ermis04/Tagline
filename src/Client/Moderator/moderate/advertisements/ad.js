@@ -1,5 +1,5 @@
 window.onload = function () {
-  fetch("/advertisement/all")
+  fetch("/ad/all")
     .then((res) => res.json())
     .then((ads) => {
       console.log("Fetched ads:", ads); // Debugging log
