@@ -25,7 +25,7 @@ class Ad {
       "adData:",
       adData
     );
-    const { title, Description, start_date, end_date, cost, PoiID } = adData;
+    const { title, Description, end_date, cost, PoiID } = adData;
 
     try {
       const [result] = await db.query(
@@ -34,17 +34,15 @@ class Ad {
         uploaded_by,
         title,
         Description,
-        start_date,
         end_date,
         cost,
         PoiID
-      ) VALUES (?, ?, ?, ?, ?, ?, ?)
+      ) VALUES (?, ?, ?, ?, ?, ?)
       `,
         [
           partnerId,
           title,
           Description || null,
-          start_date,
           end_date,
           cost,
           PoiID,

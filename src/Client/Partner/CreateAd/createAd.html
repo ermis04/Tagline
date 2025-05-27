@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../login/Login.css" />
     <link rel="stylesheet" href="ad.css" />
     <link rel="stylesheet" href="business.css" />
+    <link rel="stylesheet" href="../registerPartner/registerPartner.css" />
   </head>
   <body>
   <div style="display: flex; align-items: center; padding-right: 30px;" class="space-between">
@@ -35,39 +36,18 @@
     <section>
       <h2>Campaign</h2>
 
-      <!-- <div class="search-container">
-        <div class="search-bar">
-          <img class="search-icon" src="SearchIcon.png" alt="Logo" />
-          <input
-            type="text"
-            class="search-input"
-            placeholder="| Select Location"
-          />
-        </div>
-      </div>
-
-      <div class="search-container">
-        <div class="search-bar">
-          <img class="search-icon" src="SearchIcon.png" alt="Logo" />
-          <input
-            type="text"
-            class="search-input"
-            placeholder="| Select Points of Interest"
-          />
-        </div>
-      </div> -->
-
+<form type="submit">
  <div id="campaign-form">
   <div class="form-group">
     <label for="location-select">Select Location:</label>
-    <select id="location-select" class="form-control">
+    <select id="location-select" class="search-container search-bar">
       <option value="">Loading locations...</option>
     </select>
   </div>
 
   <div class="form-group">
     <label for="poi-select">Select Points of Interest:</label>
-    <select id="poi-select" class="form-control" disabled>
+    <select id="poi-select"class="search-container search-bar" disabled>
       <option value="">First select a location</option>
     </select>
   </div>
@@ -86,36 +66,47 @@
 </style>
 
       <div class="inline logininput">
-        <label id="Budget">Budget (€)</label>
+        <label>Budget (€)</label>
         <div class="input-container">
-          <input type="text" class="dotted-input" />
+          <input type="text" id="Budget" class="dotted-input" />
         </div>
       </div>
 
       <div class="inline logininput">
-        <label id="BudgetperDay">€ / day</label>
+        <label>Title</label>
         <div class="input-container">
-          <input type="text" class="dotted-input" />
+          <input type="text" id="title" class="dotted-input" />
         </div>
       </div>
+
+      <div class="inline logininput">
+        <label for="end-date">End Date</label>
+          <div class="input-container">
+            <input type="date" id="end-date" class="dotted-input" required />
+        </div>
+      </div>
+
       <p style="margin-top: 20px">Ad Text</p>
 
       <div class="search-container">
         <div class="text-container">
           <input
+            id="desc"
             type="text"
             class="search-input"
             placeholder="Type your ad description here"
           />
         </div>
       </div>
-      <a href="https://www.youtube.com/watch?v=KZoipAb2fo4"
+      <button type="submit" class="test-button" style="margin-right: 20px; pointer-events: all;">Submit For Reviews</button>
+</form>
+      <!-- <a href="https://www.youtube.com/watch?v=KZoipAb2fo4"
         ><img class="resize" src="logoUpload.png" alt="vector" />
         <p style="padding-left: 30px">Ad picture</p>
-      </a>
+      </a> -->
       <p style="padding-top: 10px">Estimated results: 84 views</p>
 
-      <a href="www.google.com" style="padding-left: 60px">Submit For Reviews</a>
+      
     </section>
         <script src="/partner/createAd/static/createAd.js"></script>
 
