@@ -222,6 +222,36 @@ router.get("/", (req, res) => {
   );
 });
 
+router.post("/approve", async (req, res) => {
+  try {
+    const post = new Post();
+    const result = await post.updatePostStatus(req.body.post_id, "Approved");
+    if (result.success) {
+      res.json({ message: "Post approved successfully" });
+    } else {
+      res.status(400).json({ message: result.message });
+    }
+  } catch (error) {
+    console.error("Error approving post:", error);
+    res.status(500).json({ message: "Error approving post" });
+  }
+});
+
+router.post("/reject", async (req, res) => {
+  try {
+    const post = new Post();
+    const result = await post.updatePostStatus(req.body.post_id, "Rejected");
+    if (result.success) {
+      res.json({ message: "Post rejected successfully" });
+    } else {
+      res.status(400).json({ message: result.message });
+    }
+  } catch (error) {
+    console.error("Error rejecting post:", error);
+    res.status(500).json({ message: "Error rejecting post" });
+  }
+});
+
 router.get("/comments", (req, res) => {
   res.sendFile(
     path.join(__dirname, "../../..", "Client", "User/Post", "comments.html")
