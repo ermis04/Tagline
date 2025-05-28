@@ -5,6 +5,19 @@
 const db = require("../../db");
 
 class User {
+  #user = {
+    userID: null,
+    points_collected: 0,
+    first_name: null,
+    last_name: null,
+    username: null,
+    email: null,
+    src: null,
+  };
+
+  #friends = [];
+  #leaderboard = [];
+
   // Adds points to user
   addPoints(points_to_add, user_id) {
     return db.query(

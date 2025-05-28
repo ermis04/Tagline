@@ -2,6 +2,14 @@ const db = require("../../db");
 const User = require("../User/User");
 
 class Poi {
+  #poi = {
+    poiid: null,
+    POI_name: "",
+    POI_description: "",
+    points: 0,
+    src: null,
+    location_id: null,
+  };
   // Mark the POI as not visited
   async unmarkPoiAsVisitedByUser(poi_id, user_id) {
     const [results] = await db.query(

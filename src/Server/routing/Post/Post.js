@@ -9,6 +9,20 @@ Paraggelia pizza shmeioseis
 */
 
 class Post {
+  #userPosts = [];
+  #locationPosts = [];
+  #poiPosts = [];
+  #post = {
+    Rating: 0,
+    Text: "",
+    PoiID: null,
+    src: "",
+    uploaded_by: null,
+    status: "Pending",
+    status_by_user: "Active",
+  };
+  #allPosts = [];
+
   // Returns all the reviews by a user that are also shared as posts.
   async getUserPosts(userID) {
     try {

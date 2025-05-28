@@ -1,6 +1,15 @@
 const db = require("../../db");
 
 class Location {
+  #location = {
+    location_id: 0,
+    description: "",
+    src: "",
+    location_name: "",
+  };
+
+  #locationProgress = 0;
+
   async getLocationData(location_id, user_id) {
     const res = await db.query("select * from Location where location_id = ?", [
       location_id,

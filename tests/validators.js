@@ -10,15 +10,14 @@ const CheckPoints = (points) => Number.isInteger(points);
 
 const CheckPhone = (phone) => /^\+\d{2}\s?\d{10}$/.test(phone);
 
-const CheckLocationName = (location) => /^[a-zA-Z][a-zA-Z0-9]{0,29}$/.test(location);
-
-
+const CheckLocationName = (location) =>
+  /^[a-zA-Z][a-zA-Z0-9]{0,29}$/.test(location);
 
 module.exports = {
-    CheckName: CheckName,
-    CheckEmail,
-    CheckUsername,
-    CheckPoints,
-    CheckLocationName,
-    CheckPhone
+  CheckName: CheckName,
+  CheckEmail,
+  CheckUsername,
+  CheckPoints,
+  CheckLocationName,
+  CheckPhone,
 };

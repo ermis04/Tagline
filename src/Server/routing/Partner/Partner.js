@@ -1,6 +1,18 @@
 const db = require("../../db"); // Import the database connection
 
 class Partner {
+  #partner = {
+    BusinessName: "",
+    Balance: 0,
+    src: "",
+    Description: "",
+    phone: 0,
+    POI_description: "",
+    email: "",
+    username: "",
+    first_name: "",
+    last_name: "",
+  };
   // Get partner data
   async getPartnerData(personId) {
     console.log("getPartnerData called with personId:", personId);

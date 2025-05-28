@@ -1,6 +1,10 @@
 const db = require("../../db");
 
 class Review {
+  #userReviews = [];
+  #poiReviews = [];
+  #allReviews = [];
+
   // Returns all the reviews by a user
   async getUserReviews(userId) {
     console.log("getUserReviews called with userId:", userId);

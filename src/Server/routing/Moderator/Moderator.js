@@ -1,5 +1,14 @@
 const db = require("../../db");
 class Moderator {
+  #moderator = {
+    moderatorID: null,
+    first_name: null,
+    last_name: null,
+    username: null,
+    email: null,
+    src: null,
+  };
+
   // Get moderator data
   async getModeratorData(personId) {
     try {

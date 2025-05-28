@@ -1,6 +1,24 @@
 const db = require("../../db");
 
 class Ad {
+  #ad = {
+    AdID: null,
+    uploaded_by: null,
+    title: "",
+    Description: "",
+    start_date: null,
+    end_date: null,
+    views: 0,
+    clicks: 0,
+    status: "Pending",
+    cost: 0,
+  };
+  #adStatistics = [];
+  #adData = {};
+  #allAds = [];
+  #poiAds = [];
+  #pendingAds = [];
+
   // get the views, clicks of the ad
   async getAdStatistics(partner_id) {
     const [adStatistics] = await db.query(
