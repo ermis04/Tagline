@@ -5,7 +5,7 @@ class Poi {
   // Mark the POI as not visited
   async unmarkPoiAsVisitedByUser(poi_id, user_id) {
     const [results] = await db.query(
-      "delete from visit where PlaceToVisit = ? and visitor = ?",
+      "delete from Visit where PlaceToVisit = ? and visitor = ?",
       [poi_id, user_id]
     );
 
@@ -13,7 +13,7 @@ class Poi {
     if (results.affectedRows > 0) {
       const user = new User();
       const [[poiData]] = await db.query(
-        "SELECT points FROM poi WHERE poiid = ?",
+        "SELECT points FROM Poi WHERE poiid = ?",
         [poi_id]
       );
       const points_to_remove = poiData.points;
@@ -25,14 +25,14 @@ class Poi {
   // Mark the POI as visited by the user
   async markPoiAsVisitedByUser(poi_id, user_id) {
     const [results] = await db.query(
-      "insert into visit (visitor, PlaceToVisit) values (?, ?)",
+      "insert into Visit (visitor, PlaceToVisit) values (?, ?)",
       [user_id, poi_id]
     );
 
     if (results.affectedRows > 0) {
       const user = new User();
       const [[poiData]] = await db.query(
-        "SELECT points FROM poi WHERE poiid = ?",
+        "SELECT points FROM Poi WHERE poiid = ?",
         [poi_id]
       );
       const points_to_add = poiData.points;
@@ -48,7 +48,7 @@ class Poi {
     SELECT 
       p.*, 
       CASE WHEN v.visitor IS NOT NULL THEN TRUE ELSE FALSE END AS visited
-    FROM POI p
+    FROM Poi p
     LEFT JOIN Visit v ON v.PlaceToVisit = p.POIID AND v.visitor = ?
     WHERE p.POIID = ?
   `,

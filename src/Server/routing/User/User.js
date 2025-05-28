@@ -8,13 +8,13 @@ class User {
   // Adds points to user
   addPoints(points_to_add, user_id) {
     return db.query(
-      "UPDATE user SET points_collected = points_collected + ? WHERE UserID = ?",
+      "UPDATE User SET points_collected = points_collected + ? WHERE UserID = ?",
       [points_to_add, user_id]
     );
   }
   removePoints(points_to_remove, user_id) {
     return db.query(
-      "UPDATE user SET points_collected = points_collected - ? WHERE UserID = ?",
+      "UPDATE User SET points_collected = points_collected - ? WHERE UserID = ?",
       [points_to_remove, user_id]
     );
   }

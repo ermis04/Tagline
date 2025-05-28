@@ -142,33 +142,25 @@ router.get("/friends/leaderboard", async (req, res) => {
   res.json(leaderboard);
 });
 
+router.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "../..", "Client", "User", "index.html"));
+});
+
 router.get("/profile", (req, res) => {
   res.sendFile(
-    path.join(
-      __dirname,
-      "../../..",
-      "Client",
-      "User/Profile",
-      "viewprofile.html"
-    )
+    path.join(__dirname, "../..", "Client", "User/Profile", "viewprofile.html")
   );
 });
 
 router.get("/profile/edit", (req, res) => {
   res.sendFile(
-    path.join(
-      __dirname,
-      "../../..",
-      "Client",
-      "User/Profile",
-      "editprofile.html"
-    )
+    path.join(__dirname, "../..", "Client", "User/Profile", "editprofile.html")
   );
 });
 
 router.get("/friends", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../../..", "Client", "User/Friends", "index.html")
+    path.join(__dirname, "../..", "Client", "User/Friends", "index.html")
   );
 });
 

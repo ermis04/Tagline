@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Tagline!</title>
+    <link rel="stylesheet" href="/styles/main.css" />
+    <script src="/static/index.js"></script>
+  </head>
+  <body>
+    <div
+      class="container"
+      style="
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 90vh;
+      "
+    >
+      <div>
+        <h1 style="font-size: 62px !important">Welcome to Tagline</h1>
+        <p>Explore the world in a fun way!</p>
+      </div>
+      <div>
+        <button class="main-button" onclick="goToLogin()">Get Started</button>
+      </div>
+    </div>
+
+    <div class="background">
+      <img
+        src="/images/globe.svg"
+        alt="Background Image"
+        style="
+          opacity: 0.1;
+          width: 150%;
+          height: 100%;
+          object-fit: cover;
+          position: absolute;
+          overflow: hidden;
+          top: 0;
+          left: 0;
+          z-index: -1;
+        "
+      />
+    </div>
+  </body>
+</html>

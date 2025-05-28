@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Review POI</title>
+    <link rel="stylesheet" href="../../User/Poi/review.css" />
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <div style="padding: 20px">
+      <form id="review-form">
+        <div
+          class="form-header"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+          "
+        >
+          <h1 id="review-title">Review this place</h1>
+          <a id="close-button" class="close-button" href=""> × </a>
+        </div>
+
+        <!-- Text field -->
+        <label for="review-text">Your Review</label>
+        <textarea id="review-text" name="reviewText" required></textarea>
+
+        <!-- Star Rating -->
+        <div class="star-rating" id="star-rating">
+          <span class="star" data-value="1">★</span>
+          <span class="star" data-value="2">★</span>
+          <span class="star" data-value="3">★</span>
+          <span class="star" data-value="4">★</span>
+          <span class="star" data-value="5">★</span>
+        </div>
+        <input type="hidden" name="rating" id="rating" value="0" />
+
+        <!-- Image Upload -->
+        <label for="image">Add Image (optional)</label>
+        <input type="text" id="image" name="image" />
+
+        <!-- Share as Post checkbox (conditional) -->
+
+        <label>
+          <input type="checkbox" name="shareAsPost" /> Share as post
+        </label>
+
+        <button id="button-submit-review" type="submit">Submit Review</button>
+      </form>
+    </div>
+
+    <div id="toast" class="toast" style="display: none"></div>
+
+    <script src="../../User/Poi/review.js"></script>
+  </body>
+</html>

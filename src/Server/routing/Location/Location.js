@@ -2,7 +2,7 @@ const db = require("../../db");
 
 class Location {
   async getLocationData(location_id, user_id) {
-    const res = await db.query("select * from location where location_id = ?", [
+    const res = await db.query("select * from Location where location_id = ?", [
       location_id,
     ]);
     let locationData = res[0][0];
@@ -15,7 +15,7 @@ class Location {
   }
 
   async getLocationDataPure(location_id) {
-    const res = await db.query("select * from location where location_id = ?", [
+    const res = await db.query("select * from Location where location_id = ?", [
       location_id,
     ]);
     let locationData = res[0][0];
@@ -25,7 +25,7 @@ class Location {
   // returns the progress of the user in the location
   async #calculateLocationProgress(location_id, user_id) {
     const res = await db.query(
-      "select count(*) as total from poi where location_id = ?",
+      "select count(*) as total from Poi where location_id = ?",
       [location_id]
     );
     const totalPois = res[0][0].total;
@@ -33,8 +33,8 @@ class Location {
     const res2 = await db.query(
       `
       SELECT COUNT(*) AS visited
-      FROM visit v
-      JOIN POI p ON v.PlaceToVisit = p.POIID
+      FROM Visit v
+      JOIN Poi p ON v.PlaceToVisit = p.POIID
       WHERE p.location_id = ? AND v.visitor = ?
     `,
       [location_id, user_id]
@@ -46,7 +46,7 @@ class Location {
 
   // returns all the POIs in the location
   async getLocationPOIs(location_id) {
-    const res = await db.query("select * from poi where location_id = ?", [
+    const res = await db.query("select * from Poi where location_id = ?", [
       location_id,
     ]);
     return res[0];
@@ -60,8 +60,8 @@ class Location {
       l.*, 
       COUNT(DISTINCT p.POIID) AS poi_count,
       COUNT(DISTINCT v.PlaceToVisit) AS visited_count
-    FROM location l
-    LEFT JOIN POI p ON l.location_id = p.location_id
+    FROM Location l
+    LEFT JOIN Poi p ON l.location_id = p.location_id
     LEFT JOIN Visit v ON v.PlaceToVisit = p.POIID AND v.visitor = ?
     GROUP BY l.location_id
   `,
@@ -72,7 +72,7 @@ class Location {
   }
 
   async getLocationsPure() {
-    const [res] = await db.query("SELECT * FROM location");
+    const [res] = await db.query("SELECT * FROM Location");
     return res;
   }
 }

@@ -94,14 +94,12 @@ router.post("/review", async (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.sendFile(
-    path.join(__dirname, "../../..", "Client", "User/Poi", "poi.html")
-  );
+  res.sendFile(path.join(__dirname, "../..", "Client", "User/Poi", "Poi.html"));
 });
 
 router.get("/review", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../../..", "Client", "User/Poi", "review.html")
+    path.join(__dirname, "../..", "Client", "User/Poi", "review.html")
   );
 });
 

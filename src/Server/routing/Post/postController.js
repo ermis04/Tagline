@@ -218,7 +218,7 @@ router.get("/comment/edit", async (req, res) => {
 
 router.get("/", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../../..", "Client", "User/Post", "post.html")
+    path.join(__dirname, "../..", "Client", "User/Post", "post.html")
   );
 });
 
@@ -254,7 +254,7 @@ router.post("/reject", async (req, res) => {
 
 router.get("/comments", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../../..", "Client", "User/Post", "comments.html")
+    path.join(__dirname, "../..", "Client", "User/Post", "comments.html")
   );
 });
 

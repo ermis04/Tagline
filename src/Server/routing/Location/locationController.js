@@ -19,6 +19,8 @@ router.get("/data", async (req, res) => {
   const location_id = req.query.location_id; // Get the location id from the url
   const token = req.cookies.tagline_auth; // For knowing the logged in user
 
+  console.log("location_id", location_id);
+
   const userData = await user.getUserData(
     await login.getLoggedInPersonId(token)
   ); // Get the logged in user data from the token
@@ -27,6 +29,9 @@ router.get("/data", async (req, res) => {
     location_id,
     userData.UserID
   );
+  console.log("locationData", locationData);
+  console.log("pois", pois);
+  console.log("userData", userData);
   res.json({ ...userData, pois, locationData });
 });
 
@@ -50,7 +55,7 @@ router.get("/all", async (req, res) => {
 
 router.get("/", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../../..", "Client", "User/Location", "location.html")
+    path.join(__dirname, "../..", "Client", "User/Location", "location.html")
   );
 });
 

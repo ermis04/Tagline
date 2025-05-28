@@ -17,7 +17,7 @@ class LogIn {
 
   async #getPerson(email) {
     const [response] = await db.query(
-      "select * from Person inner join user on Person.PersonID = user.PersonID where email = ?;",
+      "select * from Person inner join User on Person.PersonID = user.PersonID where email = ?;",
       [email]
     );
     return response[0];
@@ -70,7 +70,7 @@ class LogIn {
   async getPersonIdfromUserId(userId) {
     try {
       const [response] = await db.query(
-        "SELECT PersonID FROM user WHERE UserID = ?",
+        "SELECT PersonID FROM User WHERE UserID = ?",
         [userId]
       );
       if (response.length === 0) {

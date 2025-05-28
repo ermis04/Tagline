@@ -4,6 +4,7 @@
 
 const express = require("express");
 const router = express.Router();
+const path = require("path");
 
 const Moderator = require("./Moderator");
 const LogIn = require("../logIn/LogIn");
@@ -166,6 +167,80 @@ router.get("/rejectPartner", async (req, res) => {
   } else {
     res.status(500).json({ message: "Failed to rejected ad" });
   }
+});
+
+router.get("/", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../..", "Client", "Moderator", "index.html")
+  );
+});
+
+router.get("/moderate", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../..",
+      "Client",
+      "Moderator",
+      "moderate",
+      "moderate.html"
+    )
+  );
+});
+
+router.get("/moderate/posts", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../..",
+      "Client",
+      "Moderator",
+      "moderate",
+      "posts",
+      "posts.html"
+    )
+  );
+});
+
+router.get("/moderate/reviews", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../..",
+      "Client",
+      "Moderator",
+      "moderate",
+      "reviews",
+      "reviews.html"
+    )
+  );
+});
+
+router.get("/moderate/advertisements", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../..",
+      "Client",
+      "Moderator",
+      "moderate",
+      "advertisements",
+      "ad.html"
+    )
+  );
+});
+
+router.get("/partnership", (req, res) => {
+  res.sendFile(
+    path.join(
+      __dirname,
+      "../..",
+      "Client",
+      "Moderator",
+      "partnership",
+      "partner.html"
+    )
+  );
 });
 
 module.exports = router;

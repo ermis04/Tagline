@@ -96,22 +96,37 @@ router.post("/approve", async (req, res) => {
     const numericReviewId = Number(review_id);
     if (isNaN(numericReviewId)) {
       console.error("Invalid review_id:", review_id); // Debugging log
-      return res.status(400).json({ success: false, message: "Invalid review_id" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid review_id" });
     }
 
-    console.log("Executing query:", `UPDATE Review SET status = 'Approved' WHERE ReviewID = ${numericReviewId}`);
-    const [result] = await db.query(`UPDATE Review SET status = 'Approved' WHERE ReviewID = ?`, [numericReviewId]);
+    console.log(
+      "Executing query:",
+      `UPDATE Review SET status = 'Approved' WHERE ReviewID = ${numericReviewId}`
+    );
+    const [result] = await db.query(
+      `UPDATE Review SET status = 'Approved' WHERE ReviewID = ?`,
+      [numericReviewId]
+    );
     console.log("Database update result:", result); // Debugging log
 
     if (result.affectedRows === 0) {
-      console.error("No rows updated. ReviewID might not exist:", numericReviewId); // Debugging log
-      return res.status(404).json({ success: false, message: "Review not found" });
+      console.error(
+        "No rows updated. ReviewID might not exist:",
+        numericReviewId
+      ); // Debugging log
+      return res
+        .status(404)
+        .json({ success: false, message: "Review not found" });
     }
 
     res.json({ success: true, message: "Review approved successfully." });
   } catch (error) {
     console.error("Error approving review:", error);
-    res.status(500).json({ success: false, message: "Error approving review." });
+    res
+      .status(500)
+      .json({ success: false, message: "Error approving review." });
   }
 });
 
@@ -123,22 +138,37 @@ router.post("/reject", async (req, res) => {
     const numericReviewId = Number(review_id);
     if (isNaN(numericReviewId)) {
       console.error("Invalid review_id:", review_id); // Debugging log
-      return res.status(400).json({ success: false, message: "Invalid review_id" });
+      return res
+        .status(400)
+        .json({ success: false, message: "Invalid review_id" });
     }
 
-    console.log("Executing query:", `UPDATE Review SET status = 'Rejected' WHERE ReviewID = ${numericReviewId}`);
-    const [result] = await db.query(`UPDATE Review SET status = 'Rejected' WHERE ReviewID = ?`, [numericReviewId]);
+    console.log(
+      "Executing query:",
+      `UPDATE Review SET status = 'Rejected' WHERE ReviewID = ${numericReviewId}`
+    );
+    const [result] = await db.query(
+      `UPDATE Review SET status = 'Rejected' WHERE ReviewID = ?`,
+      [numericReviewId]
+    );
     console.log("Database update result:", result); // Debugging log
 
     if (result.affectedRows === 0) {
-      console.error("No rows updated. ReviewID might not exist:", numericReviewId); // Debugging log
-      return res.status(404).json({ success: false, message: "Review not found" });
+      console.error(
+        "No rows updated. ReviewID might not exist:",
+        numericReviewId
+      ); // Debugging log
+      return res
+        .status(404)
+        .json({ success: false, message: "Review not found" });
     }
 
     res.json({ success: true, message: "Review rejected successfully." });
   } catch (error) {
     console.error("Error rejecting review:", error);
-    res.status(500).json({ success: false, message: "Error rejecting review." });
+    res
+      .status(500)
+      .json({ success: false, message: "Error rejecting review." });
   }
 });
 

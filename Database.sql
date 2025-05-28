@@ -1,7 +1,6 @@
-DROP database tagline;
-Create database tagline;
-use tagline;
-
+DROP DATABASE IF EXISTS tagline;
+CREATE DATABASE tagline;
+USE tagline;
 
 CREATE TABLE Person (
     PersonID INT NOT NULL AUTO_INCREMENT,
@@ -22,17 +21,16 @@ CREATE TABLE Moderator (
     ModID INT NOT NULL AUTO_INCREMENT,
     PersonID INT NOT NULL,
     PRIMARY KEY (ModID),
-    CONSTRAINT personid FOREIGN KEY (PersonID) REFERENCES Person(PersonID) on delete cascade on update cascade,
+    CONSTRAINT personid FOREIGN KEY (PersonID) REFERENCES Person(PersonID) ON DELETE CASCADE ON UPDATE CASCADE,
     UNIQUE (PersonID)
 );
-
 
 CREATE TABLE User (
     UserID INT NOT NULL AUTO_INCREMENT,
     PersonID INT NOT NULL,
     points_collected INT NOT NULL DEFAULT 0,
     PRIMARY KEY (UserID),
-    FOREIGN KEY (PersonID) REFERENCES Person(PersonID) on delete cascade on update cascade,
+    FOREIGN KEY (PersonID) REFERENCES Person(PersonID) ON DELETE CASCADE ON UPDATE CASCADE,
     UNIQUE (PersonID)
 );
 
@@ -42,23 +40,23 @@ CREATE TABLE Partner (
     BusinessName VARCHAR(100) NOT NULL,
     Balance FLOAT NOT NULL DEFAULT 0,
     phone VARCHAR(20) NOT NULL,
-    BusinessDescription text,
+    BusinessDescription TEXT,
     status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     PRIMARY KEY (PartnerID),
-    FOREIGN KEY (PersonID) REFERENCES Person(PersonID) on delete cascade on update cascade,
+    FOREIGN KEY (PersonID) REFERENCES Person(PersonID) ON DELETE CASCADE ON UPDATE CASCADE,
     UNIQUE (PersonID)
 );
 
-CREATE TABLE location (
+CREATE TABLE Location (
     location_id INT NOT NULL AUTO_INCREMENT,
     description TEXT,
     src VARCHAR(255) NOT NULL,
     location_name VARCHAR(100) NOT NULL,
     PRIMARY KEY (location_id),
-    INDEX (location_name) 
+    INDEX (location_name)
 );
 
-CREATE TABLE POI (
+CREATE TABLE Poi (
     POIID INT NOT NULL AUTO_INCREMENT,
     POI_name VARCHAR(100) NOT NULL,
     POI_description TEXT,
@@ -66,8 +64,8 @@ CREATE TABLE POI (
     location_id INT NOT NULL,
     points INT NOT NULL DEFAULT 0,
     PRIMARY KEY (POIID),
-    CONSTRAINT location FOREIGN KEY (location_id) REFERENCES Location(location_id) on delete cascade on update cascade,
-    INDEX (location_id)  
+    CONSTRAINT location FOREIGN KEY (location_id) REFERENCES Location(location_id) ON DELETE CASCADE ON UPDATE CASCADE,
+    INDEX (location_id)
 );
 
 CREATE TABLE Review (
@@ -78,13 +76,13 @@ CREATE TABLE Review (
     PoiID INT NOT NULL,
     uploadDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     DeletedBy INT NULL,
-    src VARCHAR(255) NOT NULL,
+    src VARCHAR(255),
     status_by_user ENUM('DeletedByUser', 'Active', 'Edited') NOT NULL DEFAULT 'Active',
     status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     PRIMARY KEY (ReviewID),
-    CONSTRAINT uploader FOREIGN KEY (uploaded_by) REFERENCES User(UserID) on delete cascade on update cascade,
-    CONSTRAINT loaction FOREIGN KEY (PoiID) REFERENCES POI(PoiID) on delete cascade on update cascade,
-    CONSTRAINT checkedfrom FOREIGN KEY (DeletedBy) REFERENCES Moderator(ModID) on delete cascade on update cascade,
+    CONSTRAINT uploader FOREIGN KEY (uploaded_by) REFERENCES User(UserID) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT loaction FOREIGN KEY (PoiID) REFERENCES Poi(POIID) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT checkedfrom FOREIGN KEY (DeletedBy) REFERENCES Moderator(ModID) ON DELETE CASCADE ON UPDATE CASCADE,
     INDEX (uploaded_by),
     INDEX (PoiID),
     INDEX (DeletedBy)
@@ -94,7 +92,7 @@ CREATE TABLE Post (
     PostID INT NOT NULL AUTO_INCREMENT,
     uploaded_by INT NOT NULL,
     caption TEXT,
-    src VARCHAR(255) NOT NULL, 
+    src VARCHAR(255) ,
     uploadDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     DeletedBy INT NULL,
     PoiID INT NOT NULL,
@@ -102,29 +100,28 @@ CREATE TABLE Post (
     status ENUM('Approved', 'Rejected', 'Pending') NOT NULL DEFAULT 'Pending',
     status_by_user ENUM('DeletedByUser', 'Active', 'Edited') NOT NULL DEFAULT 'Active',
     PRIMARY KEY (PostID),
-    CONSTRAINT postedfrom FOREIGN KEY (uploaded_by) REFERENCES User(UserID) on delete cascade on update cascade,
-    CONSTRAINT checked FOREIGN KEY (DeletedBy) REFERENCES Moderator(ModID) on delete cascade on update cascade,
-    CONSTRAINT place FOREIGN KEY (PoiID) REFERENCES POI(POIID) on delete cascade on update cascade,
+    CONSTRAINT postedfrom FOREIGN KEY (uploaded_by) REFERENCES User(UserID) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT checked FOREIGN KEY (DeletedBy) REFERENCES Moderator(ModID) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT place FOREIGN KEY (PoiID) REFERENCES Poi(POIID) ON DELETE CASCADE ON UPDATE CASCADE,
     INDEX (uploaded_by),
     INDEX (DeletedBy),
     INDEX (PoiID)
 );
 
 CREATE TABLE Comment (
-    CommentID INT NOT NULL AUTO_INCREMENT, 
+    CommentID INT NOT NULL AUTO_INCREMENT,
     commenter INT NOT NULL,
     post_commented INT NOT NULL,
     text TEXT NOT NULL,
     CommentDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (CommentID),  
-    CONSTRAINT commenter FOREIGN KEY (commenter) REFERENCES User(UserID) on delete cascade on update cascade,
-    CONSTRAINT post_commented FOREIGN KEY (post_commented) REFERENCES Post(PostID) on delete cascade on update cascade,
+    PRIMARY KEY (CommentID),
+    CONSTRAINT commenter FOREIGN KEY (commenter) REFERENCES User(UserID) ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT post_commented FOREIGN KEY (post_commented) REFERENCES Post(PostID) ON DELETE CASCADE ON UPDATE CASCADE,
     INDEX (commenter),
     INDEX (post_commented)
 );
 
-
-CREATE TABLE ad (
+CREATE TABLE Ad (
     AdID INT NOT NULL AUTO_INCREMENT,
     uploaded_by INT NOT NULL,
     title VARCHAR(100) NOT NULL,
@@ -138,7 +135,7 @@ CREATE TABLE ad (
     PoiID INT NOT NULL,
     PRIMARY KEY (AdID),
     FOREIGN KEY (uploaded_by) REFERENCES Partner(PartnerID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (PoiID) REFERENCES POI(POIID) ON DELETE RESTRICT ON UPDATE CASCADE,
+    FOREIGN KEY (PoiID) REFERENCES Poi(POIID) ON DELETE RESTRICT ON UPDATE CASCADE,
     INDEX (uploaded_by),
     INDEX (PoiID),
     INDEX (status),
@@ -150,11 +147,11 @@ CREATE TABLE Visit (
     visitor INT NOT NULL,
     PlaceToVisit INT NOT NULL,
     VisitDate DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (visitor, PlaceToVisit),  
+    PRIMARY KEY (visitor, PlaceToVisit),
     FOREIGN KEY (visitor) REFERENCES User(UserID) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (PlaceToVisit) REFERENCES POI(POIID) ON DELETE CASCADE ON UPDATE CASCADE,
-    INDEX (PlaceToVisit),  
-    INDEX (visitor)   
+    FOREIGN KEY (PlaceToVisit) REFERENCES Poi(POIID) ON DELETE CASCADE ON UPDATE CASCADE,
+    INDEX (PlaceToVisit),
+    INDEX (visitor)
 );
 
 CREATE TABLE Friends (
@@ -167,5 +164,5 @@ CREATE TABLE Friends (
     FOREIGN KEY (User2ID) REFERENCES User(UserID),
     UNIQUE KEY unique_friend_pair (User1ID, User2ID),
     INDEX (Status),
-    CONSTRAINT valid_friendship CHECK (User1ID < User2ID) 
+    CONSTRAINT valid_friendship CHECK (User1ID < User2ID)
 );

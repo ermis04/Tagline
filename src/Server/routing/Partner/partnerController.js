@@ -93,51 +93,39 @@ router.post("/update", async (req, res) => {
   res.json(updatedPartner);
 });
 
+router.get("/", (req, res) => {
+  res.sendFile(
+    path.join(__dirname, "../..", "Client", "Partner", "index.html")
+  );
+});
+
 router.get("/AddFunds", (req, res) => {
   res.sendFile(
-    path.join(
-      __dirname,
-      "../../..",
-      "Client",
-      "Partner/AddFunds",
-      "Addfunds.html"
-    )
+    path.join(__dirname, "../..", "Client", "Partner/AddFunds", "Addfunds.html")
   );
 });
 
 router.get("/profile", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../../..", "Client", "Partner/Profile", "index.html")
+    path.join(__dirname, "../..", "Client", "Partner/Profile", "index.html")
   );
 });
 
 router.get("/profile/edit", (req, res) => {
   res.sendFile(
-    path.join(__dirname, "../../..", "Client", "Partner/Profile", "edit.html")
+    path.join(__dirname, "../..", "Client", "Partner/Profile", "edit.html")
   );
 });
 
 router.get("/createAd", (req, res) => {
   res.sendFile(
-    path.join(
-      __dirname,
-      "../../..",
-      "Client",
-      "Partner/CreateAd",
-      "createAd.html"
-    )
+    path.join(__dirname, "../..", "Client", "Partner/CreateAd", "createAd.html")
   );
 });
 
 router.get("/manageAd", (req, res) => {
   res.sendFile(
-    path.join(
-      __dirname,
-      "../../..",
-      "Client",
-      "Partner/ManageAd",
-      "manageAd.html"
-    )
+    path.join(__dirname, "../..", "Client", "Partner/ManageAd", "manageAd.html")
   );
 });
 
@@ -145,7 +133,7 @@ router.get("/ManageAds", (req, res) => {
   res.sendFile(
     path.join(
       __dirname,
-      "../../..",
+      "../..",
       "Client",
       "Partner/ManageAds",
       "manageAds.html"

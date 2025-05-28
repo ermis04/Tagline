@@ -85,7 +85,7 @@ class Post {
         per.PersonID, per.username, per.first_name, per.last_name, per.src AS userSrc,
         u.points_collected
       FROM Post p
-      JOIN POI poi ON p.PoiID = poi.POIID
+      JOIN Poi poi ON p.PoiID = poi.POIID
       JOIN Location loc ON poi.location_id = loc.location_id
       JOIN User u ON p.uploaded_by = u.UserID
       JOIN Person per ON u.PersonID = per.PersonID
@@ -221,7 +221,7 @@ class Post {
       FROM Post p
       JOIN User u ON p.uploaded_by = u.UserID
       JOIN Person per ON u.PersonID = per.PersonID
-      JOIN POI poi ON p.poiID = poi.POIID
+      JOIN Poi poi ON p.poiID = poi.POIID
       WHERE p.PostID = ? AND p.status = 'Approved' AND p.status_by_user != 'DeletedByUser'
       LIMIT 1
     `,
@@ -465,7 +465,7 @@ class Post {
       throw error;
     }
   }
-  
+
   async updatePostStatus(postID, status) {
     try {
       const [result] = await db.query(
@@ -478,7 +478,10 @@ class Post {
       );
 
       if (result.affectedRows === 0) {
-        return { success: false, message: "Post not found or already approved." };
+        return {
+          success: false,
+          message: "Post not found or already approved.",
+        };
       }
 
       return { success: true, message: "Post status updated successfully." };
@@ -488,7 +491,5 @@ class Post {
     }
   }
 }
-
-
 
 module.exports = Post;

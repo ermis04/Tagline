@@ -29,20 +29,18 @@ router.post("/", validateLogIn, async (req, res) => {
 
     res.cookie("tagline_auth", token, {
       httpOnly: false,
-      secure: false,
+      secure: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "lax",
       maxAge: 86400000,
       path: "/",
-      domain: "localhost",
     });
 
     res.cookie("user_type", role.toUpperCase(), {
       httpOnly: false,
-      secure: false,
+      secure: process.env.NODE_ENV === "production" ? true : false,
       sameSite: "lax",
       maxAge: 86400000,
       path: "/",
-      domain: "localhost",
     });
 
     return res.status(200).json(token);
@@ -71,7 +69,11 @@ router.get("/loggedInPerson", async (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../../..", "Client", "LogIn"));
+  res.sendFile(path.join(__dirname, "../../Client", "logIn", "index.html"));
+});
+
+router.get("/static", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../Client", "logIn"));
 });
 
 module.exports = router;

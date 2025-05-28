@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User</title>
+    <link rel="stylesheet" href="../..//styles/main.css" />
+    <link rel="stylesheet" href="../..//logIn/Login.css" />
+    <link rel="stylesheet" href="../../User/Profile/viewprofile.css" />
+
+    <title>View Profile</title>
+  </head>
+  <body>
+    <nav>
+      <div class="space-between">
+        <a href="/user/profile">
+          <img class="back-icon" src="/images/back.png" alt="Logo" />
+        </a>
+      </div>
+    </nav>
+
+    <div class="profile-pic-container">
+      <img id="profile-pic" class="big-profile-pic" alt="Logo" />
+      <div id="username"></div>
+    </div>
+    <section>
+      <form id="edit-profile-form">
+        <div class="inline logininput">
+          <label for="name">Name</label>
+          <div class="input-container">
+            <input id="name" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="surname">Surname</label>
+          <div class="input-container">
+            <input id="surname" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="username-field">Username</label>
+          <div class="input-container">
+            <input id="username-field" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="email">Email</label>
+          <div class="input-container">
+            <input id="email" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <div class="inline logininput">
+          <label for="src">Image Link</label>
+          <div class="input-container">
+            <input id="src" type="text" class="dotted-input" />
+          </div>
+        </div>
+
+        <section></section>
+
+        <div class="inline">
+          <a href="/user/profile" class="cancel-button">Cancel</a>
+          <button
+            type="submit"
+            style="cursor: pointer; pointer-events: all"
+            class="save-button"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <script src="../../User/Profile/editprofile.js"></script>
+  </body>
+</html>

@@ -146,3 +146,35 @@ INSERT INTO Review (uploaded_by, Rating, Text, PoiID, DeletedBy, status_by_user,
  (7, 4, 'Taj Mahal is stunning during sunrise.', 7, NULL, 'Active', 'Approved'),
  (8, 3, 'Statue of Liberty was smaller than expected.', 8, NULL, 'Edited', 'Pending'),
  (9, 5, 'Sydney Opera House architecture is just iconic!', 13, 2, 'DeletedByUser', 'Rejected');
+
+
+
+
+INSERT INTO location (description, src, location_name) VALUES
+('Athens, the capital of Greece, is known for ancient monuments like the Acropolis and the Parthenon.', 'https://hhotels.gr/wp-content/uploads/2024/04/shutterstock_2392162239.jpg', 'Athens'),
+('Thessaloniki, a vibrant port city, is famous for its festivals, Byzantine walls, and the White Tower.', 'https://centralmacedoniablob.blob.core.windows.net/portal-content/Istoriko_kentro_thessalonikis_3.jpg', 'Thessaloniki'),
+('Santorini, a stunning island in the Aegean Sea, is known for its white houses and sunsets.', 'https://res.cloudinary.com/manawa/image/private/f_auto,c_limit,w_3840,q_auto/hebnsqjvxshq5t1krsku', 'Santorini'),
+('Mykonos, a cosmopolitan island, is famous for its beaches and nightlife.', 'https://lp-cms-production.imgix.net/2025-03/Shutterstock1916571950.jpg?auto=format,compress&q=72&w=1440&h=810&fit=crop', 'Mykonos'),
+('Delphi, an archaeological site that hosted the famous Oracle of Apollo.', 'https://www.freetour.com/images/tours/24861/full-day-tour-to-delphiarachova-and-distomo-01.jpg', 'Delphi');
+
+-- Greek POIs with corrected location_id references (1 to 5)
+INSERT INTO POI (POI_name, POI_description, src, location_id, points) VALUES
+('Acropolis', 'Iconic archaeological site featuring the Parthenon and other ancient buildings.', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Classic_view_of_Acropolis.jpg/960px-Classic_view_of_Acropolis.jpg', 1, 50),
+('Parthenon', 'Ancient temple dedicated to Athena with imposing classical architecture.', 'https://upload.wikimedia.org/wikipedia/commons/d/da/The_Parthenon_in_Athens.jpg', 1, 45),
+('Acropolis Museum', 'Modern museum housing archaeological finds from the Acropolis.', 'https://www.visitgreece.gr/files/merakos_02_acropolismuseum_1310x769.jpg', 1, 40),
+
+('White Tower', 'Symbol of Thessaloniki offering panoramic views and a historical exhibition.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-zD-gTP3aZ3DWCKbG_ze2Ch74EdMmRTrWkA&s', 2, 50),
+('Arch of Galerius', 'Roman monument from the era of Emperor Galerius.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq5YJJozlK9-Ws4XG14f1R1UTydxBPF1MNQQ&s', 2, 35),
+('Rotunda', 'Circular building with a history as a temple, mausoleum, and church.', 'https://www.thessalonikiguide.gr/wp-content/uploads/2016/05/rotonta-thessaloniki-2.jpg', 2, 30),
+
+('Oia', 'Picturesque village with breathtaking sunsets.', 'https://www.santoriniholidaycars.com/wp-content/uploads/2012/01/oia-village.jpg', 3, 50),
+('Caldera', 'Stunning volcanic crater surrounded by cliffs.', 'https://exploringgreece.tv/wp-content/uploads/2017/06/%CE%A3%CE%B1%CE%BD%CF%84%CE%BF%CF%81%CE%AF%CE%BD%CE%B7.jpg', 3, 45),
+('Red Beach', 'Unique beach with red cliffs and turquoise waters.', 'https://ferryfast.gr/wp-content/uploads/2024/06/Kokkini-paralia-santorini-1024x682.jpg', 3, 35),
+
+('Little Venice', 'Seaside neighborhood with houses built right above the sea.', 'https://fastferries.com.gr/wp-content/uploads/2020/02/mikri-venetia-mykonou-1.jpg', 4, 45),
+('Mykonos Windmills', 'Iconic 16th-century windmills with panoramic views.', 'https://www.mykonostour.gr/image.php?src=pictures/photo/31.jpg&width=640', 4, 40),
+('Paradise Beach', 'Famous beach known for parties and loud music.', 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/8a/ae/46/aerial-view-of-paradise.jpg?w=1200&h=-1&s=1', 4, 50),
+
+('Delphi Archaeological Site', 'Important ancient site with the Temple of Apollo and a stadium.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2XghGSdaUz5_Ub9QkdObihwSlnZKRsqpdwA&s', 5, 55),
+('Delphi Museum', 'Rich collection of antiquities from the sacred area of Delphi.', 'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1b/b9/33/47/20200808-150252-largejpg.jpg?w=800&h=500&s=1', 5, 40),
+('Delphi Theater', 'Ancient theater with fantastic acoustics and a view of the valley.', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQa-ViIcfBvxuMqDltXdjEmdhyUaogtLJvjA&s', 5, 35);

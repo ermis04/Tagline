@@ -53,7 +53,7 @@ class Moderator {
       FROM Post p
       JOIN User u ON p.uploaded_by = u.UserID
       JOIN Person per ON u.PersonID = per.PersonID
-      JOIN POI poi ON p.PoiID = poi.POIID
+      JOIN Poi poi ON p.PoiID = poi.POIID
       WHERE p.status = 'Pending' AND p.status_by_user = 'Active'
       ORDER BY p.uploadDate DESC
     `);
@@ -74,7 +74,7 @@ class Moderator {
       FROM Review r
       JOIN User u ON r.uploaded_by = u.UserID
       JOIN Person per ON u.PersonID = per.PersonID
-      JOIN POI poi ON r.PoiID = poi.POIID
+      JOIN Poi poi ON r.PoiID = poi.POIID
       WHERE r.status = 'Pending' AND r.status_by_user = 'Active'
       ORDER BY r.uploadDate DESC
     `);
@@ -235,7 +235,7 @@ class Moderator {
     try {
       const [result] = await db.query(
         `
-      UPDATE AD
+      UPDATE Ad
       SET status = 'Rejected'
       WHERE AdID = ?
     `,

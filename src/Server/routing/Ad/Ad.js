@@ -9,7 +9,7 @@ class Ad {
     SUM(clicks) AS total_clicks,
     SUM(cost) AS total_cost,
     Count(*) AS total_ads
-    FROM ad
+    FROM Ad
     WHERE uploaded_by = ?`,
       [partner_id]
     );
@@ -19,18 +19,12 @@ class Ad {
 
   // Create a new ad
   async createAd(partnerId, adData) {
-    console.log(
-      "createAd called with partnerId:",
-      partnerId,
-      "adData:",
-      adData
-    );
     const { title, Description, end_date, cost, PoiID } = adData;
 
     try {
       const [result] = await db.query(
         `
-      INSERT INTO ad (
+      INSERT INTO Ad (
         uploaded_by,
         title,
         Description,
@@ -39,14 +33,7 @@ class Ad {
         PoiID
       ) VALUES (?, ?, ?, ?, ?, ?)
       `,
-        [
-          partnerId,
-          title,
-          Description || null,
-          end_date,
-          cost,
-          PoiID,
-        ]
+        [partnerId, title, Description || null, end_date, cost, PoiID]
       );
 
       return {
@@ -61,21 +48,12 @@ class Ad {
   }
 
   async editAd(ad_id, partnerId, adData) {
-    console.log(
-      "editAd called with adId:",
-      ad_id,
-      "partnerId:",
-      partnerId,
-      "adData:",
-      adData
-    );
-
     const { title, Description, end_date, cost } = adData;
 
     try {
       const [result] = await db.query(
         `
-      UPDATE ad
+      UPDATE Ad
       SET 
         title = ?,
         Description = ?,
@@ -112,7 +90,7 @@ class Ad {
     try {
       // Step 1: Get current ad cost
       const [adRows] = await db.query(
-        `SELECT cost FROM ad WHERE AdID = ? AND uploaded_by = ? LIMIT 1`,
+        `SELECT cost FROM Ad WHERE AdID = ? AND uploaded_by = ? LIMIT 1`,
         [ad_id, partner_id]
       );
 
@@ -155,7 +133,7 @@ class Ad {
       }
 
       // Step 5: Update the ad's budget
-      await db.query(`UPDATE ad SET cost = ? WHERE AdID = ?`, [
+      await db.query(`UPDATE Ad SET cost = ? WHERE AdID = ?`, [
         new_budget,
         ad_id,
       ]);
@@ -187,11 +165,11 @@ class Ad {
           p.POI_name AS point_of_interest,
           l.location_name AS location
       FROM 
-          ad a
+          Ad a
       JOIN 
-          POI p ON a.PoiID = p.POIID
+          Poi p ON a.PoiID = p.POIID
       JOIN 
-          location l ON p.location_id = l.location_id
+          Location l ON p.location_id = l.location_id
       WHERE 
           a.AdID = ?
       ORDER BY 
@@ -227,11 +205,11 @@ class Ad {
     p.POI_name AS point_of_interest,
     l.location_name AS location
 FROM 
-    ad a
+    Ad a
 JOIN 
-    POI p ON a.PoiID = p.POIID
+    Poi p ON a.PoiID = p.POIID
 JOIN 
-    location l ON p.location_id = l.location_id
+    Location l ON p.location_id = l.location_id
 WHERE 
     a.uploaded_by = ?
 ORDER BY 
@@ -252,9 +230,9 @@ ORDER BY
         p.BusinessDescription,
         p.phone,
         pe.src
-      FROM ad a
+      FROM Ad a
       JOIN Partner p ON a.uploaded_by = p.PartnerID
-      JOIN person pe on p.PersonID = pe.PersonID
+      JOIN Person pe on p.PersonID = pe.PersonID
       WHERE a.PoiID = ?
         AND a.status = 'Approved'
         AND a.end_date >= CURRENT_DATE
@@ -274,7 +252,7 @@ ORDER BY
     try {
       const [result] = await db.query(
         `
-      DELETE FROM ad
+      DELETE FROM Ad
       WHERE AdID = ?
       `,
         [ad_id]
@@ -293,7 +271,7 @@ ORDER BY
     try {
       const [result] = await db.query(
         `
-      UPDATE ad
+      UPDATE Ad
       SET views = views + 1
       WHERE AdID = ?
       `,
@@ -313,7 +291,7 @@ ORDER BY
     try {
       const [result] = await db.query(
         `
-      UPDATE ad
+      UPDATE Ad
       SET clicks = clicks + 1
       WHERE AdID = ?
       `,
@@ -350,7 +328,7 @@ ORDER BY
           end_date, 
           cost, 
           status 
-        FROM ad 
+        FROM Ad 
         WHERE status = 'Pending' 
         ORDER BY start_date DESC`
       );
@@ -365,7 +343,7 @@ ORDER BY
   async updateAdStatus(ad_id, status) {
     try {
       const [result] = await db.query(
-        `UPDATE ad SET status = ? WHERE AdID = ?`,
+        `UPDATE Ad SET status = ? WHERE AdID = ?`,
         [status, ad_id]
       );
 
