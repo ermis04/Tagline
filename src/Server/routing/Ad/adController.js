@@ -68,7 +68,6 @@ router.get("/collect", async (req, res) => {
 });
 
 router.post("/create", async (req, res) => {
-  console.log("niggaballs");
   const partner = new Partner();
   const login = new LogIn();
   const ad = new Ad();
